@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CinemaApp",
+    "\\CinemaApp\\CinemaApp"
   ],
+  "SelectedNode": "\\CinemaApp\\CinemaApp.sln",
   "PreviewInSolutionExplorer": false
 }
