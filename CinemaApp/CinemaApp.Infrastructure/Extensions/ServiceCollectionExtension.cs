@@ -1,13 +1,10 @@
-﻿using CinemaApp.Infrastructure.Persistance;
+﻿using CinemaApp.Domain.Interfaces;
+using CinemaApp.Infrastructure.Persistance;
+using CinemaApp.Infrastructure.Repositories;
 using CinemaApp.Infrastructure.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CinemaApp.Infrastructure.Extensions
 {
@@ -19,6 +16,9 @@ namespace CinemaApp.Infrastructure.Extensions
                 configuration.GetConnectionString("CinemaApp")));
 
             services.AddScoped<CinemaAppSeeder>();
+
+            services.AddScoped<ITicketRepository, TicketRepository>();
+            services.AddScoped<IMovieRepository, MovieRepository>();
         }
     }
 }

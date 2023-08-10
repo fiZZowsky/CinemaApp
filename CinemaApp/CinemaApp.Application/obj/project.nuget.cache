@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "M/DHX85chWYeYhiNaPnPpAhYEt9D83XdHsiGuTkOq1LP1ZoPETOT5urkxMrxUe3YNGUZ1V7rScVgSnHmzIru+A==",
+  "dgSpecHash": "zHybDk+AH/YrQ1xl/oHY2jXDWLHtpk4HNgMvIrtmTkh6LyDzi3m1l8iOYGAbm5cA8gErelvCIKRBD5HpySD0Xw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp.Application\\CinemaApp.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

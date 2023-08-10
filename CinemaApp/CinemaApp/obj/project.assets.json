@@ -1137,7 +1137,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "CinemaApp.Domain": "1.0.0"
+          "CinemaApp.Domain": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0"
         },
         "compile": {
           "bin/placeholder/CinemaApp.Application.dll": {}
