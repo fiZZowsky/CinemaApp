@@ -1,7 +1,9 @@
-﻿namespace CinemaApp.Application.Services
+﻿using CinemaApp.Application.Dtos;
+
+namespace CinemaApp.Application.Services
 {
     public interface ITicketService
     {
-        Task Create(Domain.Entities.Ticket ticket);
+        Task Create(TicketDto ticket);
     }
 }

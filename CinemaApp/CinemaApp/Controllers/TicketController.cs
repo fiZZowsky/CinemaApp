@@ -1,4 +1,5 @@
-﻿using CinemaApp.Application.Services;
+﻿using CinemaApp.Application.Dtos;
+using CinemaApp.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaApp.MVC.Controllers
@@ -13,7 +14,7 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> Create(Domain.Entities.Ticket ticket)
+        public async Task <IActionResult> Create(TicketDto ticket)
         {
             await _ticketService.Create(ticket);
             return RedirectToAction(nameof(Create)); // TODO: Refactor

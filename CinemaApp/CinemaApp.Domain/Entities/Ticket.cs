@@ -14,7 +14,7 @@ namespace CinemaApp.Domain.Entities
         // TO DO: Replace the type with a separate table extending the tickets table
         public string Type { get; set; } = string.Empty;
         public DateTime PurchaseDate { get; set; } = DateTime.UtcNow;
-        public byte[]? QRCode { get; set; } = default!;
+        public byte[]? QRCode { get; set; }
         public bool IsScanned { get; set; }
 
         public MovieShow MovieShow { get; set; } = default!;

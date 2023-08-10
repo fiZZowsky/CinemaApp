@@ -1,4 +1,5 @@
-﻿using CinemaApp.Application.Services;
+﻿using CinemaApp.Application.Mappings;
+using CinemaApp.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CinemaApp.Application.Extensions
@@ -9,6 +10,8 @@ namespace CinemaApp.Application.Extensions
         {
             services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<IMovieService, MovieService>();
+
+            services.AddAutoMapper(typeof(CinemaAppMappingProfile));
         }
     }
 }
