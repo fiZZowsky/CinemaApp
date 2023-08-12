@@ -1,0 +1,63 @@
+﻿@model CinemaApp.Application.Dtos.TicketDto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TicketDto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MovieTitle" class="control-label"></label>
+                <input asp-for="MovieTitle" class="form-control" />
+                <span asp-validation-for="MovieTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Language" class="control-label"></label>
+                <input asp-for="Language" class="form-control" />
+                <span asp-validation-for="Language" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label"></label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartTime" class="control-label"></label>
+                <input asp-for="StartTime" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HallNumber" class="control-label"></label>
+                <input asp-for="HallNumber" class="form-control" />
+                <span asp-validation-for="HallNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RowNumber" class="control-label"></label>
+                <input asp-for="RowNumber" class="form-control" />
+                <span asp-validation-for="RowNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SeatNumber" class="control-label"></label>
+                <input asp-for="SeatNumber" class="form-control" />
+                <span asp-validation-for="SeatNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

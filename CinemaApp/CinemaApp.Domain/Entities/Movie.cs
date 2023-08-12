@@ -9,15 +9,15 @@ namespace CinemaApp.Domain.Entities
     public class Movie
     {
         public int Id { get; set; }
-        public string Title { get; set; } = string.Empty;
+        public string Title { get; set; } = default!;
         // TO DO: Rozbić na osobne tabele
-        public string Genre { get; set; } = string.Empty;
-        public string Country { get; set; } = string.Empty;
-        public string AgeRating { get; set; } = string.Empty;
-        public string Language { get; set; } = string.Empty;
+        public string Genre { get; set; } = default!;
+        public string Country { get; set; } = default!;
+        public string AgeRating { get; set; } = default!;
+        public string Language { get; set; } = default!;
         // -------------------------
         public int Duration { get; set; }
-        public string Description { get; set; } = string.Empty;
+        public string Description { get; set; } = default!;
         public DateTime ProductionYear { get; set; }
         public DateTime ReleaseDate { get; set; }
 

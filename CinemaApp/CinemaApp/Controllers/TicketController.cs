@@ -13,6 +13,12 @@ namespace CinemaApp.MVC.Controllers
             _ticketService = ticketService;
         }
 
+        public async Task<IActionResult> Index(TicketDto ticketDto)
+        {
+            var tickets = await _ticketService.GetAll();
+            return View();
+        }
+
         [HttpPost]
         public async Task <IActionResult> Create(TicketDto ticket)
         {

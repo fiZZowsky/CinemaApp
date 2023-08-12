@@ -20,5 +20,13 @@ namespace CinemaApp.Application.Services
             var ticket = _mapper.Map<Domain.Entities.Ticket>(ticketDto);
             await _ticketRepository.Create(ticket);
         }
+
+        public async Task<IEnumerable<TicketDto>> GetAll()
+        {
+            var tickets = await _ticketRepository.GetAll();
+            var dtos = _mapper.Map<IEnumerable<TicketDto>>(tickets);
+
+            return dtos;
+        }
     }
 }

@@ -5,23 +5,17 @@ namespace CinemaApp.MVC.Controllers
 {
     public class MovieController : Controller
     {
-        private readonly IMovieService _movieService;
+        private readonly IMovieShowService _movieShowService;
 
-        public MovieController(IMovieService movieService)
+        public MovieController(IMovieShowService movieShowService)
         {
-            _movieService = movieService;
+            _movieShowService = movieShowService;
         }
 
-        public ActionResult Create() 
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(Domain.Entities.Movie movie)
-        {
-            await _movieService.Create(movie);
-            return RedirectToAction(nameof(Create)); // TODO: Refactor
+            var movies = await _movieShowService.GetAll();
+            return View(movies);
         }
     }
 }

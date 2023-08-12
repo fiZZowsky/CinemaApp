@@ -1,5 +1,7 @@
-﻿using CinemaApp.Domain.Interfaces;
+﻿using CinemaApp.Domain.Entities;
+using CinemaApp.Domain.Interfaces;
 using CinemaApp.Infrastructure.Persistance;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaApp.Infrastructure.Repositories
 {
@@ -16,5 +18,8 @@ namespace CinemaApp.Infrastructure.Repositories
             _dbContext.Add(ticket);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Ticket>> GetAll()
+                    => await _dbContext.Tickets.ToListAsync();
     }
 }
