@@ -26,6 +26,7 @@ namespace CinemaApp.Infrastructure.Repositories
                 .Include(m => m.Movie)
                 .Include(h => h.Hall)
                 .ToListAsync();
+
             return movieShows;
         }
     }

@@ -20,6 +20,16 @@ namespace CinemaApp.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Ticket>> GetAll()
-                    => await _dbContext.Tickets.ToListAsync();
+        {
+            var tickets = await _dbContext.Tickets
+                .Include(s => s.MovieShow)
+                    .ThenInclude(m => m.Movie)
+                .Include(ticket => ticket.Seat)
+                    .ThenInclude(h => h.Hall)
+                .ToListAsync();
+
+            return tickets;
+        }
+
     }
 }
