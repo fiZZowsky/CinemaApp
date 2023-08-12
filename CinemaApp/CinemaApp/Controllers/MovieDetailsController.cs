@@ -13,6 +13,12 @@ namespace CinemaApp.MVC.Controllers
             _movieDetailsService = movieDetailsService;
         }
 
+        public async Task<IActionResult> Index()
+        {
+            var movies = await _movieDetailsService.GetAll();
+            return View(movies);
+        }
+
         public ActionResult Create() 
         {
             return View();

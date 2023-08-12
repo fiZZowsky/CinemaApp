@@ -5,5 +5,6 @@ namespace CinemaApp.Application.Services
     public interface IMovieDetailsService
     {
         Task Create(MovieDetailsDto movieDto);
+        Task<IEnumerable<MovieDetailsDto>> GetAll();
     }
 }

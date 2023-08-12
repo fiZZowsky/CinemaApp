@@ -22,5 +22,13 @@ namespace CinemaApp.Application.Services
 
             await _movieRepository.Create(movie);
         }
+
+        public async Task<IEnumerable<MovieDetailsDto>> GetAll()
+        {
+            var movies = await _movieRepository.GetAll();
+            var dtos = _mapper.Map<IEnumerable<MovieDetailsDto>>(movies);
+
+            return dtos;
+        }
     }
 }

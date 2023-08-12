@@ -1,5 +1,7 @@
-﻿using CinemaApp.Domain.Interfaces;
+﻿using CinemaApp.Domain.Entities;
+using CinemaApp.Domain.Interfaces;
 using CinemaApp.Infrastructure.Persistance;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaApp.Infrastructure.Repositories
 {
@@ -16,6 +18,15 @@ namespace CinemaApp.Infrastructure.Repositories
         {
             _dbContext.Add(movie);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<MovieShow>> GetAll()
+        {
+            var movieShows = await _dbContext.MovieShows
+                .Include(m => m.Movie)
+                .Include(h => h.Hall)
+                .ToListAsync();
+            return movieShows;
         }
     }
 }

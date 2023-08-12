@@ -25,16 +25,17 @@ namespace CinemaApp.Application.Mappings
             //        .ForMember(dest => dest.SeatId, opt => opt.MapFrom(src => 0))
             //        .ForMember(dest => dest.IsScanned, opt => opt.MapFrom(src => false));
 
-            //CreateMap<Domain.Entities.MovieShow, MovieDetailsDto>()
-            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Movie.Title))
-            //    .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Movie.Genre))
-            //    .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Movie.Country))
-            //    .ForMember(dest => dest.AgeRating, opt => opt.MapFrom(src => src.Movie.AgeRating))
-            //    .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Movie.Language))
-            //    .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Movie.Duration))
-            //    .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Movie.Description))
-            //    .ForMember(dest => dest.ProductionYear, opt => opt.MapFrom(src => src.Movie.ProductionYear))
-            //    .ForMember(dest => dest.ReleaseDate, opt => opt.MapFrom(src => src.Movie.ReleaseDate));
+            CreateMap<Domain.Entities.MovieShow, MovieDetailsDto>()
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Movie.Title))
+                .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Movie.Genre))
+                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Movie.Country))
+                .ForMember(dest => dest.AgeRating, opt => opt.MapFrom(src => src.Movie.AgeRating))
+                .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Movie.Language))
+                .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Movie.Duration))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Movie.Description))
+                .ForMember(dest => dest.ProductionYear, opt => opt.MapFrom(src => src.Movie.ProductionYear))
+                .ForMember(dest => dest.ReleaseDate, opt => opt.MapFrom(src => src.Movie.ReleaseDate))
+                .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.Hall.Number));
 
             CreateMap<MovieDetailsDto, Domain.Entities.MovieShow>()
                 .ForMember(dest => dest.Movie, opt => opt.MapFrom(src => new Movie()
@@ -50,15 +51,6 @@ namespace CinemaApp.Application.Mappings
                     ReleaseDate = src.ReleaseDate
                 }))
                 .ForMember(dest => dest.HallId, opt => opt.MapFrom(src => src.HallNumber));
-
-            //CreateMap<Domain.Entities.MovieShow, MovieShowDto>()
-            //    .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Movie.Title))
-            //    .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Movie.Genre))
-            //    .ForMember(dest => dest.AgeRating, opt => opt.MapFrom(src => src.Movie.AgeRating))
-            //    .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Movie.Language))
-            //    .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Movie.Duration))
-            //    .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime))
-            //    .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.Hall.Number));
         }
     }
 }
