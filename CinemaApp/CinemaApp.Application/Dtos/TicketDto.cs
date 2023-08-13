@@ -10,6 +10,6 @@
         public int RowNumber { get; set; }
         public int SeatNumber { get; set; }
         public string Type { get; set; } = default!;
-        //public byte[]? QRCode { get; set; }
+        public byte[]? QRCode { get; set; }
     }
 }

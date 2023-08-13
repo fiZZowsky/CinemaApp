@@ -33,45 +33,51 @@
             <th>
                 @Html.DisplayNameFor(model => model.SeatNumber)
             </th>
-@*            <th>
+            <th>
                 @Html.DisplayNameFor(model => model.QRCode)
-            </th>*@
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.MovieTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Language)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Duration)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HallNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RowNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SeatNumber)
-            </td>
-@*            <td>
-                @Html.DisplayFor(modelItem => item.QRCode)
-            </td>*@
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovieTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Language)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HallNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RowNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatNumber)
+                </td>
+                <td>
+                    @if (item.QRCode != null && item.QRCode.Length > 0)
+                    {
+                        string base64Image = Convert.ToBase64String(item.QRCode);
+                        string imgSrc = $"data:image/png;base64,{base64Image}";
+                        <img src="@imgSrc" alt="QR Code" />
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

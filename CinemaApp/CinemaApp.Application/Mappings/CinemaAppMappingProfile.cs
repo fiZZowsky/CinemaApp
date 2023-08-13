@@ -20,8 +20,8 @@ namespace CinemaApp.Application.Mappings
             // TODO: Po dodaniu obsługi kodu QR zmienić poniższe mapowanie
 
             CreateMap<TicketDto, Domain.Entities.Ticket>()
-                .ForMember(dest => dest.MovieShowId, opt => opt.MapFrom(src => 0)) // Temporary placeholder, this will be set later
-                .ForMember(dest => dest.SeatId, opt => opt.MapFrom(src => 0)) // Temporary placeholder, this will be set later
+                .ForMember(dest => dest.MovieShowId, opt => opt.MapFrom(src => 0)) 
+                .ForMember(dest => dest.SeatId, opt => opt.MapFrom(src => 0))
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
                 .ForMember(dest => dest.PurchaseDate, opt => opt.MapFrom(src => DateTime.UtcNow))
                 .ForMember(dest => dest.QRCode, opt => opt.Ignore())

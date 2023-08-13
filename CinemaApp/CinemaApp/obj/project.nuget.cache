@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kKdGCjTJFjZRveg8RcPDd7YxkaUAb3QzMVGKXirFwpu9pQOftQSmWPA1oiYUzPBmKaTvyqX3YxEDRq5W/fqr+A==",
+  "dgSpecHash": "RtTx77DF9/jMqO47ivlJ4x9Daq/V2JNPYw28Jo3AyG1pWAKP22VGl9PTkazkp1hIGqfG7GU6AelVkLYyWvBK9w==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\CinemaApp.MVC.csproj",
   "expectedPackageFiles": [
@@ -129,6 +129,7 @@
     "C:\\Users\\Pioter\\.nuget\\packages\\nuget.projectmodel\\6.6.1\\nuget.projectmodel.6.6.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\nuget.protocol\\6.6.1\\nuget.protocol.6.6.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\nuget.versioning\\6.6.1\\nuget.versioning.6.6.1.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\qrcoder\\1.4.3\\qrcoder.1.4.3.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

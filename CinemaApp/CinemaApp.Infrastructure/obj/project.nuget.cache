@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "YhdMdxYzjOMLndf5m6N62CKnnlHjB/zyp+fCeYMgSnv74YBSur9eOxeuJUuzh4bKpPvctKIHjLOlS/OCaIRy8A==",
+  "dgSpecHash": "T/ZycJGAXxU60U09hw2KT1tNlDLix2WY22sRHPPOvuWAJWgH0HcTZMc8J8vIGscuRDfPnr6ZgRha/IFaSDROgw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp.Infrastructure\\CinemaApp.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -44,6 +44,7 @@
     "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\qrcoder\\1.4.3\\qrcoder.1.4.3.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
