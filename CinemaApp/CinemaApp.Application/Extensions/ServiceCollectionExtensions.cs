@@ -10,6 +10,8 @@ namespace CinemaApp.Application.Extensions
         {
             services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<IMovieDetailsService, MovieDetailsService>();
+            services.AddScoped<IMovieShowService, MovieShowService>();
+            services.AddScoped<ISeatService, SeatService>();
 
             services.AddAutoMapper(typeof(CinemaAppMappingProfile));
         }

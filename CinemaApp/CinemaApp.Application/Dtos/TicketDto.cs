@@ -9,6 +9,7 @@
         public int HallNumber { get; set; }
         public int RowNumber { get; set; }
         public int SeatNumber { get; set; }
+        public string Type { get; set; } = default!;
         //public byte[]? QRCode { get; set; }
     }
 }

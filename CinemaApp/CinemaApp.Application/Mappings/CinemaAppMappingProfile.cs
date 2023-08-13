@@ -17,13 +17,15 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.RowNumber, opt => opt.MapFrom(src => src.Seat.RowNumber))
                 .ForMember(dest => dest.SeatNumber, opt => opt.MapFrom(src => src.Seat.Number));
 
-            //    CreateMap<TicketDto, Domain.Entities.Ticket>()
-            //        .ForMember(dest => dest.MovieShow, opt => opt.Ignore())
-            //        .ForMember(dest => dest.Seat, opt => opt.Ignore())
-            //        .ForMember(dest => dest.Id, opt => opt.Ignore())
-            //        .ForMember(dest => dest.MovieShowId, opt => opt.MapFrom(src => 0))
-            //        .ForMember(dest => dest.SeatId, opt => opt.MapFrom(src => 0))
-            //        .ForMember(dest => dest.IsScanned, opt => opt.MapFrom(src => false));
+            // TODO: Po dodaniu obsługi kodu QR zmienić poniższe mapowanie
+
+            CreateMap<TicketDto, Domain.Entities.Ticket>()
+                .ForMember(dest => dest.MovieShowId, opt => opt.MapFrom(src => 0)) // Temporary placeholder, this will be set later
+                .ForMember(dest => dest.SeatId, opt => opt.MapFrom(src => 0)) // Temporary placeholder, this will be set later
+                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
+                .ForMember(dest => dest.PurchaseDate, opt => opt.MapFrom(src => DateTime.UtcNow))
+                .ForMember(dest => dest.QRCode, opt => opt.Ignore())
+                .ForMember(dest => dest.IsScanned, opt => opt.MapFrom(src => false));
 
             CreateMap<Domain.Entities.MovieShow, MovieDetailsDto>()
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Movie.Title))

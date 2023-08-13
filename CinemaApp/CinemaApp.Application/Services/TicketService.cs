@@ -15,9 +15,11 @@ namespace CinemaApp.Application.Services
             _mapper = mapper;
         }
 
-        public async Task Create(TicketDto ticketDto)
+        public async Task Create(TicketDto ticketDto, int movieShowId, int seatId)
         {
             var ticket = _mapper.Map<Domain.Entities.Ticket>(ticketDto);
+            ticket.MovieShowId = movieShowId;
+            ticket.SeatId = seatId;
             await _ticketRepository.Create(ticket);
         }
 
