@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "T/ZycJGAXxU60U09hw2KT1tNlDLix2WY22sRHPPOvuWAJWgH0HcTZMc8J8vIGscuRDfPnr6ZgRha/IFaSDROgw==",
+  "dgSpecHash": "ykHOzZCrzxFBWcsEOu5Ze6PiIHGoVKsL3dSQi4m82S94OyW2nQwun2KNsayPYvgKKJ073TQ6YUluluY0s8VIYQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp.Infrastructure\\CinemaApp.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,9 @@
     "C:\\Users\\Pioter\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.2\\microsoft.data.sqlclient.5.0.2.nupkg.sha512",

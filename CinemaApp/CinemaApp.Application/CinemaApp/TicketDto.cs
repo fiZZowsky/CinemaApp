@@ -1,4 +1,4 @@
-﻿namespace CinemaApp.Application.Dtos
+﻿namespace CinemaApp.Application.CinemaApp
 {
     public class TicketDto
     {

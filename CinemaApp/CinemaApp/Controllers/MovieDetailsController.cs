@@ -1,21 +1,23 @@
-﻿using CinemaApp.Application.Dtos;
-using CinemaApp.Application.Services;
+﻿using CinemaApp.Application.CinemaApp;
+using CinemaApp.Application.CinemaApp.Commands.CreateCinemaApp;
+using CinemaApp.Application.CinemaApp.Queries.GetAllMoviesDetails;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaApp.MVC.Controllers
 {
     public class MovieDetailsController : Controller
     {
-        private readonly IMovieDetailsService _movieDetailsService;
+        private readonly IMediator _mediator;
 
-        public MovieDetailsController(IMovieDetailsService movieDetailsService)
+        public MovieDetailsController(IMediator mediator)
         {
-            _movieDetailsService = movieDetailsService;
+            _mediator = mediator;
         }
 
         public async Task<IActionResult> Index()
         {
-            var movies = await _movieDetailsService.GetAll();
+            var movies = await _mediator.Send(new GetAllMoviesDetailsQuery());
             return View(movies);
         }
 
@@ -25,10 +27,15 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(MovieDetailsDto movieDetails)
+        public async Task<IActionResult> Create(CreateMovieDetailsCommand command)
         {
-            await _movieDetailsService.Create(movieDetails);
-            return RedirectToAction(nameof(Create)); // TODO: Refactor
+            if(!ModelState.IsValid)
+            {
+                return View(command);
+            }
+
+            await _mediator.Send(command);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

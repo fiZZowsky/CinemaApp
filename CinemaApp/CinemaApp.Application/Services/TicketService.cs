@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CinemaApp.Application.Dtos;
+using CinemaApp.Application.CinemaApp;
 using CinemaApp.Domain.Interfaces;
 
 namespace CinemaApp.Application.Services

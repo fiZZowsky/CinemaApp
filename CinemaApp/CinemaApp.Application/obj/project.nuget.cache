@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "koqV5ibwnqO1UEsMIL+hWrNgRiWtXphPSt1zM0RI3trz04FJfR4eZ7j5AbZWoEldzLORwE7K4UD4O0RvzV9m+Q==",
+  "dgSpecHash": "/n5fMuaZZQGQ1Z4mBkah4hzAGWq7aXrTipW4JupDvz+73INKkImQVdggrDFjo9VEHwr1yyWaL1irhXhiGnkXww==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp.Application\\CinemaApp.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pioter\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",

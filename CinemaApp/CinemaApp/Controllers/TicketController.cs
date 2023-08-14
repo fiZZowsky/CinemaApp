@@ -1,4 +1,4 @@
-﻿using CinemaApp.Application.Dtos;
+﻿using CinemaApp.Application.CinemaApp;
 using CinemaApp.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,7 +50,7 @@ namespace CinemaApp.MVC.Controllers
             ticketDto.Duration = movieShow.Movie.Duration;
 
             await _ticketService.Create(ticketDto, movieShow.Id, seat.Id);
-            return RedirectToAction(nameof(Index)); // TODO: Refactor
+            return RedirectToAction(nameof(Index));
         }
     }
 }

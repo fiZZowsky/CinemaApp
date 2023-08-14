@@ -1,4 +1,4 @@
-﻿using CinemaApp.Application.Dtos;
+﻿using CinemaApp.Application.CinemaApp;
 
 namespace CinemaApp.Application.Services
 {
