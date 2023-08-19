@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CinemaApp.Infrastructure.Repositories
 {
-    public class MovieDetailsRepository : IMovieDetailsRepository
+    public class MovieRepository : IMovieRepository
     {
         private readonly CinemaAppDbContext _dbContext;
 
-        public MovieDetailsRepository(CinemaAppDbContext dbContext)
+        public MovieRepository(CinemaAppDbContext dbContext)
         {
             _dbContext = dbContext;
         }

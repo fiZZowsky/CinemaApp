@@ -2,7 +2,7 @@
 
 namespace CinemaApp.Application.CinemaApp.Commands.CreateMovie
 {
-    public class CreateMovieDetailsCommand : MovieDetailsDto, IRequest
+    public class CreateMovieCommand : MovieDto, IRequest
     {
 
     }

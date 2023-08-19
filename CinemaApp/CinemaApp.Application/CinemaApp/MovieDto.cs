@@ -1,6 +1,6 @@
 ﻿namespace CinemaApp.Application.CinemaApp
 {
-    public class MovieDetailsDto
+    public class MovieDto
     {
         public string Title { get; set; } = default!;
         public string Genre { get; set; } = default!;

@@ -1,6 +1,6 @@
 ﻿@using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 
-@model CreateMovieDetailsCommand
+@model CreateMovieCommand
 
 <h1>Create New Movie</h1>
 
@@ -8,7 +8,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form action="/MovieDetails/Create" method="post">
+        <form action="/Movie/Create" method="post">
             <div class="form-group mb-3">
                 <label class="control-label" for="Title">Title</label>
                 <input class="form-control" type="text" id="Title" name="Title" />

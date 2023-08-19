@@ -27,7 +27,7 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.QRCode, opt => opt.Ignore())
                 .ForMember(dest => dest.IsScanned, opt => opt.MapFrom(src => false));
 
-            CreateMap<Domain.Entities.MovieShow, MovieDetailsDto>()
+            CreateMap<Domain.Entities.MovieShow, MovieDto>()
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Movie.Title))
                 .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Movie.Genre))
                 .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Movie.Country))
@@ -39,7 +39,7 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.ReleaseDate, opt => opt.MapFrom(src => src.Movie.ReleaseDate))
                 .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.Hall.Number));
 
-            CreateMap<MovieDetailsDto, Domain.Entities.MovieShow>()
+            CreateMap<MovieDto, Domain.Entities.MovieShow>()
                 .ForMember(dest => dest.Movie, opt => opt.MapFrom(src => new Movie()
                 {
                     Title = src.Title,

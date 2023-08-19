@@ -9,7 +9,7 @@ namespace CinemaApp.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
-            services.AddMediatR(typeof(CreateMovieDetailsCommand));
+            services.AddMediatR(typeof(CreateMovieCommand));
 
             services.AddAutoMapper(typeof(CinemaAppMappingProfile));
         }

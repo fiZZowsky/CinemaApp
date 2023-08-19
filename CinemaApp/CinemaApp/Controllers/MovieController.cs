@@ -1,22 +1,22 @@
 ﻿using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
-using CinemaApp.Application.CinemaApp.Queries.GetAllMoviesDetails;
+using CinemaApp.Application.CinemaApp.Queries.GetAllMovies;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaApp.MVC.Controllers
 {
-    public class MovieDetailsController : Controller
+    public class MovieController : Controller
     {
         private readonly IMediator _mediator;
 
-        public MovieDetailsController(IMediator mediator)
+        public MovieController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         public async Task<IActionResult> Index()
         {
-            var movies = await _mediator.Send(new GetAllMoviesDetailsQuery());
+            var movies = await _mediator.Send(new GetAllMoviesQuery());
             return View(movies);
         }
 
@@ -26,7 +26,7 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateMovieDetailsCommand command)
+        public async Task<IActionResult> Create(CreateMovieCommand command)
         {
             if(!ModelState.IsValid)
             {
