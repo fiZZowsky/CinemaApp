@@ -15,9 +15,13 @@ namespace CinemaApp.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task Create(Domain.Entities.Ticket ticket)
+        public async Task Create(Domain.Entities.Ticket ticket, int movieShowId, int seatId)
         {
+            ticket.MovieShowId = movieShowId;
+            ticket.SeatId = seatId;
+
             ticket.QRCode = await CreateQRCode(ticket);
+
             _dbContext.Add(ticket);
             await _dbContext.SaveChangesAsync();
         }
@@ -26,9 +30,12 @@ namespace CinemaApp.Infrastructure.Repositories
         {
             var seat = await _dbContext.Seats.Include(h => h.Hall)
                 .FirstOrDefaultAsync(s => s.Id == ticket.SeatId);
+
             var movieShow = await _dbContext.MovieShows.Include(m => m.Movie)
                 .FirstOrDefaultAsync(ms => ms.Id== ticket.MovieShowId);
+
             string data = $"{movieShow.Movie.Title}, {seat.Hall.Number}, {seat.RowNumber}, {seat.Number}, {ticket.Type}, {ticket.IsScanned}, {ticket.PurchaseDate}";
+            
             using (MemoryStream ms = new MemoryStream())
             {
                 QRCodeGenerator qrGenerator = new QRCodeGenerator();

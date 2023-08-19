@@ -1,25 +1,25 @@
 ﻿using CinemaApp.Application.CinemaApp;
-using CinemaApp.Application.Services;
+using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
+using CinemaApp.Application.CinemaApp.Queries.GetAllTickets;
+using CinemaApp.Application.CinemaApp.Queries.GetMovieShow;
+using CinemaApp.Application.CinemaApp.Queries.GetSeat;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaApp.MVC.Controllers
 {
     public class TicketController : Controller
     {
-        private readonly ITicketService _ticketService;
-        private readonly IMovieShowService _movieShowService;
-        private readonly ISeatService _seatService;
+        private readonly IMediator _mediator;
 
-        public TicketController(ITicketService ticketService, IMovieShowService movieShowService, ISeatService seatService)
+        public TicketController(IMediator mediator)
         {
-            _ticketService = ticketService;
-            _movieShowService = movieShowService;
-            _seatService = seatService;
+            _mediator = mediator;
         }
 
         public async Task<IActionResult> Index()
         {
-            var tickets = await _ticketService.GetAll();
+            var tickets = await _mediator.Send(new GetAllTicketsQuery());
             return View(tickets);
         }
 
@@ -29,15 +29,15 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> Create(TicketDto ticketDto)
+        public async Task<IActionResult> Create(TicketDto ticketDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var movieShow = await _movieShowService.GetByData(ticketDto.StartTime, ticketDto.HallNumber);
-            var seat = await _seatService.GetByData(ticketDto.HallNumber, ticketDto.RowNumber, ticketDto.SeatNumber);
+            var movieShow = await _mediator.Send(new GetMovieShowQuery(ticketDto.StartTime, ticketDto.HallNumber));
+            var seat = await _mediator.Send(new GetSeatQuery(ticketDto.HallNumber, ticketDto.RowNumber, ticketDto.SeatNumber));
 
             if (movieShow == null || seat == null)
             {
@@ -49,7 +49,9 @@ namespace CinemaApp.MVC.Controllers
             ticketDto.Language = movieShow.Movie.Language;
             ticketDto.Duration = movieShow.Movie.Duration;
 
-            await _ticketService.Create(ticketDto, movieShow.Id, seat.Id);
+            CreateTicketCommand command = new CreateTicketCommand(ticketDto, movieShow.Id, seat.Id);
+
+            await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
         }
     }

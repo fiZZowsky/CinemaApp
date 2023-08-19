@@ -1,5 +1,4 @@
-﻿using CinemaApp.Application.CinemaApp;
-using CinemaApp.Application.CinemaApp.Commands.CreateCinemaApp;
+﻿using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Queries.GetAllMoviesDetails;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

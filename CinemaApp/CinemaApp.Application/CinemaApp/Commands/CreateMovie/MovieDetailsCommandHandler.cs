@@ -2,7 +2,7 @@
 using CinemaApp.Domain.Interfaces;
 using MediatR;
 
-namespace CinemaApp.Application.CinemaApp.Commands.CreateCinemaApp
+namespace CinemaApp.Application.CinemaApp.Commands.CreateMovie
 {
     public class MovieDetailsCommandHandler : IRequestHandler<CreateMovieDetailsCommand>
     {

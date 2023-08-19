@@ -2,7 +2,7 @@
 {
     public interface ITicketRepository
     {
-        Task Create(Domain.Entities.Ticket ticket);
+        Task Create(Domain.Entities.Ticket ticket, int movieShowId, int seatId);
         Task<IEnumerable<Domain.Entities.Ticket>> GetAll();
     }
 }
