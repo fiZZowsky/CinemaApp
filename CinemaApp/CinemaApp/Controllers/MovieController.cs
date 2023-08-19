@@ -1,5 +1,6 @@
 ﻿using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Queries.GetAllMovies;
+using CinemaApp.Application.CinemaApp.Queries.GetMovieByEncodedTitle;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,6 +36,13 @@ namespace CinemaApp.MVC.Controllers
 
             await _mediator.Send(command);
             return RedirectToAction(nameof(Index));
+        }
+
+        [Route("CinemaApp/{encodedTitle}/Details")]
+        public async Task<IActionResult> Details (string encodedTitle)
+        {
+            var dto = await _mediator.Send(new GetMovieByEncodedTitleQuery(encodedTitle));
+            return View(dto);
         }
     }
 }

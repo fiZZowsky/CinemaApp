@@ -3,7 +3,6 @@ using CinemaApp.Domain.Interfaces;
 using CinemaApp.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using QRCoder;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CinemaApp.Infrastructure.Repositories
 {
@@ -32,10 +31,10 @@ namespace CinemaApp.Infrastructure.Repositories
                 .FirstOrDefaultAsync(s => s.Id == ticket.SeatId);
 
             var movieShow = await _dbContext.MovieShows.Include(m => m.Movie)
-                .FirstOrDefaultAsync(ms => ms.Id== ticket.MovieShowId);
+                .FirstOrDefaultAsync(ms => ms.Id == ticket.MovieShowId);
 
             string data = $"{movieShow.Movie.Title}, {seat.Hall.Number}, {seat.RowNumber}, {seat.Number}, {ticket.Type}, {ticket.IsScanned}, {ticket.PurchaseDate}";
-            
+
             using (MemoryStream ms = new MemoryStream())
             {
                 QRCodeGenerator qrGenerator = new QRCodeGenerator();
@@ -48,16 +47,11 @@ namespace CinemaApp.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Ticket>> GetAll()
-        {
-            var tickets = await _dbContext.Tickets
+            => await _dbContext.Tickets
                 .Include(s => s.MovieShow)
                     .ThenInclude(m => m.Movie)
                 .Include(ticket => ticket.Seat)
                     .ThenInclude(h => h.Hall)
                 .ToListAsync();
-
-            return tickets;
-        }
-
     }
 }
