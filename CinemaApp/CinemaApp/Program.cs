@@ -5,7 +5,7 @@ using CinemaApp.Application.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(option => option.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();

@@ -14,6 +14,9 @@ namespace CinemaApp.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task Commit()
+            => await _dbContext.SaveChangesAsync();
+
         public async Task Create(Domain.Entities.MovieShow movie)
         {
             _dbContext.Add(movie);

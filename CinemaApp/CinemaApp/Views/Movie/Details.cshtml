@@ -7,7 +7,6 @@
 <h1>@Model.Title Details</h1>
 
 <div>
-    <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Genre)
@@ -72,6 +71,7 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle">Edit</a>
+    |
     <a asp-action="Index">Back to List</a>
 </div>

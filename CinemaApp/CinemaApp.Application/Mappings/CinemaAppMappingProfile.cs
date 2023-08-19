@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CinemaApp.Application.CinemaApp;
+using CinemaApp.Application.CinemaApp.Commands.EditMovie;
 using CinemaApp.Domain.Entities;
 
 namespace CinemaApp.Application.Mappings
@@ -52,6 +53,8 @@ namespace CinemaApp.Application.Mappings
                     ReleaseDate = src.ReleaseDate
                 }))
                 .ForMember(dest => dest.HallId, opt => opt.MapFrom(src => src.HallNumber));
+
+            CreateMap<MovieDto, EditMovieCommand>();
         }
     }
 }
