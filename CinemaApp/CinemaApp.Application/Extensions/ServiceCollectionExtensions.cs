@@ -1,4 +1,5 @@
-﻿using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
+﻿using CinemaApp.Application.ApplicationUser;
+using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
 using CinemaApp.Application.Mappings;
 using MediatR;
@@ -10,6 +11,7 @@ namespace CinemaApp.Application.Extensions
     {
         public static void AddApplication(this IServiceCollection services)
         {
+            services.AddScoped<IUserContext, UserContext>();
             services.AddMediatR(typeof(CreateMovieCommand));
             services.AddMediatR(typeof(CreateTicketCommand));
 

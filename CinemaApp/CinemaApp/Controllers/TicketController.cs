@@ -4,6 +4,7 @@ using CinemaApp.Application.CinemaApp.Queries.GetAllTickets;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieShow;
 using CinemaApp.Application.CinemaApp.Queries.GetSeat;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaApp.MVC.Controllers
@@ -17,18 +18,21 @@ namespace CinemaApp.MVC.Controllers
             _mediator = mediator;
         }
 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var tickets = await _mediator.Send(new GetAllTicketsQuery());
             return View(tickets);
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(TicketDto ticketDto)
         {
             if (!ModelState.IsValid)

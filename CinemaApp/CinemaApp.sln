@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaApp.MVC", "CinemaApp\CinemaApp.MVC.csproj", "{2411D3A9-7841-4092-81CF-94009A5E21BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.MVC", "CinemaApp\CinemaApp.MVC.csproj", "{2411D3A9-7841-4092-81CF-94009A5E21BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaApp.Domain", "CinemaApp.Domain\CinemaApp.Domain.csproj", "{72F42776-34D3-449F-B153-9F67B7331077}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Domain", "CinemaApp.Domain\CinemaApp.Domain.csproj", "{72F42776-34D3-449F-B153-9F67B7331077}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaApp.Application", "CinemaApp.Application\CinemaApp.Application.csproj", "{5969B46F-7B4C-41CD-BC8A-3D96B68CBE9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Application", "CinemaApp.Application\CinemaApp.Application.csproj", "{5969B46F-7B4C-41CD-BC8A-3D96B68CBE9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaApp.Infrastructure", "CinemaApp.Infrastructure\CinemaApp.Infrastructure.csproj", "{5F253848-8899-4DBB-B460-B319F048F95C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Infrastructure", "CinemaApp.Infrastructure\CinemaApp.Infrastructure.csproj", "{5F253848-8899-4DBB-B460-B319F048F95C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

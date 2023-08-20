@@ -2,6 +2,7 @@
 using CinemaApp.Infrastructure.Persistance;
 using CinemaApp.Infrastructure.Repositories;
 using CinemaApp.Infrastructure.Seeders;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,10 @@ namespace CinemaApp.Infrastructure.Extensions
         {
             services.AddDbContext<CinemaAppDbContext>(options => options.UseSqlServer(
                 configuration.GetConnectionString("CinemaApp")));
+
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<CinemaAppDbContext>();
 
             services.AddScoped<CinemaAppSeeder>();
 

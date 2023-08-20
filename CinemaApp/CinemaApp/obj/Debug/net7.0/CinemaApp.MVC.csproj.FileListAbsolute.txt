@@ -263,3 +263,12 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\refint\Ci
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\CinemaApp.MVC.pdb
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\CinemaApp.MVC.genruntimeconfig.cache
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\ref\CinemaApp.MVC.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\CinemaApp.MVC.MvcApplicationPartsAssemblyInfo.cs

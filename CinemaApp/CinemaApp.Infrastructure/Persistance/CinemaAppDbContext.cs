@@ -1,14 +1,10 @@
 ﻿using CinemaApp.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CinemaApp.Infrastructure.Persistance
 {
-    public class CinemaAppDbContext : DbContext
+    public class CinemaAppDbContext : IdentityDbContext
     {
         public CinemaAppDbContext(DbContextOptions<CinemaAppDbContext> options) : base(options)
         {
@@ -23,6 +19,8 @@ namespace CinemaApp.Infrastructure.Persistance
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Ticket>()
                 .HasOne(t => t.Seat)
                 .WithMany(s => s.Tickets)
@@ -33,9 +31,7 @@ namespace CinemaApp.Infrastructure.Persistance
                 .HasOne(t => t.MovieShow)
                 .WithMany(ms => ms.Tickets)
                 .HasForeignKey(t => t.MovieShowId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            base.OnModelCreating(modelBuilder);
+                .OnDelete(DeleteBehavior.Restrict);           
         }
     }
 }

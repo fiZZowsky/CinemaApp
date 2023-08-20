@@ -4,6 +4,7 @@ using CinemaApp.Application.CinemaApp.Commands.EditMovie;
 using CinemaApp.Application.CinemaApp.Queries.GetAllMovies;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieByEncodedTitle;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CinemaApp.MVC.Controllers
@@ -25,12 +26,14 @@ namespace CinemaApp.MVC.Controllers
             return View(movies);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Create() 
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateMovieCommand command)
         {
             if(!ModelState.IsValid)
@@ -50,6 +53,7 @@ namespace CinemaApp.MVC.Controllers
         }
         
         [Route("CinemaApp/{encodedTitle}/Edit")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit (string encodedTitle)
         {
             var dto = await _mediator.Send(new GetMovieByEncodedTitleQuery(encodedTitle));
@@ -59,6 +63,7 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("CinemaApp/{encodedTitle}/Edit")]
         public async Task<IActionResult> Edit (string title, string encodedTitle, EditMovieCommand command)
         {
