@@ -1,12 +1,15 @@
 using CinemaApp.Infrastructure.Extensions;
 using CinemaApp.Infrastructure.Seeders;
 using CinemaApp.Application.Extensions;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews(option => option.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 

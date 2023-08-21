@@ -73,9 +73,7 @@
                     }
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <a class="btn btn-primary" asp-controller="Ticket" asp-action="GeneratePDF" asp-route-Id="@item.Id">Get PDF</a>
                 </td>
             </tr>
         }

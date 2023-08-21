@@ -272,3 +272,4 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\CinemaApp.MVC.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\DinkToPdf.dll
