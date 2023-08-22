@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IRnjXHxPGCZg8cRmu9GJQe3BWcHAG8F4e6vHfa9KNFrltE4X/pWdYZqy5poHeruvT20D/2chSCbqhePzemUg6A==",
+  "dgSpecHash": "b7uGYOc5u+/IkJYDwgt+jFZPzeslfSfZCO3VQAhpmpHdpXFlySoWjdwNZ8IB3QOQpt+y1l16HjJLVvLz2Q5qHg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\CinemaApp.MVC.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\Pioter\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\dinktopdf\\1.0.8\\dinktopdf.1.0.8.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\dinktopdfcopy\\1.0.0\\dinktopdfcopy.1.0.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

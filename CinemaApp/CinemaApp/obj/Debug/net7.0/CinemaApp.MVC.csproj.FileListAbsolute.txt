@@ -273,3 +273,9 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\CinemaApp.MVC.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\DinkToPdf.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\linux-x64\native\libwkhtmltox.so
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\linux-x86\native\libwkhtmltox.so
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\osx-x64\native\libwkhtmltox.dylib
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\osx-x86\native\libwkhtmltox.dylib
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win7-x64\native\libwkhtmltox.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win7-x86\native\libwkhtmltox.dll

@@ -1,5 +1,4 @@
-﻿using CinemaApp.Domain.Entities;
-using CinemaApp.Infrastructure.Persistance;
+﻿using CinemaApp.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
 namespace CinemaApp.Infrastructure.Seeders

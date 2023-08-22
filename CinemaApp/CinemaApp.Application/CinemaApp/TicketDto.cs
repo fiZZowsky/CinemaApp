@@ -2,6 +2,7 @@
 {
     public class TicketDto
     {
+        public int Id { get; set; }
         public string MovieTitle { get; set; } = default!;
         public string Language { get; set; } = default!;
         public int Duration { get; set; }

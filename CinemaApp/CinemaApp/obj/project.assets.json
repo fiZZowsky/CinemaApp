@@ -97,6 +97,54 @@
           }
         }
       },
+      "DinkToPdfCopy/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "System.Collections.Concurrent": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Threading.Thread": "4.0.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/DinkToPdf.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard1.6/DinkToPdf.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libwkhtmltox.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/linux-x86/native/libwkhtmltox.so": {
+            "assetType": "native",
+            "rid": "linux-x86"
+          },
+          "runtimes/osx-x64/native/libwkhtmltox.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/osx-x86/native/libwkhtmltox.dylib": {
+            "assetType": "native",
+            "rid": "osx-x86"
+          },
+          "runtimes/win7-x64/native/libwkhtmltox.dll": {
+            "assetType": "native",
+            "rid": "win7-x64"
+          },
+          "runtimes/win7-x86/native/libwkhtmltox.dll": {
+            "assetType": "native",
+            "rid": "win7-x86"
+          }
+        }
+      },
       "Humanizer/2.14.1": {
         "type": "package",
         "dependencies": {
@@ -4196,6 +4244,8 @@
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
           "CinemaApp.Application": "1.0.0",
+          "DinkToPdf": "1.0.8",
+          "DinkToPdfCopy": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.10",
           "Microsoft.AspNetCore.Identity.UI": "7.0.10",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10",
@@ -4290,6 +4340,25 @@
         "lib/netstandard1.6/DinkToPdf.dll",
         "lib/netstandard1.6/DinkToPdf.pdb",
         "lib/netstandard1.6/DinkToPdf.xml"
+      ]
+    },
+    "DinkToPdfCopy/1.0.0": {
+      "sha512": "cYUQR/1dwgz8l2z7Ekdd2MhzH3/Uh1wBu+FX3+iecyNzNhYqNFGzcLWNPCn4VDygKRwS0J0uY8sTZt8vds/SgQ==",
+      "type": "package",
+      "path": "dinktopdfcopy/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "dinktopdfcopy.1.0.0.nupkg.sha512",
+        "dinktopdfcopy.nuspec",
+        "lib/netstandard1.6/DinkToPdf.dll",
+        "lib/netstandard1.6/DinkToPdf.xml",
+        "runtimes/linux-x64/native/libwkhtmltox.so",
+        "runtimes/linux-x86/native/libwkhtmltox.so",
+        "runtimes/osx-x64/native/libwkhtmltox.dylib",
+        "runtimes/osx-x86/native/libwkhtmltox.dylib",
+        "runtimes/win7-x64/native/libwkhtmltox.dll",
+        "runtimes/win7-x86/native/libwkhtmltox.dll"
       ]
     },
     "Humanizer/2.14.1": {
