@@ -1,4 +1,5 @@
-﻿using CinemaApp.Domain.Interfaces;
+﻿using CinemaApp.Domain.Entities;
+using CinemaApp.Domain.Interfaces;
 using CinemaApp.Infrastructure.Persistance;
 using CinemaApp.Infrastructure.Repositories;
 using CinemaApp.Infrastructure.Seeders;
@@ -19,6 +20,8 @@ namespace CinemaApp.Infrastructure.Extensions
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<CinemaAppDbContext>();
+
+            services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
             services.AddScoped<CinemaAppSeeder>();
 

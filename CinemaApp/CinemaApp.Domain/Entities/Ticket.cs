@@ -13,12 +13,12 @@ namespace CinemaApp.Domain.Entities
         public int MovieShowId { get; set; }
         public int SeatId { get; set; }
         // TO DO: Replace the type with a separate table extending the tickets table
-        public string Type { get; set; } = string.Empty;
-        public DateTime PurchaseDate { get; set; } = DateTime.UtcNow;
+        public string Type { get; set; } = default!;
+        public DateTime PurchaseDate { get; set; }
         public byte[]? QRCode { get; set; }
         public bool IsScanned { get; set; }
-        public string? PurchasedById { get; set; }
-        public IdentityUser? PurchasedBy { get; set; }
+        public string PurchasedById { get; set; } = default!;
+        public IdentityUser PurchasedBy { get; set; } = default!;
         public MovieShow MovieShow { get; set; } = default!;
         public Seat Seat { get; set; } = default!;
     }

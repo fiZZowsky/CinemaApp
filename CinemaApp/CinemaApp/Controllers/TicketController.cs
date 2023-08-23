@@ -1,13 +1,16 @@
 ﻿using CinemaApp.Application.CinemaApp;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
+using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
 using CinemaApp.Application.CinemaApp.Queries.GetAllTickets;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieShow;
 using CinemaApp.Application.CinemaApp.Queries.GetPdfFromTicket;
 using CinemaApp.Application.CinemaApp.Queries.GetSeat;
+using CinemaApp.Application.CinemaApp.Queries.GetTicketByUser;
 using DinkToPdf.Contracts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -56,22 +59,48 @@ namespace CinemaApp.MVC.Controllers
             ticketDto.MovieTitle = movieShow.Movie.Title;
             ticketDto.Language = movieShow.Movie.Language;
             ticketDto.Duration = movieShow.Movie.Duration;
+            DateTime currentTime = DateTime.Now;
+            DateTime formattedPurchaseDate = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, currentTime.Hour, currentTime.Minute, 0);
+            ticketDto.PurchaseDate = formattedPurchaseDate;
 
             CreateTicketCommand command = new CreateTicketCommand(ticketDto, movieShow.Id, seat.Id);
 
             await _mediator.Send(command);
+
+            var ticket = await _mediator.Send(new GetTicketByUserQuery(formattedPurchaseDate, ticketDto.MovieTitle));
+            await SendEmailWithTicket(ticket.Id);
+
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
-        public async Task<IActionResult> GeneratePDF(int id)
+        [Authorize]
+        public async Task<IActionResult> GetPdfTicketFile(int id)
+        {
+            byte[] pdfBytes = await GeneratePDF(id);
+            return File(pdfBytes, "application/pdf", "ticket.pdf");
+        }
+
+        private async Task<byte[]> GeneratePDF(int id)
         {
             var templateFilePath = Path.Combine(Directory.GetCurrentDirectory(), "assets", "Ticket.html");
             var htmlContent = System.IO.File.ReadAllText("Templates\\Ticket.html");
 
             byte[] pdfBytes = await _mediator.Send(new GetPdfQuery(id, htmlContent));
 
-            return File(pdfBytes, "application/pdf", "ticket.pdf");
+            return pdfBytes;
+        }
+
+        private async Task<IActionResult> SendEmailWithTicket(int id)
+        {
+            var ticketPdf = await GeneratePDF(id);
+            string emailTemplateText = System.IO.File.ReadAllText("Templates\\Email.html");
+
+            SendEmailWithAttachementCommand command = new SendEmailWithAttachementCommand(emailTemplateText, ticketPdf);
+
+            await _mediator.Send(command);
+
+            return Ok();
         }
     }
 }

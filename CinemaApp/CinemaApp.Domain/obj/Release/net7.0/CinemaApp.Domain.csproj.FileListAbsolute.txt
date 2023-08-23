@@ -1,0 +1,12 @@
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\bin\Release\net7.0\CinemaApp.Domain.deps.json
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\bin\Release\net7.0\CinemaApp.Domain.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\bin\Release\net7.0\CinemaApp.Domain.pdb
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Release\net7.0\CinemaApp.Domain.csproj.AssemblyReference.cache
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Release\net7.0\CinemaApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Release\net7.0\CinemaApp.Domain.AssemblyInfoInputs.cache
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Release\net7.0\CinemaApp.Domain.AssemblyInfo.cs
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Release\net7.0\CinemaApp.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Release\net7.0\CinemaApp.Domain.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Release\net7.0\refint\CinemaApp.Domain.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Release\net7.0\CinemaApp.Domain.pdb
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Release\net7.0\ref\CinemaApp.Domain.dll

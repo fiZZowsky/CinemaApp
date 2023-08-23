@@ -121,32 +121,6 @@ namespace CinemaApp.Infrastructure.Seeders
 
                     await _dbContext.SaveChangesAsync();
                 }
-                if (!_dbContext.Tickets.Any())
-                {
-                    var movieShow1 = await _dbContext.MovieShows.FirstOrDefaultAsync(ms => ms.Movie.Title == "Film 1");
-                    var movieShow2 = await _dbContext.MovieShows.FirstOrDefaultAsync(ms => ms.Movie.Title == "Film 2");
-                    var seat1 = await _dbContext.Seats.FirstOrDefaultAsync(s => s.Hall.Number == 1 && s.Number == 1 && s.RowNumber == 1);
-                    var seat2 = await _dbContext.Seats.FirstOrDefaultAsync(s => s.Hall.Number == 2 && s.Number == 2 && s.RowNumber == 2);
-
-                    var ticket1 = new Domain.Entities.Ticket
-                    {
-                        MovieShowId = movieShow1.Id,
-                        SeatId = seat1.Id,
-                        Type = "Normal",
-                        PurchaseDate = DateTime.UtcNow,
-                        IsScanned = false
-                    };
-                    var ticket2 = new Domain.Entities.Ticket
-                    {
-                        MovieShowId = movieShow2.Id,
-                        SeatId = seat2.Id,
-                        Type = "Student",
-                        PurchaseDate = DateTime.UtcNow,
-                        IsScanned = false
-                    };
-                    _dbContext.Tickets.AddRange(ticket1, ticket2);
-                    await _dbContext.SaveChangesAsync();
-                }
             }
         }
     }

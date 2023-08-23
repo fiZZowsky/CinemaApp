@@ -162,6 +162,7 @@ namespace CinemaApp.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PurchasedById")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<byte[]>("QRCode")
@@ -427,7 +428,9 @@ namespace CinemaApp.Infrastructure.Migrations
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "PurchasedBy")
                         .WithMany()
-                        .HasForeignKey("PurchasedById");
+                        .HasForeignKey("PurchasedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CinemaApp.Domain.Entities.Seat", "Seat")
                         .WithMany("Tickets")

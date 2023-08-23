@@ -3,7 +3,10 @@ using CinemaApp.Domain.Interfaces;
 using CinemaApp.Infrastructure.Persistance;
 using DinkToPdf;
 using DinkToPdf.Contracts;
+using MailKit.Net.Smtp;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using MimeKit;
 using QRCoder;
 
 namespace CinemaApp.Infrastructure.Repositories
@@ -12,11 +15,13 @@ namespace CinemaApp.Infrastructure.Repositories
     {
         private readonly CinemaAppDbContext _dbContext;
         private readonly IConverter _converter;
+        private readonly EmailSettings _emailSettings;
 
-        public TicketRepository(CinemaAppDbContext dbContext, IConverter converter)
+        public TicketRepository(CinemaAppDbContext dbContext, IConverter converter, IOptions<EmailSettings> emailSettings)
         {
             _dbContext = dbContext;
             _converter = converter;
+            _emailSettings = emailSettings.Value;
         }
         public async Task Create(Domain.Entities.Ticket ticket, int movieShowId, int seatId)
         {
@@ -108,6 +113,54 @@ namespace CinemaApp.Infrastructure.Repositories
             };
 
             return _converter.Convert(pdf);
+        }
+
+        public async Task<Ticket> GetTicketByUser(string userId, DateTime purchaseDate, string movieTitle)
+            => await _dbContext.Tickets
+            .Include(s => s.MovieShow)
+                .ThenInclude(m => m.Movie)
+            .Include(ticket => ticket.Seat)
+                .ThenInclude(h => h.Hall)
+            .FirstAsync(t => t.PurchasedById == userId
+                && t.PurchaseDate == purchaseDate
+                && t.MovieShow.Movie.Title == movieTitle);
+
+        public async Task SendEmailWithAttachement(string recipient, string emailTemplateText, byte[] attachement)
+        {
+            using (var client = new SmtpClient())
+            {
+                await client.ConnectAsync(_emailSettings.Host, _emailSettings.Port);
+                await client.AuthenticateAsync(_emailSettings.Username, _emailSettings.Password);
+
+                emailTemplateText = string.Format(emailTemplateText, recipient, DateTime.Today.Date.ToShortDateString());
+
+                var attachment = new MimePart("application", "pdf")
+                {
+                    Content = new MimeContent(new MemoryStream(attachement)),
+                    ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                    ContentTransferEncoding = ContentEncoding.Base64,
+                    FileName = "ticket.pdf"
+                };
+
+                var bodyBuilder = new BodyBuilder
+                {
+                    HtmlBody = emailTemplateText
+                };
+
+                bodyBuilder.Attachments.Add(attachment);
+
+                var message = new MimeMessage
+                {
+                    Body = bodyBuilder.ToMessageBody()
+                };
+
+                message.From.Add(new MailboxAddress("CinemaApp", _emailSettings.Username));
+                message.To.Add(new MailboxAddress("User", recipient));
+                message.Subject = "Ticket";
+                await client.SendAsync(message);
+
+                await client.DisconnectAsync(true);
+            }
         }
     }
 }
