@@ -3,9 +3,12 @@ using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
 using CinemaApp.Application.CinemaApp.Queries.GetAllMovies;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieByEncodedTitle;
+using CinemaApp.MVC.Extensions;
+using CinemaApp.MVC.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -41,7 +44,10 @@ namespace CinemaApp.MVC.Controllers
                 return View(command);
             }
 
-            await _mediator.Send(command);
+            //await _mediator.Send(command);
+
+            this.SetNotification("success", $"Created movie: {command.Title}");
+
             return RedirectToAction(nameof(Index));
         }
 
