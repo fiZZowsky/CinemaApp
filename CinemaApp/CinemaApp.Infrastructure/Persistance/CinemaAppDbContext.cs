@@ -1,5 +1,4 @@
-﻿using CinemaApp.Domain.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CinemaApp.Infrastructure.Persistance
@@ -21,17 +20,26 @@ namespace CinemaApp.Infrastructure.Persistance
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Ticket>()
-                .HasOne(t => t.Seat)
-                .WithMany(s => s.Tickets)
-                .HasForeignKey(t => t.SeatId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Ticket>()
+            modelBuilder.Entity<Domain.Entities.Ticket>()
                 .HasOne(t => t.MovieShow)
                 .WithMany(ms => ms.Tickets)
                 .HasForeignKey(t => t.MovieShowId)
-                .OnDelete(DeleteBehavior.Restrict);           
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Domain.Entities.MovieShow>()
+                .HasOne(ms => ms.Movie)
+                .WithMany(m => m.MovieShows)
+                .HasForeignKey(ms => ms.MovieId);
+
+            modelBuilder.Entity<Domain.Entities.MovieShow>()
+                .HasOne(ms => ms.Hall)
+                .WithMany(h => h.MoviesList)
+                .HasForeignKey(ms => ms.HallId);
+
+            modelBuilder.Entity<Domain.Entities.Hall>()
+                .HasMany(h => h.SeatsList)
+                .WithOne(s => s.Hall)
+                .HasForeignKey(s => s.HallId);
         }
     }
 }

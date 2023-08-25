@@ -31,7 +31,6 @@ namespace CinemaApp.Application.CinemaApp.Commands.EditMovie
             movie.Movie.Language = request.Language;
             movie.Movie.Duration = request.Duration;
             movie.Movie.Description = request.Description;
-            movie.Movie.ProductionYear = request.ProductionYear;
             movie.Movie.ReleaseDate = request.ReleaseDate;
             movie.StartTime = request.StartTime;
             movie.Hall.Number = request.HallNumber;

@@ -15,14 +15,11 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.MovieShow.Movie.Duration))
                 .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.MovieShow.StartTime))
                 .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.MovieShow.Hall.Number))
-                .ForMember(dest => dest.RowNumber, opt => opt.MapFrom(src => src.Seat.RowNumber))
-                .ForMember(dest => dest.SeatNumber, opt => opt.MapFrom(src => src.Seat.Number));
+                .ForMember(dest => dest.RowNumber, opt => opt.MapFrom(src => src.Seats.Select(seat => seat.RowNumber).ToList()))
+                .ForMember(dest => dest.SeatNumber, opt => opt.MapFrom(src => src.Seats.Select(seat => seat.Number).ToList()));
 
             CreateMap<TicketDto, Domain.Entities.Ticket>()
-                .ForMember(dest => dest.MovieShowId, opt => opt.MapFrom(src => 0)) 
-                .ForMember(dest => dest.SeatId, opt => opt.MapFrom(src => 0))
-                .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type))
-                .ForMember(dest => dest.PurchaseDate, opt => opt.MapFrom(src => src.PurchaseDate))
+                .ForMember(dest => dest.MovieShowId, opt => opt.MapFrom(src => 0))
                 .ForMember(dest => dest.QRCode, opt => opt.Ignore())
                 .ForMember(dest => dest.IsScanned, opt => opt.MapFrom(src => false));
 
@@ -34,7 +31,6 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Movie.Language))
                 .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Movie.Duration))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Movie.Description))
-                .ForMember(dest => dest.ProductionYear, opt => opt.MapFrom(src => src.Movie.ProductionYear))
                 .ForMember(dest => dest.ReleaseDate, opt => opt.MapFrom(src => src.Movie.ReleaseDate))
                 .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.Hall.Number))
                 .ForMember(dest => dest.EncodedTitle, opt => opt.MapFrom(src => src.Movie.EncodedTitle));
@@ -49,7 +45,6 @@ namespace CinemaApp.Application.Mappings
                     Language = src.Language,
                     Duration = src.Duration,
                     Description = src.Description,
-                    ProductionYear = src.ProductionYear,
                     ReleaseDate = src.ReleaseDate
                 }))
                 .ForMember(dest => dest.HallId, opt => opt.MapFrom(src => src.HallNumber));

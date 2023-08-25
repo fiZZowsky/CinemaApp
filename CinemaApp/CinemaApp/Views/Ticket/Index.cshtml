@@ -34,6 +34,12 @@
                 @Html.DisplayNameFor(model => model.SeatNumber)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.NormalPriceSeats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReducedPriceSeats)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.QRCode)
             </th>
             <th></th>
@@ -59,10 +65,24 @@
                     @Html.DisplayFor(modelItem => item.HallNumber)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RowNumber)
+                    @foreach (var rowNumber in item.RowNumber)
+                    {
+                        @Html.DisplayFor(modelItem => rowNumber)
+                        <br />
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.SeatNumber)
+                    @foreach (var seatNumber in item.SeatNumber)
+                    {
+                        @Html.DisplayFor(modelItem => seatNumber)
+                        <br />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NormalPriceSeats)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReducedPriceSeats)
                 </td>
                 <td>
                     @if (item.QRCode != null && item.QRCode.Length > 0)

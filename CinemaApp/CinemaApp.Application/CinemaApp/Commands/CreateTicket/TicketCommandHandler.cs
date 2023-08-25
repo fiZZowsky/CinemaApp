@@ -24,7 +24,7 @@ namespace CinemaApp.Application.CinemaApp.Commands.CreateTicket
 
             ticket.PurchasedById = _userContext.GetCurrentUser()?.Id;
 
-            await _ticketRepository.Create(ticket, request.MovieShowId, request.SeatId);
+            await _ticketRepository.Create(ticket, request.MovieShowId, request.Seats);
 
             return Unit.Value;
         }

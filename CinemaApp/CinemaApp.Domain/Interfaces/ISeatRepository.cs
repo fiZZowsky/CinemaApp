@@ -2,6 +2,6 @@
 {
     public interface ISeatRepository
     {
-        Task<Domain.Entities.Seat> GetByData(int hallNumber, int rowNumber, int seatNumber);
+        Task<List<Domain.Entities.Seat>> GetByData(int hallNumber, List<int> rowNumber, List<int> seatNumber);
     }
 }

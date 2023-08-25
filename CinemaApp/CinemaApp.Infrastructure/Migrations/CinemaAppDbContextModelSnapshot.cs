@@ -79,9 +79,6 @@ namespace CinemaApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("ProductionYear")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
@@ -158,6 +155,9 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Property<int>("MovieShowId")
                         .HasColumnType("int");
 
+                    b.Property<int>("NormalPriceSeats")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
 
@@ -166,22 +166,17 @@ namespace CinemaApp.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<byte[]>("QRCode")
+                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("SeatId")
+                    b.Property<int>("ReducedPriceSeats")
                         .HasColumnType("int");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MovieShowId");
 
                     b.HasIndex("PurchasedById");
-
-                    b.HasIndex("SeatId");
 
                     b.ToTable("Tickets");
                 });
@@ -388,6 +383,21 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("SeatTicket", b =>
+                {
+                    b.Property<int>("SeatsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SeatsId", "TicketsId");
+
+                    b.HasIndex("TicketsId");
+
+                    b.ToTable("SeatTicket");
+                });
+
             modelBuilder.Entity("CinemaApp.Domain.Entities.MovieShow", b =>
                 {
                     b.HasOne("CinemaApp.Domain.Entities.Hall", "Hall")
@@ -432,17 +442,9 @@ namespace CinemaApp.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CinemaApp.Domain.Entities.Seat", "Seat")
-                        .WithMany("Tickets")
-                        .HasForeignKey("SeatId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("MovieShow");
 
                     b.Navigation("PurchasedBy");
-
-                    b.Navigation("Seat");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -496,6 +498,21 @@ namespace CinemaApp.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SeatTicket", b =>
+                {
+                    b.HasOne("CinemaApp.Domain.Entities.Seat", null)
+                        .WithMany()
+                        .HasForeignKey("SeatsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaApp.Domain.Entities.Ticket", null)
+                        .WithMany()
+                        .HasForeignKey("TicketsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CinemaApp.Domain.Entities.Hall", b =>
                 {
                     b.Navigation("MoviesList");
@@ -509,11 +526,6 @@ namespace CinemaApp.Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.MovieShow", b =>
-                {
-                    b.Navigation("Tickets");
-                });
-
-            modelBuilder.Entity("CinemaApp.Domain.Entities.Seat", b =>
                 {
                     b.Navigation("Tickets");
                 });

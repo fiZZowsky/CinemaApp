@@ -1,4 +1,5 @@
 ﻿using CinemaApp.Infrastructure.Persistance;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace CinemaApp.Infrastructure.Seeders
@@ -42,7 +43,6 @@ namespace CinemaApp.Infrastructure.Seeders
                         Language = "english",
                         Duration = 120,
                         Description = "Example description.",
-                        ProductionYear = DateTime.UtcNow,
                         ReleaseDate = DateTime.UtcNow
                     };
                     movie1.EncodeTitle();
@@ -56,7 +56,6 @@ namespace CinemaApp.Infrastructure.Seeders
                         Language = "polish",
                         Duration = 135,
                         Description = "Example description 2.",
-                        ProductionYear = DateTime.UtcNow,
                         ReleaseDate = DateTime.UtcNow
                     };
                     movie2.EncodeTitle();

@@ -23,10 +23,10 @@ namespace CinemaApp.Infrastructure.Repositories
             _converter = converter;
             _emailSettings = emailSettings.Value;
         }
-        public async Task Create(Domain.Entities.Ticket ticket, int movieShowId, int seatId)
+        public async Task Create(Domain.Entities.Ticket ticket, int movieShowId, List<Domain.Entities.Seat> seats)
         {
             ticket.MovieShowId = movieShowId;
-            ticket.SeatId = seatId;
+            ticket.Seats = seats;
 
             ticket.QRCode = await CreateQRCode(ticket);
 
@@ -36,13 +36,13 @@ namespace CinemaApp.Infrastructure.Repositories
 
         private async Task<byte[]> CreateQRCode(Domain.Entities.Ticket ticket)
         {
-            var seat = await _dbContext.Seats.Include(h => h.Hall)
-                .FirstOrDefaultAsync(s => s.Id == ticket.SeatId);
-
-            var movieShow = await _dbContext.MovieShows.Include(m => m.Movie)
+            var movieShow = await _dbContext.MovieShows
+                .Include(m => m.Movie)
+                .Include(h => h.Hall)
                 .FirstOrDefaultAsync(ms => ms.Id == ticket.MovieShowId);
 
-            string data = $"{movieShow.Movie.Title}, {seat.Hall.Number}, {seat.RowNumber}, {seat.Number}, {ticket.Type}, {ticket.IsScanned}, {ticket.PurchaseDate}";
+            var seatInfo = string.Join(", ", ticket.Seats.Select(s => $"Row {s.RowNumber}, Seat {s.Number}"));
+            string data = $"{movieShow.Movie.Title}, Hall {movieShow.Hall.Number}, Seats: {seatInfo}, NormalTickets: {ticket.NormalPriceSeats}, ReducedTickets: {ticket.ReducedPriceSeats}, IsScanned: {ticket.IsScanned}, Purchase Date: {ticket.PurchaseDate}";
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -57,19 +57,19 @@ namespace CinemaApp.Infrastructure.Repositories
 
         public async Task<IEnumerable<Ticket>> GetAll()
             => await _dbContext.Tickets
-                .Include(s => s.MovieShow)
-                    .ThenInclude(m => m.Movie)
-                .Include(ticket => ticket.Seat)
-                    .ThenInclude(h => h.Hall)
+                .Include(ticket => ticket.MovieShow)
+                    .ThenInclude(show => show.Movie)
+                .Include(ticket => ticket.Seats)
+                    .ThenInclude(seat => seat.Hall)
                 .ToListAsync();
 
         private async Task<Ticket> GetTicketById(int id)
             => await _dbContext.Tickets
-            .Include(s => s.MovieShow)
-                .ThenInclude(m => m.Movie)
-            .Include(ticket => ticket.Seat)
-                .ThenInclude(h => h.Hall)
-            .FirstAsync(t => t.Id == id);
+            .Include(ticket => ticket.MovieShow)
+                .ThenInclude(show => show.Movie)
+            .Include(ticket => ticket.Seats)
+                .ThenInclude(seat => seat.Hall)
+            .FirstAsync(ticket => ticket.Id == id);
 
         public async Task<byte[]> CreatePdf(int id, string htmlContent)
         {
@@ -87,14 +87,17 @@ namespace CinemaApp.Infrastructure.Repositories
             string base64Image = Convert.ToBase64String(ticket.QRCode);
             string QRCode = $"data:image/png;base64,{base64Image}";
 
+            var seatNumbers = string.Join(", ", ticket.Seats.Select(seat => seat.Number.ToString()));
+            var rowNumbers = string.Join(", ", ticket.Seats.Select(seat => seat.RowNumber.ToString()).Distinct());
+
             htmlContent = htmlContent
                 .Replace("@Model.Title", ticket.MovieShow.Movie.Title)
                 .Replace("@Model.Language", ticket.MovieShow.Movie.Language)
                 .Replace("@Model.Duration", ticket.MovieShow.Movie.Duration.ToString())
-                .Replace("@Model.StartTime", ticket.MovieShow.StartTime.ToString())
+                .Replace("@Model.StartTime", ticket.MovieShow.StartTime.ToString("dd-MM-yyyy HH:mm"))
                 .Replace("@Model.HallNumber", ticket.MovieShow.Hall.Number.ToString())
-                .Replace("@Model.RowNumber", ticket.Seat.RowNumber.ToString())
-                .Replace("@Model.SeatNumber", ticket.Seat.Number.ToString())
+                .Replace("@Model.RowNumber", rowNumbers)
+                .Replace("@Model.SeatNumber", seatNumbers)
                 .Replace("@Model.QRCode", QRCode);
 
             var objectSettings = new ObjectSettings
@@ -117,13 +120,13 @@ namespace CinemaApp.Infrastructure.Repositories
 
         public async Task<Ticket> GetTicketByUser(string userId, DateTime purchaseDate, string movieTitle)
             => await _dbContext.Tickets
-            .Include(s => s.MovieShow)
-                .ThenInclude(m => m.Movie)
-            .Include(ticket => ticket.Seat)
-                .ThenInclude(h => h.Hall)
-            .FirstAsync(t => t.PurchasedById == userId
-                && t.PurchaseDate == purchaseDate
-                && t.MovieShow.Movie.Title == movieTitle);
+            .Include(ticket => ticket.MovieShow)
+                .ThenInclude(show => show.Movie)
+            .Include(ticket => ticket.Seats)
+                .ThenInclude(seat => seat.Hall)
+            .FirstAsync(ticket => ticket.PurchasedById == userId
+                && ticket.PurchaseDate == purchaseDate
+                && ticket.MovieShow.Movie.Title == movieTitle);
 
         public async Task SendEmailWithAttachement(string recipient, string emailTemplateText, byte[] attachement)
         {

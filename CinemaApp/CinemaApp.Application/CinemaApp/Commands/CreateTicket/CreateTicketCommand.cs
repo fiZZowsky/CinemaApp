@@ -6,13 +6,13 @@ namespace CinemaApp.Application.CinemaApp.Commands.CreateTicket
     {
         public TicketDto TicketDto { get; set; }
         public int MovieShowId { get; set; }
-        public int SeatId { get; set; }
+        public List<Domain.Entities.Seat> Seats { get; set; }
 
-        public CreateTicketCommand(TicketDto ticketDto, int movieShowId, int seatId)
+        public CreateTicketCommand(TicketDto ticketDto, int movieShowId, List<Domain.Entities.Seat> seats)
         {
             TicketDto = ticketDto;
             MovieShowId = movieShowId;
-            SeatId = seatId;
+            Seats = seats;
         }
     }
 }

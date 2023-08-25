@@ -10,7 +10,6 @@ using DinkToPdf.Contracts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -63,10 +62,9 @@ namespace CinemaApp.MVC.Controllers
             DateTime formattedPurchaseDate = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, currentTime.Hour, currentTime.Minute, 0);
             ticketDto.PurchaseDate = formattedPurchaseDate;
 
-            CreateTicketCommand command = new CreateTicketCommand(ticketDto, movieShow.Id, seat.Id);
+            CreateTicketCommand command = new CreateTicketCommand(ticketDto, movieShow.Id, seat);
 
             await _mediator.Send(command);
-
             var ticket = await _mediator.Send(new GetTicketByUserQuery(formattedPurchaseDate, ticketDto.MovieTitle));
             await SendEmailWithTicket(ticket.Id);
 

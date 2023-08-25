@@ -9,7 +9,6 @@
         public string Language { get; set; } = default!;
         public int Duration { get; set; }
         public string Description { get; set; } = default!;
-        public DateTime ProductionYear { get; set; }
         public DateTime ReleaseDate { get; set; }
         public DateTime StartTime { get; set; }
         public int HallNumber { get; set; }

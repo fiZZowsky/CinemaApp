@@ -18,7 +18,6 @@ namespace CinemaApp.Domain.Entities
         // -------------------------
         public int Duration { get; set; }
         public string Description { get; set; } = default!;
-        public DateTime ProductionYear { get; set; }
         public DateTime ReleaseDate { get; set; }
 
         public List<MovieShow> MovieShows { get; set; } = default!;

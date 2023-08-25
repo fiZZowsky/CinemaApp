@@ -12,13 +12,14 @@ namespace CinemaApp.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public async Task<Domain.Entities.Seat> GetByData(int hallNumber, int rowNumber, int seatNumber)
+        public async Task<List<Domain.Entities.Seat>> GetByData(int hallNumber, List<int> rowNumber, List<int> seatNumber)
         {
-            var seat = await _dbContext.Seats
+            var seats = await _dbContext.Seats
                 .Include(s => s.Hall)
-                .FirstOrDefaultAsync(s => s.Hall.Number == hallNumber && s.RowNumber == rowNumber && s.Number == seatNumber);
+                .Where(s => s.Hall.Number == hallNumber && rowNumber.Contains(s.RowNumber) && seatNumber.Contains(s.Number))
+                .ToListAsync();
 
-            return seat;
+            return seats;
         }
     }
 }

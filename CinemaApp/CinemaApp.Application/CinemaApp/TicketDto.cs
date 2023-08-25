@@ -8,9 +8,10 @@
         public int Duration { get; set; }
         public DateTime StartTime { get; set; }
         public int HallNumber { get; set; }
-        public int RowNumber { get; set; }
-        public int SeatNumber { get; set; }
-        public string Type { get; set; } = default!;
+        public List<int> RowNumber { get; set; } = default!;
+        public List<int> SeatNumber { get; set; } = default!;
+        public int NormalPriceSeats { get; set; }
+        public int ReducedPriceSeats { get; set; }
         public DateTime PurchaseDate { get; set; }
         public byte[] QRCode { get; set; } = default!;
     }
