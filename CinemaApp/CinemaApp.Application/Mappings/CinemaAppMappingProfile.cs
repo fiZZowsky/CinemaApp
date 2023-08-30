@@ -50,6 +50,15 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.HallId, opt => opt.MapFrom(src => src.HallNumber));
 
             CreateMap<MovieDto, EditMovieCommand>();
+
+            CreateMap<Domain.Entities.Hall, HallDto>();
+
+            CreateMap<MovieDto, TicketDto>()
+                .ForMember(dest => dest.MovieTitle, opt => opt.MapFrom(src => src.Title))
+                .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Language))
+                .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Duration))
+                .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartTime))
+                .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.HallNumber));
         }
     }
 }

@@ -1,0 +1,49 @@
+﻿.cinema-container {
+    padding: 20px;
+}
+
+.seating {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.selected-seats {
+    flex-shrink: 0;
+    width: 30%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.selected {
+    background-image: url('../../resources/seat_na.png');
+}
+
+.available {
+    background-image: url('../../resources/seat.png');
+}
+
+.selected.available {
+    background-image: url('../../resources/seat_na.png');
+}
+
+.selected-seats {
+    margin-top: 20px;
+}

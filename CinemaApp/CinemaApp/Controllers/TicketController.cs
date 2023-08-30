@@ -2,6 +2,7 @@
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
 using CinemaApp.Application.CinemaApp.Queries.GetAllTickets;
+using CinemaApp.Application.CinemaApp.Queries.GetHallByNumber;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieShow;
 using CinemaApp.Application.CinemaApp.Queries.GetPdfFromTicket;
 using CinemaApp.Application.CinemaApp.Queries.GetSeat;
@@ -10,6 +11,7 @@ using DinkToPdf.Contracts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -32,13 +34,30 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [Authorize]
-        public ActionResult Create()
+        public async Task<ActionResult> Create(string movieTitle, string language, int duration, DateTime startTime, int hallNumber)
         {
-            return View();
+            var ticketDto = new TicketDto
+            {
+                MovieTitle = movieTitle,
+                Language = language,
+                Duration = duration,
+                StartTime = startTime,
+                HallNumber = hallNumber
+            };
+
+            var hall = await _mediator.Send(new GetHallByNumberQuery(hallNumber));
+
+            if (hall != null)
+            {
+                var hallDataJson = JsonConvert.SerializeObject(hall);
+                ViewData["hall"] = hallDataJson;
+            }
+
+            return View(ticketDto);
         }
 
-        [HttpPost]
         [Authorize]
+        [HttpPost]
         public async Task<IActionResult> Create(TicketDto ticketDto)
         {
             if (!ModelState.IsValid)

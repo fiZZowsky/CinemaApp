@@ -29,6 +29,7 @@ namespace CinemaApp.Infrastructure.Extensions
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IMovieShowRepository, MovieShowRepository>();
             services.AddScoped<ISeatRepository, SeatRepository>();
+            services.AddScoped<IHallRepository, HallRepository>();
         }
     }
 }

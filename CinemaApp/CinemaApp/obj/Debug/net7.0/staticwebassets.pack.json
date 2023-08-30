@@ -5,12 +5,28 @@
       "PackagePath": "staticwebassets\\CinemaApp.MVC.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat.png",
+      "PackagePath": "staticwebassets\\Resources\\seat.png"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat_na.png",
+      "PackagePath": "staticwebassets\\Resources\\seat_na.png"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Ticket\\CreateTicketStyleSheet.css",
+      "PackagePath": "staticwebassets\\css\\Ticket\\CreateTicketStyleSheet.css"
+    },
+    {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\CinemaApp\\Ticket\\SeatManager.js",
+      "PackagePath": "staticwebassets\\js\\CinemaApp\\Ticket\\SeatManager.js"
     },
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\site.js",

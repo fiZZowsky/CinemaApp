@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ycYsLXVTqCuE/XAEH+SMUPv42KSfKng/HUGM8LKB1/U=",
+  "Hash": "kcwq7v5KPIryCSahaHhR5BrQ06Np5W9rLyVbCQtxksc=",
   "Source": "CinemaApp.MVC",
   "BasePath": "_content/CinemaApp.MVC",
   "Mode": "Default",
@@ -68,6 +68,23 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Ticket\\CreateTicketStyleSheet.css",
+      "SourceId": "CinemaApp.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\",
+      "BasePath": "_content/CinemaApp.MVC",
+      "RelativePath": "css/Ticket/CreateTicketStyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Ticket\\CreateTicketStyleSheet.css"
+    },
+    {
       "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\favicon.ico",
       "SourceId": "CinemaApp.MVC",
       "SourceType": "Discovered",
@@ -83,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\CinemaApp\\Ticket\\SeatManager.js",
+      "SourceId": "CinemaApp.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\",
+      "BasePath": "_content/CinemaApp.MVC",
+      "RelativePath": "js/CinemaApp/Ticket/SeatManager.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\CinemaApp\\Ticket\\SeatManager.js"
     },
     {
       "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\site.js",
@@ -1137,6 +1171,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\toastr.js\\toastr.min.js"
+    },
+    {
+      "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat.png",
+      "SourceId": "CinemaApp.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\",
+      "BasePath": "_content/CinemaApp.MVC",
+      "RelativePath": "Resources/seat.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resources\\seat.png"
+    },
+    {
+      "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat_na.png",
+      "SourceId": "CinemaApp.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\",
+      "BasePath": "_content/CinemaApp.MVC",
+      "RelativePath": "Resources/seat_na.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resources\\seat_na.png"
     }
   ]
 }

@@ -68,4 +68,12 @@
     <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle">Edit</a>
     |
     <a asp-action="Index">Back to List</a>
+    |
+    <a asp-controller="Ticket" asp-action="Create"
+       asp-route-movieTitle="@Model.Title"
+       asp-route-language="@Model.Language"
+       asp-route-duration="@Model.Duration"
+       asp-route-startTime="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")"
+       asp-route-hallNumber="@Model.HallNumber"
+       class="btn btn-primary">Get Ticket</a>
 </div>
