@@ -30,12 +30,11 @@
             <div id="CreateTicketModal">
                 <form asp-action="Create" id="ticket-form">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    @*<input type="hidden" id="hall-data" name="hallData" value="@ViewData["hall"]" />*@
                     <input type="hidden" asp-for="MovieTitle" value="@Model.MovieTitle" />
                     <input type="hidden" asp-for="Language" value="@Model.Language" />
                     <input type="hidden" asp-for="Duration" value="@Model.Duration" />
                     <input type="hidden" asp-for="StartTime" name="startTime" value="@Model.StartTime" />
-                    <input type="hidden" asp-for="HallNumber" value="@Model.HallNumber" />
+                    <input type="hidden" id="hallNumber" asp-for="HallNumber" value="@Model.HallNumber" />
                     <input type="hidden" id="selected-seats" name="selectedSeatNumbers" />
                     <input type="hidden" id="selected-rows" name="selectedRowNumbers" />
 

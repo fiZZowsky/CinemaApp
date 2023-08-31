@@ -34,7 +34,7 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [Authorize]
-        public async Task<ActionResult> Create(string movieTitle, string language, int duration, DateTime startTime, int hallNumber)
+        public ActionResult Create(string movieTitle, string language, int duration, DateTime startTime, int hallNumber)
         {
             var ticketDto = new TicketDto
             {
@@ -43,19 +43,19 @@ namespace CinemaApp.MVC.Controllers
                 Duration = duration,
                 StartTime = startTime,
                 HallNumber = hallNumber,
-                RowNumber = null,
-                SeatNumber = null
+                RowNumber = new List<int>(),
+                SeatNumber = new List<int>()
             };
 
-            //var hall = await _mediator.Send(new GetHallByNumberQuery(hallNumber));
-
-            //if (hall != null)
-            //{
-            //    var hallDataJson = JsonConvert.SerializeObject(hall);
-            //    ViewData["hall"] = hallDataJson;
-            //}
-
             return View(ticketDto);
+        }
+
+        [HttpGet]
+        [Route("Ticket/GetHallData/{hallNumber}")]
+        public async Task<IActionResult> GetHallData(int hallNumber)
+        {
+            var hall = await _mediator.Send(new GetHallByNumberQuery(hallNumber));
+            return Json(new { Seats = hall.PlacesInARow, Rows = hall.NumberOfRows });
         }
 
         [Authorize]

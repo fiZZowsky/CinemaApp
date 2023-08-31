@@ -3,6 +3,25 @@
     const selectedSeatsList = document.getElementById('selected-seats-list');
     let selectedSeatNumbers = [];
     let selectedRowNumbers = [];
+    var numRows;
+    var numSeatsPerRow;
+
+    function getHallData() {
+        const numberOfHall = document.getElementById('hallNumber').value;
+        $.ajax({
+            url: `/Ticket/GetHallData/${numberOfHall}`,
+            type: 'get',
+            success: function (data) {
+                numRows = data.rows;
+                numSeatsPerRow = data.seats;
+
+                createSeatingPlan();
+            },
+            error: function () {
+                toastr['error']("Something went wrong")
+            }
+        })
+    }
 
     function handleSeatClick(seat) {
         const isSelected = seat.classList.contains('selected');
@@ -26,9 +45,8 @@
     }
 
     function createSeatingPlan() {
-        const numRows = 8;
-        const numSeatsPerRow = 6;
-
+        console.log("Liczba rzędów:", numRows);
+        console.log("Liczba miejsc na rząd:", numSeatsPerRow);
         for (let row = 0; row < numRows; row++) {
             const rowElement = document.createElement('div');
             rowElement.classList.add('row');
@@ -87,6 +105,6 @@
         });
     });
 
-    createSeatingPlan();
+    getHallData();
     updateSelectedSeats();
 });
