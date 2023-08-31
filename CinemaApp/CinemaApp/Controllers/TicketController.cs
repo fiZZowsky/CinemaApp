@@ -42,28 +42,33 @@ namespace CinemaApp.MVC.Controllers
                 Language = language,
                 Duration = duration,
                 StartTime = startTime,
-                HallNumber = hallNumber
+                HallNumber = hallNumber,
+                RowNumber = null,
+                SeatNumber = null
             };
 
-            var hall = await _mediator.Send(new GetHallByNumberQuery(hallNumber));
+            //var hall = await _mediator.Send(new GetHallByNumberQuery(hallNumber));
 
-            if (hall != null)
-            {
-                var hallDataJson = JsonConvert.SerializeObject(hall);
-                ViewData["hall"] = hallDataJson;
-            }
+            //if (hall != null)
+            //{
+            //    var hallDataJson = JsonConvert.SerializeObject(hall);
+            //    ViewData["hall"] = hallDataJson;
+            //}
 
             return View(ticketDto);
         }
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create(TicketDto ticketDto)
+        public async Task<IActionResult> Create(TicketDto ticketDto, string selectedSeatNumbers, string selectedRowNumbers)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            ticketDto.SeatNumber = selectedSeatNumbers.Split(',').Select(int.Parse).ToList();
+            ticketDto.RowNumber = selectedRowNumbers.Split(',').Select(int.Parse).ToList();
 
             var movieShow = await _mediator.Send(new GetMovieShowQuery(ticketDto.StartTime, ticketDto.HallNumber));
             var seat = await _mediator.Send(new GetSeatQuery(ticketDto.HallNumber, ticketDto.RowNumber, ticketDto.SeatNumber));

@@ -12,13 +12,13 @@
         if (!isSelected) {
             seat.classList.add('selected');
             seat.classList.remove('available');
-            selectedSeatNumbers.push(seatNumber);
+            selectedSeatNumbers.push(seatNumber + 1);
             selectedRowNumbers.push(row + 1);
         } else {
             seat.classList.remove('selected');
             seat.classList.add('available');
 
-            selectedSeatNumbers = selectedSeatNumbers.filter(num => num !== seatNumber);
+            selectedSeatNumbers = selectedSeatNumbers.filter(num => num !== seatNumber + 1);
             selectedRowNumbers = selectedRowNumbers.filter(num => num !== row + 1);
         }
 
@@ -53,23 +53,26 @@
 
         for (let i = 0; i < selectedSeatNumbers.length; i++) {
             const li = document.createElement('li');
-            li.textContent = `Rząd ${selectedRowNumbers[i]}, Miejsce ${selectedSeatNumbers[i] + 1}`;
+            li.textContent = `Rząd ${selectedRowNumbers[i]}, Miejsce ${selectedSeatNumbers[i]}`;
             selectedSeatsList.appendChild(li);
         }
     }
 
     function assignListsToInput() {
-        const seatsInput = document.getElementById("seats");
-        const rowsInput = document.getElementById("rows");
+        const seatsInput = document.getElementById("selected-seats");
+        const rowsInput = document.getElementById("selected-rows");
 
-        seatsInput.value = JSON.stringify(selectedSeatNumbers);
-        rowsInput.value = JSON.stringify(selectedRowNumbers);
+        seatsInput.value = selectedSeatNumbers.join(',');
+        rowsInput.value = selectedRowNumbers.join(',');
     }
 
-    $("#ticket-form form").submit(function (event) {
+    $("#CreateTicketModal form").submit(function (event) {
         event.preventDefault();
 
         assignListsToInput();
+
+        console.log(selectedSeatNumbers);
+        console.log(selectedRowNumbers);
 
         $.ajax({
             url: $(this).attr('action'),

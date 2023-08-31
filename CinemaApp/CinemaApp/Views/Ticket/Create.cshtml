@@ -30,14 +30,15 @@
             <div id="CreateTicketModal">
                 <form asp-action="Create" id="ticket-form">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input type="hidden" id="hall-data" name="hallData" value="@ViewData["hall"]" />
+                    @*<input type="hidden" id="hall-data" name="hallData" value="@ViewData["hall"]" />*@
                     <input type="hidden" asp-for="MovieTitle" value="@Model.MovieTitle" />
                     <input type="hidden" asp-for="Language" value="@Model.Language" />
                     <input type="hidden" asp-for="Duration" value="@Model.Duration" />
                     <input type="hidden" asp-for="StartTime" name="startTime" value="@Model.StartTime" />
                     <input type="hidden" asp-for="HallNumber" value="@Model.HallNumber" />
-                    <input type="hidden" asp-for="SeatNumber" id="seats" />
-                    <input type="hidden" asp-for="RowNumber" id="rows" />
+                    <input type="hidden" id="selected-seats" name="selectedSeatNumbers" />
+                    <input type="hidden" id="selected-rows" name="selectedRowNumbers" />
+
                     <div class="form-group">
                         <label asp-for="NormalPriceSeats" class="control-label"></label>
                         <input asp-for="NormalPriceSeats" class="form-control" />
@@ -49,7 +50,7 @@
                         <span asp-validation-for="ReducedPriceSeats" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <input type="submit" id="submitButton" value="Create" class="btn btn-primary" data-url="@Url.Action("Create", "Ticket")" />
+                        <input type="submit" id="submitButton" value="Create" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
