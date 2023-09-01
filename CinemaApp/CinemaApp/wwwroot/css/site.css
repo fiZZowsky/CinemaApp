@@ -18,5 +18,16 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #0D1B2A;
+}
+
+header {
+    background-color: #1B263B;
+    top: 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
 }

@@ -37,16 +37,21 @@
                     <input type="hidden" id="hallNumber" asp-for="HallNumber" value="@Model.HallNumber" />
                     <input type="hidden" id="selected-seats" name="selectedSeatNumbers" />
                     <input type="hidden" id="selected-rows" name="selectedRowNumbers" />
-
                     <div class="form-group">
-                        <label asp-for="NormalPriceSeats" class="control-label"></label>
-                        <input asp-for="NormalPriceSeats" class="form-control" />
-                        <span asp-validation-for="NormalPriceSeats" class="text-danger"></span>
+                        <label asp-for="NormalPriceSeats" class="control-label">Ilość biletów normalnych:</label>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-danger btn-square" id="decreaseNormal">-</button>
+                            <input type="text" asp-for="NormalPriceSeats" class="form-control" id="normalPriceSeats" />
+                            <button type="button" class="btn btn-success btn-square" id="increaseNormal">+</button>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label asp-for="ReducedPriceSeats" class="control-label"></label>
-                        <input asp-for="ReducedPriceSeats" class="form-control" />
-                        <span asp-validation-for="ReducedPriceSeats" class="text-danger"></span>
+                        <label asp-for="ReducedPriceSeats" class="control-label">Ilość biletów ulgowych:</label>
+                        <div class="input-group">
+                            <button type="button" class="btn btn-danger btn-square" id="decreaseReduced">-</button>
+                            <input type="text" asp-for="ReducedPriceSeats" class="form-control" id="reducedPriceSeats" />
+                            <button type="button" class="btn btn-success btn-square" id="increaseReduced">+</button>
+                        </div>
                     </div>
                     <div class="form-group">
                         <input type="submit" id="submitButton" value="Create" class="btn btn-primary" />
@@ -69,4 +74,31 @@
 
     <link rel="stylesheet" href="~/css/Ticket/CreateTicketStyleSheet.css" />
     <script src="~/js/CinemaApp/Ticket/SeatManager.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const decreaseButtons = document.querySelectorAll(".btn-danger");
+            const increaseButtons = document.querySelectorAll(".btn-success");
+
+            decreaseButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const inputField = this.nextElementSibling;
+                    let value = parseInt(inputField.value);
+                    if (value > 0) {
+                        value--;
+                        inputField.value = value;
+                    }
+                });
+            });
+
+            increaseButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const inputField = this.previousElementSibling;
+                    let value = parseInt(inputField.value);
+                    value++;
+                    inputField.value = value;
+                });
+            });
+        });
+    </script>
 }
