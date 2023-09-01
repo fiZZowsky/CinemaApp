@@ -17,6 +17,10 @@ html {
   min-height: 100%;
 }
 
+title {
+    font-weight: bold;
+}
+
 body {
     margin-bottom: 60px;
     background-color: #0D1B2A;

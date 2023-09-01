@@ -11,6 +11,9 @@
           "CinemaApp.Application": "1.0.0",
           "CinemaApp.Infrastructure": "1.0.0",
           "DinkToPdf": "1.0.8",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.10",
+          "Microsoft.AspNetCore.Identity.UI": "7.0.10",
+          "Microsoft.EntityFrameworkCore.SqlServer": "7.0.10",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.10",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.9"
         },

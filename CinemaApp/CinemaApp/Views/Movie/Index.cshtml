@@ -4,42 +4,42 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 class="text-light">Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="text-light">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.Genre)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.Country)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.AgeRating)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.Language)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.Duration)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.ReleaseDate)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.StartTime)
             </th>
-            <th>
+            <th class="text-light">
                 @Html.DisplayNameFor(model => model.HallNumber)
             </th>
             <th></th>
@@ -49,39 +49,39 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.Genre)
                 </td>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.Country)
                 </td>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.AgeRating)
                 </td>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.Language)
                 </td>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.Duration)
                 </td>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.ReleaseDate)
                 </td>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.StartTime)
                 </td>
-                <td>
+                <td class="text-light">
                     @Html.DisplayFor(modelItem => item.HallNumber)
                 </td>
                 <td>
-                    <a asp-controller="Movie" asp-action="Details" asp-route-encodedTitle="@item.EncodedTitle">Details</a>
-                    <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@item.EncodedTitle">Edit</a>
+                    <a asp-controller="Movie" asp-action="Details" asp-route-encodedTitle="@item.EncodedTitle" class="text-light">Details</a>
+                    <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@item.EncodedTitle" class="text-light">Edit</a>
                     @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                 </td>
             </tr>

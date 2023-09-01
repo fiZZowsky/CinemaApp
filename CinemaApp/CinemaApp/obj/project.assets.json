@@ -909,6 +909,7 @@
           "Microsoft.AspNetCore.App"
         ],
         "build": {
+          "build/Microsoft.AspNetCore.Identity.UI.props": {},
           "buildTransitive/Microsoft.AspNetCore.Identity.UI.targets": {}
         },
         "buildMultiTargeting": {
@@ -12267,6 +12268,9 @@
       "CinemaApp.Application >= 1.0.0",
       "CinemaApp.Infrastructure >= 1.0.0",
       "DinkToPdf >= 1.0.8",
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.10",
+      "Microsoft.AspNetCore.Identity.UI >= 7.0.10",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.10",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.9"
     ]
@@ -12321,6 +12325,18 @@
           "DinkToPdf": {
             "target": "Package",
             "version": "[1.0.8, )"
+          },
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[7.0.10, )"
+          },
+          "Microsoft.AspNetCore.Identity.UI": {
+            "target": "Package",
+            "version": "[7.0.10, )"
+          },
+          "Microsoft.EntityFrameworkCore.SqlServer": {
+            "target": "Package",
+            "version": "[7.0.10, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
