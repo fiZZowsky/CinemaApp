@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
+using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
 using CinemaApp.Application.CinemaApp.Queries.GetAllMovies;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieByEncodedTitle;
@@ -42,9 +43,30 @@ namespace CinemaApp.MVC.Controllers
                 return View(command);
             }
 
-            //await _mediator.Send(command);
+            await _mediator.Send(command);
 
             this.SetNotification("success", $"Created movie: {command.Title}");
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreateShow()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CreateShow(CreateMovieShowCommand command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(command);
+            }
+
+            await _mediator.Send(command);
+            this.SetNotification("success", $"Created new movie show");
 
             return RedirectToAction(nameof(Index));
         }

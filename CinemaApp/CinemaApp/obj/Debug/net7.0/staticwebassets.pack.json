@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\CinemaApp.MVC.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\login-background.jpg",
+      "PackagePath": "staticwebassets\\Resources\\login-background.jpg"
+    },
+    {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat.png",
       "PackagePath": "staticwebassets\\Resources\\seat.png"
     },
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat_na.png",
       "PackagePath": "staticwebassets\\Resources\\seat_na.png"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Identity\\IdentityStyleSheet.css",
+      "PackagePath": "staticwebassets\\css\\Identity\\IdentityStyleSheet.css"
     },
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Ticket\\CreateTicketStyleSheet.css",

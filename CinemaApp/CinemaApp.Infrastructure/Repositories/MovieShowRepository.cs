@@ -1,4 +1,5 @@
-﻿using CinemaApp.Domain.Interfaces;
+﻿using CinemaApp.Domain.Entities;
+using CinemaApp.Domain.Interfaces;
 using CinemaApp.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,12 @@ namespace CinemaApp.Infrastructure.Repositories
         public MovieShowRepository(CinemaAppDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task Create(Domain.Entities.MovieShow show)
+        {
+            _dbContext.Add(show);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<Domain.Entities.MovieShow> GetByData(DateTime startTime, int hallNumber)

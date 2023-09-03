@@ -1,5 +1,6 @@
 ﻿using CinemaApp.Application.ApplicationUser;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
+using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
 using CinemaApp.Application.Mappings;
@@ -15,6 +16,7 @@ namespace CinemaApp.Application.Extensions
             services.AddScoped<IUserContext, UserContext>();
             services.AddMediatR(typeof(CreateMovieCommand));
             services.AddMediatR(typeof(CreateTicketCommand));
+            services.AddMediatR(typeof(CreateMovieShowCommand));
             services.AddMediatR(typeof(SendEmailWithAttachementCommand));
 
             services.AddAutoMapper(typeof(CinemaAppMappingProfile));
