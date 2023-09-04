@@ -43,7 +43,7 @@ namespace CinemaApp.Infrastructure.Seeders
                         Language = "english",
                         Duration = 120,
                         Description = "Example description.",
-                        ReleaseDate = DateTime.UtcNow
+                        ReleaseDate = DateTime.Today
                     };
                     movie1.EncodeTitle();
 
@@ -56,7 +56,7 @@ namespace CinemaApp.Infrastructure.Seeders
                         Language = "polish",
                         Duration = 135,
                         Description = "Example description 2.",
-                        ReleaseDate = DateTime.UtcNow
+                        ReleaseDate = DateTime.Today
                     };
                     movie2.EncodeTitle();
 
