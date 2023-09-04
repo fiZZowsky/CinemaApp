@@ -4,6 +4,8 @@ using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
 using CinemaApp.Application.Mappings;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,6 +22,14 @@ namespace CinemaApp.Application.Extensions
             services.AddMediatR(typeof(SendEmailWithAttachementCommand));
 
             services.AddAutoMapper(typeof(CinemaAppMappingProfile));
+
+            services.AddValidatorsFromAssemblyContaining<CreateMovieCommandValidator>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
+            
+            services.AddValidatorsFromAssemblyContaining<CreateMovieShowCommandValidator>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
         }
     }
 }

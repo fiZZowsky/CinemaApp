@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "doS0m4ZycIV9m4jZ98Wf3C/mnTT54ZFn1q1+PRHa3E7mORG7Zg2ov1YxOQXnPbg8VnrJ1qg8F84yegWogq1LSA==",
+  "dgSpecHash": "AoGY7VxUhHD1fVW4SQj7QqYIZD5KrXCEnrTXo0rhy5/f8XJWGdqCUpsvPYPTX6RfG1HI07bVMLGq0Z7TPC7gpQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\CinemaApp.MVC.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,9 @@
     "C:\\Users\\Pioter\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\dinktopdf\\1.0.8\\dinktopdf.1.0.8.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\dinktopdfcopy\\1.0.0\\dinktopdfcopy.1.0.0.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

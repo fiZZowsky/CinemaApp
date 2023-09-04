@@ -35,5 +35,26 @@ namespace CinemaApp.Infrastructure.Repositories
 
             return movieShow;
         }
+
+        public async Task<bool> IsHallBusy(int hallId, DateTime startTime)
+        {
+            var showsInHall = await _dbContext.MovieShows
+                .Include(ms => ms.Movie)
+                .Include(ms => ms.Hall)
+                .Where(ms => ms.HallId == hallId)
+                .ToListAsync();
+
+            foreach (var show in showsInHall)
+            {
+                var endTime = show.StartTime.AddMinutes(show.Movie.Duration + 15);
+
+                if (startTime >= show.StartTime && startTime < endTime)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
