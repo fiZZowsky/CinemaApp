@@ -37,8 +37,18 @@
             seat.classList.remove('selected');
             seat.classList.add('available');
 
-            selectedSeatNumbers = selectedSeatNumbers.filter(num => num !== seatNumber + 1);
-            selectedRowNumbers = selectedRowNumbers.filter(num => num !== row + 1);
+            // Find the index of the deselected seat and row in the arrays
+            const seatIndex = selectedSeatNumbers.indexOf(seatNumber + 1);
+            const rowIndex = selectedRowNumbers.indexOf(row + 1);
+
+            // Remove the deselected seat and row from the arrays by index
+            if (seatIndex !== -1) {
+                selectedSeatNumbers.splice(seatIndex, 1);
+            }
+
+            if (rowIndex !== -1) {
+                selectedRowNumbers.splice(rowIndex, 1);
+            }
         }
 
         updateSelectedSeats();
