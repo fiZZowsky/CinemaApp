@@ -1,4 +1,6 @@
-﻿@model CinemaApp.Application.CinemaApp.TicketDto
+﻿@using CinemaApp.Application.CinemaApp;
+
+@model TicketDto
 
 @{
     ViewData["Title"] = "Create";
@@ -10,7 +12,7 @@
     <div class="row">
         <div class="col-md-8">
             <div>
-                <h2 class="text-center">Wybierz miejsca w kinie</h2>
+                <h2 class="text-center text-light">Wybierz miejsca w kinie</h2>
                 <div class="seating">
                     <!-- Seats will be generated here -->
                 </div>
@@ -24,7 +26,7 @@
             <p class="text-light"><strong>Hall Number:</strong> @Model.HallNumber</p>
             <div class="selected-seats">
                 <h3 class="text-light">Wybrane miejsca:</h3>
-                <ul id="selected-seats-list"></ul>
+                <ul class="text-light" id="selected-seats-list"></ul>
             </div>
             <br />
             <div id="CreateTicketModal">
@@ -35,14 +37,15 @@
                     <input type="hidden" asp-for="Duration" value="@Model.Duration" />
                     <input type="hidden" asp-for="StartTime" name="startTime" value="@Model.StartTime" />
                     <input type="hidden" id="hallNumber" asp-for="HallNumber" value="@Model.HallNumber" />
-                    <input type="hidden" id="selected-seats" name="selectedSeatNumbers" />
-                    <input type="hidden" id="selected-rows" name="selectedRowNumbers" />
+                    <input type="hidden" asp-for="SeatNumber" id="selected-seats" name="selectedSeatNumbers" />
+                    <input type="hidden" asp-for="RowNumber" id="selected-rows" name="selectedRowNumbers" />
                     <div class="form-group">
                         <label asp-for="NormalPriceSeats" class="control-label text-light">Ilość biletów normalnych:</label>
                         <div class="input-group">
                             <button type="button" class="btn btn-danger btn-square" id="decreaseNormal">-</button>
                             <input type="text" asp-for="NormalPriceSeats" class="form-control" id="normalPriceSeats" />
                             <button type="button" class="btn btn-success btn-square" id="increaseNormal">+</button>
+                            <span asp-validation-for="NormalPriceSeats" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -51,6 +54,7 @@
                             <button type="button" class="btn btn-danger btn-square" id="decreaseReduced">-</button>
                             <input type="text" asp-for="ReducedPriceSeats" class="form-control" id="reducedPriceSeats" />
                             <button type="button" class="btn btn-success btn-square" id="increaseReduced">+</button>
+                            <span asp-validation-for="ReducedPriceSeats" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">

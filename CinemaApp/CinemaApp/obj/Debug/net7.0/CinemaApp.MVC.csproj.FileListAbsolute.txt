@@ -13,6 +13,9 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Azure.Cor
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Azure.Identity.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\DinkToPdf.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\Humanizer.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\MailKit.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\MediatR.dll
@@ -285,6 +288,3 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\refint\Ci
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\CinemaApp.MVC.pdb
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\CinemaApp.MVC.genruntimeconfig.cache
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\ref\CinemaApp.MVC.dll
-C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\FluentValidation.dll
-C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\FluentValidation.AspNetCore.dll
-C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\FluentValidation.DependencyInjectionExtensions.dll

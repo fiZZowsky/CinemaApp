@@ -45,8 +45,6 @@
     }
 
     function createSeatingPlan() {
-        console.log("Liczba rzędów:", numRows);
-        console.log("Liczba miejsc na rząd:", numSeatsPerRow);
         for (let row = 0; row < numRows; row++) {
             const rowElement = document.createElement('div');
             rowElement.classList.add('row');
@@ -87,11 +85,14 @@
     $("#CreateTicketModal form").submit(function (event) {
         event.preventDefault();
 
+        const normalPriceSeats = parseInt($("#normalPriceSeats").val());
+        const reducedPriceSeats = parseInt($("#reducedPriceSeats").val());
+        if (isNaN(normalPriceSeats) || isNaN(reducedPriceSeats) || (normalPriceSeats + reducedPriceSeats) !== selectedSeatNumbers.length) {
+            toastr["error"]("Selected incorrect number of ticket types.");
+            return;
+        }
+
         assignListsToInput();
-
-        console.log(selectedSeatNumbers);
-        console.log(selectedRowNumbers);
-
         $.ajax({
             url: $(this).attr('action'),
             type: $(this).attr('method'),

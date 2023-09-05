@@ -165,5 +165,13 @@ namespace CinemaApp.Infrastructure.Repositories
                 await client.DisconnectAsync(true);
             }
         }
+
+        public async Task<int> GetMaxSeatsNumber(int hallNumber)
+        {
+            var hall = await _dbContext.Halls
+                .SingleOrDefaultAsync(h => h.Number == hallNumber);
+
+            return hall.NumberOfRows * hall.PlacesInARow;
+        }
     }
 }
