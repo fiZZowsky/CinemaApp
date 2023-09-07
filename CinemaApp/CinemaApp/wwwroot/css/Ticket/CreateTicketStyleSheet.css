@@ -33,15 +33,15 @@
 
 
 .selected {
-    background-image: url('../../resources/seat_na.png');
+    background-image: url('../../Resources/seat-sel.png');
 }
 
 .available {
-    background-image: url('../../resources/seat.png');
+    background-image: url('../../Resources/seat.png');
 }
 
-.selected.available {
-    background-image: url('../../resources/seat_na.png');
+.unavailable {
+    background-image: url('../../Resources/seat-na.png');
 }
 
 .selected-seats {

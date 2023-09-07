@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hrqilxCMjfPg+vM+cAFv5hklY/KCviS1HHoF95Z6fmU=",
+  "Hash": "wRDhHe5jZoRqi7VctVl6O9JvpfewiJ96cIhce8ayV8c=",
   "Source": "CinemaApp.MVC",
   "BasePath": "_content/CinemaApp.MVC",
   "Mode": "Default",
@@ -2244,12 +2244,12 @@
       "OriginalItemSpec": "wwwroot\\Resources\\seat.png"
     },
     {
-      "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat_na.png",
+      "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat-na.png",
       "SourceId": "CinemaApp.MVC",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\",
       "BasePath": "_content/CinemaApp.MVC",
-      "RelativePath": "Resources/seat_na.png",
+      "RelativePath": "Resources/seat-na.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2258,7 +2258,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Resources\\seat_na.png"
+      "OriginalItemSpec": "wwwroot\\Resources\\seat-na.png"
+    },
+    {
+      "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat-sel.png",
+      "SourceId": "CinemaApp.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\",
+      "BasePath": "_content/CinemaApp.MVC",
+      "RelativePath": "Resources/seat-sel.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resources\\seat-sel.png"
     }
   ]
 }

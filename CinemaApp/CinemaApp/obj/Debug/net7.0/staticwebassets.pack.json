@@ -9,12 +9,16 @@
       "PackagePath": "staticwebassets\\Resources\\login-background.jpg"
     },
     {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat.png",
-      "PackagePath": "staticwebassets\\Resources\\seat.png"
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat-na.png",
+      "PackagePath": "staticwebassets\\Resources\\seat-na.png"
     },
     {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat_na.png",
-      "PackagePath": "staticwebassets\\Resources\\seat_na.png"
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat-sel.png",
+      "PackagePath": "staticwebassets\\Resources\\seat-sel.png"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\seat.png",
+      "PackagePath": "staticwebassets\\Resources\\seat.png"
     },
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Identity\\IdentityStyleSheet.css",

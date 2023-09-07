@@ -7,6 +7,7 @@ using CinemaApp.Application.CinemaApp.Queries.GetMovieShow;
 using CinemaApp.Application.CinemaApp.Queries.GetPdfFromTicket;
 using CinemaApp.Application.CinemaApp.Queries.GetSeat;
 using CinemaApp.Application.CinemaApp.Queries.GetTicketByUser;
+using CinemaApp.Application.CinemaApp.Queries.GetUnavailableSeats;
 using DinkToPdf.Contracts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -123,6 +124,13 @@ namespace CinemaApp.MVC.Controllers
             await _mediator.Send(command);
 
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetNotAvailableSeats(int hallNumber, DateTime startTime)
+        {
+            var unavailableSeats = await _mediator.Send(new GetUnavailableSeatsQuery(hallNumber, startTime));
+            return Ok(unavailableSeats);
         }
     }
 }

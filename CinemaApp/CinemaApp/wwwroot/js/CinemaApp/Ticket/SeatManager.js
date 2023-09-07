@@ -1,13 +1,14 @@
 ﻿$(document).ready(function () {
     const seating = document.querySelector('.seating');
     const selectedSeatsList = document.getElementById('selected-seats-list');
+    const numberOfHall = document.getElementById('hallNumber').value;
+    const startTime = document.getElementById('startTime').value;
     let selectedSeatNumbers = [];
     let selectedRowNumbers = [];
     var numRows;
     var numSeatsPerRow;
 
     function getHallData() {
-        const numberOfHall = document.getElementById('hallNumber').value;
         $.ajax({
             url: `/Ticket/GetHallData/${numberOfHall}`,
             type: 'get',
@@ -15,6 +16,7 @@
                 numRows = data.rows;
                 numSeatsPerRow = data.seats;
 
+                getUnavailableSeats();
                 createSeatingPlan();
             },
             error: function () {
@@ -23,36 +25,76 @@
         })
     }
 
+    function getUnavailableSeats() {
+        // Change datetime format to yyyy-MM-ddTHH:mm:ss
+        const parts = startTime.split(' ');
+        const datePart = parts[0];
+        const timePart = parts[1];
+
+        const dateComponents = datePart.split('.');
+        const day = dateComponents[0];
+        const month = dateComponents[1];
+        const year = dateComponents[2];
+
+        const timeComponents = timePart.split(':');
+        const hour = timeComponents[0];
+        const minute = timeComponents[1];
+        const second = timeComponents[2];
+
+        isoStartTime = `${year}-${month}-${day}T${hour}:${minute}:${second}`;
+
+        $.ajax({
+            url: `/Ticket/GetNotAvailableSeats?hallNumber=${numberOfHall}&startTime=${isoStartTime}`,
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                markUnavailableSeats(data);
+            },
+            error: function () {
+                toastr['error']("Something went wrong");
+            }
+        });
+    }
+
+    function markUnavailableSeats(unavailableSeats) {
+        for (const seat of unavailableSeats) {
+            const row = seat.rowNumber - 1;
+            const seatNumber = seat.number - 1;
+
+            const seatElement = document.querySelector(`.seat[data-row="${row}"][data-seat-number="${seatNumber}"]`);
+
+            if (seatElement) {
+                seatElement.classList.remove('available', 'selected');
+                seatElement.classList.add('unavailable');
+            }
+        }
+    }
+
     function handleSeatClick(seat) {
+        const isAvailable = seat.classList.contains('available');
+
+        if (!isAvailable) {
+            return;
+        }
+
         const isSelected = seat.classList.contains('selected');
         const row = parseInt(seat.dataset.row);
         const seatNumber = parseInt(seat.dataset.seatNumber);
 
         if (!isSelected) {
             seat.classList.add('selected');
-            seat.classList.remove('available');
-            selectedSeatNumbers.push(seatNumber + 1);
-            selectedRowNumbers.push(row + 1);
+            selectedSeatNumbers.push({ row: row + 1, seatNumber: seatNumber + 1 });
         } else {
             seat.classList.remove('selected');
-            seat.classList.add('available');
-
-            // Find the index of the deselected seat and row in the arrays
-            const seatIndex = selectedSeatNumbers.indexOf(seatNumber + 1);
-            const rowIndex = selectedRowNumbers.indexOf(row + 1);
-
-            // Remove the deselected seat and row from the arrays by index
+            const seatIndex = selectedSeatNumbers.findIndex(s => s.row === row + 1 && s.seatNumber === seatNumber + 1);
             if (seatIndex !== -1) {
                 selectedSeatNumbers.splice(seatIndex, 1);
-            }
-
-            if (rowIndex !== -1) {
-                selectedRowNumbers.splice(rowIndex, 1);
             }
         }
 
         updateSelectedSeats();
     }
+
 
     function createSeatingPlan() {
         for (let row = 0; row < numRows; row++) {
@@ -117,5 +159,6 @@
     });
 
     getHallData();
+    getUnavailableSeats();
     updateSelectedSeats();
 });
