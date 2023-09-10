@@ -1,8 +1,143 @@
-﻿.light-background {
-    background-color: #E0E1DD;
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
 }
 
-.img-fit {
-    width: 100%;
-    height: 100%;
+body {
+    background-image: url("../../Resources/login-background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
+
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height:90vh;
+}
+
+section {
+    position: relative;
+    max-width: 400px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(55px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 3rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+label {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.inputbox {
+    position: relative;
+    margin: 30px 0;
+    max-width: 310px;
+    border-bottom: 2px solid #fff;
+}
+
+    .inputbox label {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        color: #fff;
+        font-size: 1rem;
+        pointer-events: none;
+        transition: all 0.5s ease-in-out;
+    }
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -5px;
+}
+
+.inputbox input {
+    width: 100%;
+    height: 60px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 35px 0 5px;
+    color: #fff;
+}
+
+.forget {
+    margin: 35px 0;
+    font-size: 0.85rem;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+    .forget label {
+        display: flex;
+        align-items: center;
+    }
+
+        .forget label input {
+            margin-right: 3px;
+        }
+
+    .forget a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .forget a:hover {
+            text-decoration: underline;
+        }
+
+button {
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background-color: rgb(255, 255,255, 1);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+}
+
+    button:hover {
+        background-color: rgb(255, 255,255, 0.5);
+    }
+
+.register {
+    font-size: 0.9rem;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+
+    .register p a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+    }
+
+        .register p a:hover {
+            text-decoration: underline;
+        }
