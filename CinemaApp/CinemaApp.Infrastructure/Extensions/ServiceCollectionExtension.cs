@@ -23,6 +23,8 @@ namespace CinemaApp.Infrastructure.Extensions
 
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
+            services.Configure<StripeSettings>(configuration.GetSection("StripeSettings"));
+
             services.AddScoped<CinemaAppSeeder>();
 
             services.AddScoped<ITicketRepository, TicketRepository>();
@@ -30,6 +32,7 @@ namespace CinemaApp.Infrastructure.Extensions
             services.AddScoped<IMovieShowRepository, MovieShowRepository>();
             services.AddScoped<ISeatRepository, SeatRepository>();
             services.AddScoped<IHallRepository, HallRepository>();
+            services.AddScoped<IStripeRepository, StripeRepository>();
         }
     }
 }

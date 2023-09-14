@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AoGY7VxUhHD1fVW4SQj7QqYIZD5KrXCEnrTXo0rhy5/f8XJWGdqCUpsvPYPTX6RfG1HI07bVMLGq0Z7TPC7gpQ==",
+  "dgSpecHash": "VUTfoev32sQJUSz+wcETiYnIlEWimXgngHhMqkGpGa+4+O8anmP9dMelhmUhDvTNakC+chqxvni4GwuqCi9SQw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\CinemaApp.MVC.csproj",
   "expectedPackageFiles": [
@@ -167,6 +167,7 @@
     "C:\\Users\\Pioter\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Pioter\\.nuget\\packages\\stripe.net\\42.4.0\\stripe.net.42.4.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",

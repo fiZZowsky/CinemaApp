@@ -15,14 +15,17 @@ namespace CinemaApp.Infrastructure.Repositories
     {
         private readonly CinemaAppDbContext _dbContext;
         private readonly IConverter _converter;
+        private readonly StripeSettings _stripeSettings;
         private readonly EmailSettings _emailSettings;
 
-        public TicketRepository(CinemaAppDbContext dbContext, IConverter converter, IOptions<EmailSettings> emailSettings)
+        public TicketRepository(CinemaAppDbContext dbContext, IConverter converter, IOptions<EmailSettings> emailSettings, IOptions<StripeSettings> stripeSettings)
         {
             _dbContext = dbContext;
             _converter = converter;
+            _stripeSettings = stripeSettings.Value;
             _emailSettings = emailSettings.Value;
         }
+
         public async Task Create(Domain.Entities.Ticket ticket, int movieShowId, List<Domain.Entities.Seat> seats)
         {
             ticket.MovieShowId = movieShowId;

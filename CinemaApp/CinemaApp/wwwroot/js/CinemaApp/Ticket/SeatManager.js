@@ -20,7 +20,7 @@
                 createSeatingPlan();
             },
             error: function () {
-                toastr['error']("Something went wrong")
+                toastr['error']("Something went wrong");
             }
         })
     }
@@ -72,7 +72,6 @@
 
     function handleSeatClick(seat) {
         const isAvailable = seat.classList.contains('available');
-
         if (!isAvailable) {
             return;
         }
@@ -80,15 +79,21 @@
         const isSelected = seat.classList.contains('selected');
         const row = parseInt(seat.dataset.row);
         const seatNumber = parseInt(seat.dataset.seatNumber);
-
         if (!isSelected) {
             seat.classList.add('selected');
-            selectedSeatNumbers.push({ row: row + 1, seatNumber: seatNumber + 1 });
+            selectedSeatNumbers.push(seatNumber + 1);
+            selectedRowNumbers.push(row + 1);
         } else {
             seat.classList.remove('selected');
-            const seatIndex = selectedSeatNumbers.findIndex(s => s.row === row + 1 && s.seatNumber === seatNumber + 1);
+            const seatIndex = selectedSeatNumbers.indexOf(seatNumber + 1);
+            const rowIndex = selectedRowNumbers.indexOf(row + 1);
+
             if (seatIndex !== -1) {
                 selectedSeatNumbers.splice(seatIndex, 1);
+            }
+
+            if (rowIndex !== -1) {
+                selectedRowNumbers.splice(rowIndex, 1);
             }
         }
 
@@ -139,21 +144,23 @@
 
         const normalPriceSeats = parseInt($("#normalPriceSeats").val());
         const reducedPriceSeats = parseInt($("#reducedPriceSeats").val());
-        if (isNaN(normalPriceSeats) || isNaN(reducedPriceSeats) || (normalPriceSeats + reducedPriceSeats) !== selectedSeatNumbers.length) {
-            toastr["error"]("Selected incorrect number of ticket types.");
+
+        if (isNaN(normalPriceSeats) || isNaN(reducedPriceSeats)) {
+            toastr["error"]("Please enter valid numbers for normal and reduced price seats.");
             return;
         }
-
+        
         assignListsToInput();
         $.ajax({
-            url: $(this).attr('action'),
-            type: $(this).attr('method'),
+            url: `/Ticket/CreateCheckoutSession`,
+            type: 'POST',
             data: $(this).serialize(),
             success: function (data) {
-                toastr["success"]("Bought new ticket")
+                window.location.href = data.sessionUrl;
+                /*toastr["success"]("Bought new ticket");*/
             },
             error: function (data) {
-                toastr["error"]("Something went wrong")
+                toastr["error"]("Something went wrong");
             }
         });
     });

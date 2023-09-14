@@ -3,6 +3,7 @@ using CinemaApp.Infrastructure.Seeders;
 using CinemaApp.Application.Extensions;
 using DinkToPdf.Contracts;
 using DinkToPdf;
+using CinemaApp.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 

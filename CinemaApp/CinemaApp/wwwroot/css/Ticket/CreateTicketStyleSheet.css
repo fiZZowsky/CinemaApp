@@ -32,12 +32,12 @@
 }
 
 
-.selected {
-    background-image: url('../../Resources/seat-sel.png');
-}
-
 .available {
     background-image: url('../../Resources/seat.png');
+}
+
+.selected {
+    background-image: url('../../Resources/seat-sel.png');
 }
 
 .unavailable {
