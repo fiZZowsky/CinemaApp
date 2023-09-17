@@ -4,12 +4,12 @@ namespace CinemaApp.Application.CinemaApp.Queries.GetPdfFromTicket
 {
     public class GetPdfQuery : IRequest<byte[]>
     {
-        public int Id { get; set; }
+        public Guid Guid { get; set; }
         public string HtmlContent { get; set; }
 
-        public GetPdfQuery(int id, string htmlContent)
+        public GetPdfQuery(Guid guid, string htmlContent)
         {
-            Id = id;
+            Guid = guid;
             HtmlContent = htmlContent;
         }
     }

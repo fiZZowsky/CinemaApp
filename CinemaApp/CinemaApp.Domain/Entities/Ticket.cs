@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace CinemaApp.Domain.Entities
 {
     public class Ticket
     {
-        public int Id { get; set; }
+        [Key]
+        public Guid Guid { get; set; }
         public int MovieShowId { get; set; } = default!;
         public List<Seat> Seats { get; set; } = new();
         public DateTime PurchaseDate { get; set; }

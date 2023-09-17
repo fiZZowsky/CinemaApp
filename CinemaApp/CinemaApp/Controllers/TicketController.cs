@@ -110,32 +110,32 @@ namespace CinemaApp.MVC.Controllers
             var ticket = await _mediator.Send(new GetTicketByUserQuery(formattedPurchaseDate, ticketDto.MovieTitle));
 
             //Send Created Ticket in Mail
-            await SendEmailWithTicket(ticket.Id);
+            await SendEmailWithTicket(ticket.Guid);
 
             return RedirectToAction("Index", "Ticket");
         }
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetPdfTicketFile(int id)
+        public async Task<IActionResult> GetPdfTicketFile(Guid guid)
         {
-            byte[] pdfBytes = await GeneratePDF(id);
+            byte[] pdfBytes = await GeneratePDF(guid);
             return File(pdfBytes, "application/pdf", "ticket.pdf");
         }
 
-        private async Task<byte[]> GeneratePDF(int id)
+        private async Task<byte[]> GeneratePDF(Guid guid)
         {
             var templateFilePath = Path.Combine(Directory.GetCurrentDirectory(), "assets", "Ticket.html");
             var htmlContent = System.IO.File.ReadAllText("Templates\\Ticket.html");
 
-            byte[] pdfBytes = await _mediator.Send(new GetPdfQuery(id, htmlContent));
+            byte[] pdfBytes = await _mediator.Send(new GetPdfQuery(guid, htmlContent));
 
             return pdfBytes;
         }
 
-        private async Task<IActionResult> SendEmailWithTicket(int id)
+        private async Task<IActionResult> SendEmailWithTicket(Guid guid)
         {
-            var ticketPdf = await GeneratePDF(id);
+            var ticketPdf = await GeneratePDF(guid);
             string emailTemplateText = System.IO.File.ReadAllText("Templates\\Email.html");
 
             SendEmailWithAttachementCommand command = new SendEmailWithAttachementCommand(emailTemplateText, ticketPdf);

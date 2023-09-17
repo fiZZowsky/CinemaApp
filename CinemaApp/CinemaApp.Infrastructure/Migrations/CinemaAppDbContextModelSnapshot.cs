@@ -143,11 +143,9 @@ namespace CinemaApp.Infrastructure.Migrations
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.Ticket", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsScanned")
                         .HasColumnType("bit");
@@ -172,7 +170,7 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Property<int>("ReducedPriceSeats")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("MovieShowId");
 
@@ -388,12 +386,12 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Property<int>("SeatsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TicketsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TicketsGuid")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("SeatsId", "TicketsId");
+                    b.HasKey("SeatsId", "TicketsGuid");
 
-                    b.HasIndex("TicketsId");
+                    b.HasIndex("TicketsGuid");
 
                     b.ToTable("SeatTicket");
                 });
@@ -508,7 +506,7 @@ namespace CinemaApp.Infrastructure.Migrations
 
                     b.HasOne("CinemaApp.Domain.Entities.Ticket", null)
                         .WithMany()
-                        .HasForeignKey("TicketsId")
+                        .HasForeignKey("TicketsGuid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

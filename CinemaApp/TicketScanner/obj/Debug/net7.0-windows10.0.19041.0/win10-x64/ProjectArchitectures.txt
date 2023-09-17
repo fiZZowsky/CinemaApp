@@ -1,1 +1,0 @@
-C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\TicketScanner\TicketScanner.csproj;x64

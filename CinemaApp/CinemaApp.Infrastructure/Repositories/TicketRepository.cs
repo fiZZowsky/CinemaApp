@@ -28,6 +28,7 @@ namespace CinemaApp.Infrastructure.Repositories
 
         public async Task Create(Domain.Entities.Ticket ticket, int movieShowId, List<Domain.Entities.Seat> seats)
         {
+            ticket.Guid = GenerateNewGuid();
             ticket.MovieShowId = movieShowId;
             ticket.Seats = seats;
 
@@ -58,6 +59,11 @@ namespace CinemaApp.Infrastructure.Repositories
             }
         }
 
+        private static Guid GenerateNewGuid()
+        {
+            return Guid.NewGuid();
+        }
+
         public async Task<IEnumerable<Ticket>> GetAll()
             => await _dbContext.Tickets
                 .Include(ticket => ticket.MovieShow)
@@ -66,17 +72,17 @@ namespace CinemaApp.Infrastructure.Repositories
                     .ThenInclude(seat => seat.Hall)
                 .ToListAsync();
 
-        private async Task<Ticket> GetTicketById(int id)
+        private async Task<Ticket> GetTicketByGuid(Guid guid)
             => await _dbContext.Tickets
             .Include(ticket => ticket.MovieShow)
                 .ThenInclude(show => show.Movie)
             .Include(ticket => ticket.Seats)
                 .ThenInclude(seat => seat.Hall)
-            .FirstAsync(ticket => ticket.Id == id);
+            .FirstAsync(ticket => ticket.Guid == guid);
 
-        public async Task<byte[]> CreatePdf(int id, string htmlContent)
+        public async Task<byte[]> CreatePdf(Guid guid, string htmlContent)
         {
-            var ticket = await GetTicketById(id);
+            var ticket = await GetTicketByGuid(guid);
 
             var globalSettings = new GlobalSettings
             {
