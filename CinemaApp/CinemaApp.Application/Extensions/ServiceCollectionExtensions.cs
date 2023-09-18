@@ -3,6 +3,8 @@ using CinemaApp.Application.CinemaApp.Commands.CreateCheckoutSession;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
+using CinemaApp.Application.CinemaApp.Commands.EditMovie;
+using CinemaApp.Application.CinemaApp.Commands.EditTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
 using CinemaApp.Application.Mappings;
 using FluentValidation;
@@ -22,6 +24,8 @@ namespace CinemaApp.Application.Extensions
             services.AddMediatR(typeof(CreateMovieShowCommand));
             services.AddMediatR(typeof(SendEmailWithAttachementCommand));
             services.AddMediatR(typeof(CreateCheckoutSessionCommand));
+            services.AddMediatR(typeof(EditTicketCommand));
+            services.AddMediatR(typeof(EditMovieCommand));
 
             services.AddAutoMapper(typeof(CinemaAppMappingProfile));
 

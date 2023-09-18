@@ -40,13 +40,7 @@ namespace CinemaApp.Infrastructure.Repositories
 
         private async Task<byte[]> CreateQRCode(Domain.Entities.Ticket ticket)
         {
-            var movieShow = await _dbContext.MovieShows
-                .Include(m => m.Movie)
-                .Include(h => h.Hall)
-                .FirstOrDefaultAsync(ms => ms.Id == ticket.MovieShowId);
-
-            var seatInfo = string.Join(", ", ticket.Seats.Select(s => $"Row {s.RowNumber}, Seat {s.Number}"));
-            string data = $"{movieShow.Movie.Title}, Hall {movieShow.Hall.Number}, Seats: {seatInfo}, NormalTickets: {ticket.NormalPriceSeats}, ReducedTickets: {ticket.ReducedPriceSeats}, IsScanned: {ticket.IsScanned}, Purchase Date: {ticket.PurchaseDate}";
+            string data = $"https://10.0.2.2:7190/Ticket/TicketCheck/{ticket.Guid}";
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -72,7 +66,7 @@ namespace CinemaApp.Infrastructure.Repositories
                     .ThenInclude(seat => seat.Hall)
                 .ToListAsync();
 
-        private async Task<Ticket> GetTicketByGuid(Guid guid)
+        public async Task<Domain.Entities.Ticket> GetTicketByGuid(Guid guid)
             => await _dbContext.Tickets
             .Include(ticket => ticket.MovieShow)
                 .ThenInclude(show => show.Movie)
@@ -182,5 +176,8 @@ namespace CinemaApp.Infrastructure.Repositories
 
             return hall.NumberOfRows * hall.PlacesInARow;
         }
+
+        public async Task Commit()
+            => await _dbContext.SaveChangesAsync();
     }
 }

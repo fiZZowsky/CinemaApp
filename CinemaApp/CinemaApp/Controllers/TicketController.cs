@@ -1,12 +1,14 @@
 ﻿using CinemaApp.Application.CinemaApp;
 using CinemaApp.Application.CinemaApp.Commands.CreateCheckoutSession;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
+using CinemaApp.Application.CinemaApp.Commands.EditTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
 using CinemaApp.Application.CinemaApp.Queries.GetAllTickets;
 using CinemaApp.Application.CinemaApp.Queries.GetHallByNumber;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieShow;
 using CinemaApp.Application.CinemaApp.Queries.GetPdfFromTicket;
 using CinemaApp.Application.CinemaApp.Queries.GetSeat;
+using CinemaApp.Application.CinemaApp.Queries.GetTicketByGuid;
 using CinemaApp.Application.CinemaApp.Queries.GetTicketByUser;
 using CinemaApp.Application.CinemaApp.Queries.GetUnavailableSeats;
 using CinemaApp.Domain.Entities;
@@ -159,6 +161,33 @@ namespace CinemaApp.MVC.Controllers
         public IActionResult CancelledPurchase()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [Route("/Ticket/TicketCheck/{guid}")]
+        public async Task<IActionResult> TicketCheck(Guid guid)
+        {
+            var ticket = await _mediator.Send(new GetTicketByGuidQuery(guid));
+            return View(ticket);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> TicketCheck(Guid guid, bool isScanned)
+        {
+            if(isScanned == true)
+            {
+                TempData["succes"] = "Ticket has already been scanned.";
+            }
+            else
+            {
+                EditTicketCommand command = new EditTicketCommand(guid);
+                await _mediator.Send(command);
+                TempData["success"] = "Ticket scanned successfully.";
+            }
+
+            return RedirectToAction(nameof(TicketCheck), new { guid });
         }
     }
 }

@@ -8,5 +8,7 @@
         Task<Domain.Entities.Ticket> GetTicketByUser(string userId, DateTime purchaseDate, string movieTitle);
         Task SendEmailWithAttachement(string recipient, string emailTemplateText, byte[] attachement);
         Task<int> GetMaxSeatsNumber(int hallNumber);
+        Task<Domain.Entities.Ticket> GetTicketByGuid(Guid guid);
+        Task Commit();
     }
 }
