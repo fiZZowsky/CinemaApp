@@ -149,7 +149,7 @@
             toastr["error"]("Please enter valid numbers for normal and reduced price seats.");
             return;
         }
-        
+
         assignListsToInput();
         $.ajax({
             url: `/Ticket/CreateCheckoutSession`,

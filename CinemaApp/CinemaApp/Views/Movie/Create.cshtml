@@ -25,9 +25,9 @@
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
-                <label class="control-label text-light" asp-for="AgeRating">AgeRating</label>
-                <input class="form-control" type="text" asp-for="AgeRating" />
-                <span asp-validation-for="AgeRating" class="text-danger"></span>
+                <label class="control-label text-light" asp-for="AgeRatingId">AgeRating</label>
+                @Html.DropDownListFor(model => model.AgeRatingId, ViewBag.AgeRatingSelectList as SelectList, "-- Select Age Rating --", new { @class = "form-control" })
+                <span asp-validation-for="AgeRatingId" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
                 <label class="control-label text-light" asp-for="Language">Language</label>

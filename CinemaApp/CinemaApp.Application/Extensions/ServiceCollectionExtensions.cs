@@ -32,7 +32,7 @@ namespace CinemaApp.Application.Extensions
             services.AddValidatorsFromAssemblyContaining<CreateMovieCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
-            
+
             services.AddValidatorsFromAssemblyContaining<CreateMovieShowCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CinemaApp.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CinemaApp.Infrastructure.Persistance
@@ -15,6 +16,7 @@ namespace CinemaApp.Infrastructure.Persistance
         public DbSet<Domain.Entities.Hall> Halls { get; set; }
         public DbSet<Domain.Entities.Seat> Seats { get; set; }
         public DbSet<Domain.Entities.MovieShow> MovieShows { get; set; }
+        public DbSet<Domain.Entities.AgeRating> AgeRatings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +27,10 @@ namespace CinemaApp.Infrastructure.Persistance
                 .WithMany(ms => ms.Tickets)
                 .HasForeignKey(t => t.MovieShowId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Domain.Entities.Ticket>()
+                .HasMany(t => t.Seats)
+                .WithMany(s => s.Tickets);
 
             modelBuilder.Entity<Domain.Entities.MovieShow>()
                 .HasOne(ms => ms.Movie)
@@ -40,6 +46,11 @@ namespace CinemaApp.Infrastructure.Persistance
                 .HasMany(h => h.SeatsList)
                 .WithOne(s => s.Hall)
                 .HasForeignKey(s => s.HallId);
+
+            modelBuilder.Entity<Domain.Entities.Movie>()
+                .HasOne(m => m.AgeRating)
+                .WithMany(ar => ar.Movies)
+                .HasForeignKey(m => m.AgeRatingId);
         }
     }
 }

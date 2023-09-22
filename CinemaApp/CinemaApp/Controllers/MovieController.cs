@@ -2,12 +2,15 @@
 using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
+using CinemaApp.Application.CinemaApp.Queries.GetAgeRatingById;
+using CinemaApp.Application.CinemaApp.Queries.GetAgeRatings;
 using CinemaApp.Application.CinemaApp.Queries.GetAllMovies;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieByEncodedTitle;
 using CinemaApp.MVC.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -22,15 +25,35 @@ namespace CinemaApp.MVC.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var movies = await _mediator.Send(new GetAllMoviesQuery());
+
             return View(movies);
         }
 
-        [Authorize(Roles = "Admin")]
-        public ActionResult Create() 
+        [HttpGet]
+        [Route("CinemaApp/{encodedTitle}/Details")]
+        public async Task<IActionResult> Details(string encodedTitle)
         {
+            var movieDto = await _mediator.Send(new GetMovieByEncodedTitleQuery(encodedTitle));
+            var ageRatingDto = await _mediator.Send(new GetAgeRatingByIdQuery(movieDto.AgeRatingId));
+
+            ViewBag.AgeRatingName = ageRatingDto.MinimumAge;
+
+            return View(movieDto);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Create()
+        {
+            var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
+            var ageRatingSelectList = new SelectList(ageRatings, "Id", "MinimumAge");
+
+            ViewBag.AgeRatingSelectList = ageRatingSelectList;
+
             return View();
         }
 
@@ -38,7 +61,7 @@ namespace CinemaApp.MVC.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(CreateMovieCommand command)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(command);
             }
@@ -50,6 +73,7 @@ namespace CinemaApp.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
         [Authorize(Roles = "Admin")]
         public ActionResult CreateShow()
         {
@@ -71,27 +95,21 @@ namespace CinemaApp.MVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [Route("CinemaApp/{encodedTitle}/Details")]
-        public async Task<IActionResult> Details (string encodedTitle)
-        {
-            var dto = await _mediator.Send(new GetMovieByEncodedTitleQuery(encodedTitle));
-            return View(dto);
-        }
-        
+        [HttpGet]
         [Route("CinemaApp/{encodedTitle}/Edit")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit (string encodedTitle)
+        public async Task<IActionResult> Edit(string encodedTitle)
         {
-            var dto = await _mediator.Send(new GetMovieByEncodedTitleQuery(encodedTitle));
+            var movieDto = await _mediator.Send(new GetMovieByEncodedTitleQuery(encodedTitle));
 
-            EditMovieCommand model = _mapper.Map<EditMovieCommand>(dto);
+            EditMovieCommand model = _mapper.Map<EditMovieCommand>(movieDto);
             return View(model);
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [Route("CinemaApp/{encodedTitle}/Edit")]
-        public async Task<IActionResult> Edit (string title, string encodedTitle, EditMovieCommand command)
+        public async Task<IActionResult> Edit(EditMovieCommand command)
         {
             if (!ModelState.IsValid)
             {

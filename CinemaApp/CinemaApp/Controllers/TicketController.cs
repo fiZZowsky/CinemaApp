@@ -12,11 +12,13 @@ using CinemaApp.Application.CinemaApp.Queries.GetTicketByGuid;
 using CinemaApp.Application.CinemaApp.Queries.GetTicketByUser;
 using CinemaApp.Application.CinemaApp.Queries.GetUnavailableSeats;
 using CinemaApp.Domain.Entities;
+using CinemaApp.MVC.Extensions;
 using DinkToPdf.Contracts;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Linq;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -33,14 +35,15 @@ namespace CinemaApp.MVC.Controllers
             _stripeSettings = stripeSettings.Value;
         }
 
-        [Authorize]
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var tickets = await _mediator.Send(new GetAllTicketsQuery());
             return View(tickets);
         }
 
+        [HttpGet]
         [Authorize]
         public ActionResult Create(string movieTitle, string language, int duration, DateTime startTime, int hallNumber)
         {
@@ -74,11 +77,25 @@ namespace CinemaApp.MVC.Controllers
                 return BadRequest(ModelState);
             }
 
+            int selectedSeatsCount = selectedSeatNumbers.Count();
+            if (ticketDto.NormalPriceSeats + ticketDto.ReducedPriceSeats != selectedSeatsCount)
+            {
+                //this.SetNotification("error", "Sum of normal and reduced price seats must match the number of selected seats");
+                return BadRequest(ModelState);
+            }
+
             ticketDto.SeatNumber = selectedSeatNumbers.Split(',').Select(int.Parse).ToList();
             ticketDto.RowNumber = selectedRowNumbers.Split(',').Select(int.Parse).ToList();
 
             Func<string> successUrl = () => Url.Action("CreateTicket", "Ticket", ticketDto, Request.Scheme);
-            Func<string> cancelURL = () => Url.Action("CancelledPurchase", "Ticket", ticketDto, Request.Scheme);
+            Func<string> cancelURL = () => Url.Action("CancelledPurchase", "Ticket", new
+            {
+                movieTitle = ticketDto.MovieTitle,
+                language = ticketDto.Language,
+                duration = ticketDto.Duration,
+                startTime = ticketDto.StartTime,
+                hallNumber = ticketDto.HallNumber
+            }, Request.Scheme);
 
             CreateCheckoutSessionCommand command = new CreateCheckoutSessionCommand(ticketDto, successUrl, cancelURL);
             var session = await _mediator.Send(command);
@@ -114,6 +131,8 @@ namespace CinemaApp.MVC.Controllers
             //Send Created Ticket in Mail
             await SendEmailWithTicket(ticket.Guid);
 
+            this.SetNotification("success", "Successfully bought new ticket.");
+
             return RedirectToAction("Index", "Ticket");
         }
 
@@ -125,6 +144,7 @@ namespace CinemaApp.MVC.Controllers
             return File(pdfBytes, "application/pdf", "ticket.pdf");
         }
 
+        [Authorize]
         private async Task<byte[]> GeneratePDF(Guid guid)
         {
             var templateFilePath = Path.Combine(Directory.GetCurrentDirectory(), "assets", "Ticket.html");
@@ -135,6 +155,7 @@ namespace CinemaApp.MVC.Controllers
             return pdfBytes;
         }
 
+        [Authorize]
         private async Task<IActionResult> SendEmailWithTicket(Guid guid)
         {
             var ticketPdf = await GeneratePDF(guid);
@@ -148,19 +169,26 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetNotAvailableSeats(int hallNumber, DateTime startTime)
         {
             var unavailableSeats = await _mediator.Send(new GetUnavailableSeatsQuery(hallNumber, startTime));
-            Console.WriteLine("Unavailable seats from controller: " + unavailableSeats);
             return Ok(unavailableSeats);
         }
 
         [HttpGet]
         [Authorize]
-        public IActionResult CancelledPurchase()
+        public IActionResult CancelledPurchase(string movieTitle, string language, int duration, DateTime startTime, int hallNumber)
         {
-            return View();
+            var ticketDto = new TicketDto
+            {
+                MovieTitle = movieTitle,
+                Language = language,
+                Duration = duration,
+                StartTime = startTime,
+                HallNumber = hallNumber
+            };
+
+            return RedirectToAction("Create", "Ticket", ticketDto);
         }
 
         [HttpGet]
@@ -176,15 +204,15 @@ namespace CinemaApp.MVC.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> TicketCheck(Guid guid, bool isScanned)
         {
-            if(isScanned == true)
+            if (isScanned == true)
             {
-                TempData["succes"] = "Ticket has already been scanned.";
+                this.SetNotification("success", "Ticket has already been scanned.");
             }
             else
             {
                 EditTicketCommand command = new EditTicketCommand(guid);
                 await _mediator.Send(command);
-                TempData["success"] = "Ticket scanned successfully.";
+                this.SetNotification("success", "Ticket scanned successfully.");
             }
 
             return RedirectToAction(nameof(TicketCheck), new { guid });

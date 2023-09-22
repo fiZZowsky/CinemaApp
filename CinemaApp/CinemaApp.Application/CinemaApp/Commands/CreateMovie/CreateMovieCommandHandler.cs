@@ -21,13 +21,13 @@ namespace CinemaApp.Application.CinemaApp.Commands.CreateMovie
         public async Task<Unit> Handle(CreateMovieCommand request, CancellationToken cancellationToken)
         {
             var currentUser = _userContext.GetCurrentUser();
-            if(currentUser == null || !currentUser.IsInRole("Admin"))
+            if (currentUser == null || !currentUser.IsInRole("Admin"))
             {
                 return Unit.Value;
             }
 
-            var movie = _mapper.Map<Domain.Entities.MovieShow>(request);
-            movie.Movie.EncodeTitle();
+            var movie = _mapper.Map<Domain.Entities.Movie>(request);
+            movie.EncodeTitle();
 
             await _movieRepository.Create(movie);
 

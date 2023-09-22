@@ -27,7 +27,7 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Movie.Title))
                 .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Movie.Genre))
                 .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Movie.Country))
-                .ForMember(dest => dest.AgeRating, opt => opt.MapFrom(src => src.Movie.AgeRating))
+                .ForMember(dest => dest.AgeRatingId, opt => opt.MapFrom(src => src.Movie.AgeRatingId))
                 .ForMember(dest => dest.Language, opt => opt.MapFrom(src => src.Movie.Language))
                 .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Movie.Duration))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Movie.Description))
@@ -35,19 +35,7 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.Hall.Number))
                 .ForMember(dest => dest.EncodedTitle, opt => opt.MapFrom(src => src.Movie.EncodedTitle));
 
-            CreateMap<MovieDto, Domain.Entities.MovieShow>()
-                .ForMember(dest => dest.Movie, opt => opt.MapFrom(src => new Movie()
-                {
-                    Title = src.Title,
-                    Genre = src.Genre,
-                    Country = src.Country,
-                    AgeRating = src.AgeRating,
-                    Language = src.Language,
-                    Duration = src.Duration,
-                    Description = src.Description,
-                    ReleaseDate = src.ReleaseDate
-                }))
-                .ForMember(dest => dest.HallId, opt => opt.MapFrom(src => src.HallNumber));
+            CreateMap<MovieDto, Domain.Entities.Movie>();
 
             CreateMap<MovieDto, EditMovieCommand>();
 
@@ -66,6 +54,10 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.MovieShow.Hall.Number))
                 .ForMember(dest => dest.RowNumber, opt => opt.MapFrom(src => src.Seats.Select(seat => seat.RowNumber).ToList()))
                 .ForMember(dest => dest.SeatNumber, opt => opt.MapFrom(src => src.Seats.Select(seat => seat.Number).ToList()));
+
+            //CreateMap<AgeRatingDto, Domain.Entities.AgeRating>()
+            //    .ForMember(dest => dest.Movies, opt => opt.Ignore());
+            CreateMap<Domain.Entities.AgeRating, AgeRatingDto>();
         }
     }
 }

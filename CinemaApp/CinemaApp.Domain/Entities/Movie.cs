@@ -13,13 +13,14 @@ namespace CinemaApp.Domain.Entities
         public string Title { get; set; } = default!;
         // TO DO: Rozbić na osobne tabele
         public string Genre { get; set; } = default!;
-        public string Country { get; set; } = default!;
-        public string AgeRating { get; set; } = default!;
-        public string Language { get; set; } = default!;
         // -------------------------
+        public string Country { get; set; } = default!;
+        public string Language { get; set; } = default!;
         public int Duration { get; set; }
+        public int AgeRatingId { get; set; }
         public string Description { get; set; } = default!;
         public DateTime ReleaseDate { get; set; }
+        public AgeRating AgeRating { get; set; } = default!;
 
         public List<MovieShow> MovieShows { get; set; } = default!;
 

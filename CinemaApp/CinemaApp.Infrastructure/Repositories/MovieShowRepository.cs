@@ -1,5 +1,4 @@
-﻿using CinemaApp.Domain.Entities;
-using CinemaApp.Domain.Interfaces;
+﻿using CinemaApp.Domain.Interfaces;
 using CinemaApp.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +23,7 @@ namespace CinemaApp.Infrastructure.Repositories
         {
             var movieShow = await _dbContext.MovieShows
                     .Include(m => m.Movie)
+                        .ThenInclude(m => m.AgeRating)
                     .Include(h => h.Hall)
                     .FirstOrDefaultAsync(st =>
                         st.StartTime.Year == startTime.Year &&
@@ -40,6 +40,7 @@ namespace CinemaApp.Infrastructure.Repositories
         {
             var showsInHall = await _dbContext.MovieShows
                 .Include(ms => ms.Movie)
+                    .ThenInclude(m => m.AgeRating)
                 .Include(ms => ms.Hall)
                 .Where(ms => ms.HallId == hallId)
                 .ToListAsync();

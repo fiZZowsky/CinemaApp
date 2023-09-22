@@ -17,7 +17,7 @@ namespace CinemaApp.Infrastructure.Repositories
         public async Task Commit()
             => await _dbContext.SaveChangesAsync();
 
-        public async Task Create(Domain.Entities.MovieShow movie)
+        public async Task Create(Domain.Entities.Movie movie)
         {
             _dbContext.Add(movie);
             await _dbContext.SaveChangesAsync();
@@ -26,12 +26,14 @@ namespace CinemaApp.Infrastructure.Repositories
         public async Task<IEnumerable<MovieShow>> GetAll()
             => await _dbContext.MovieShows
                 .Include(m => m.Movie)
+                    .ThenInclude(m => m.AgeRating)
                 .Include(h => h.Hall)
                 .ToListAsync();
 
         public async Task<MovieShow> GetMovieByEncodedTitle(string encodedTitle)
             => await _dbContext.MovieShows
                 .Include(m => m.Movie)
+                    .ThenInclude(m => m.AgeRating)
                 .Include(h => h.Hall)
                 .FirstAsync(m => m.Movie.EncodedTitle == encodedTitle);
     }

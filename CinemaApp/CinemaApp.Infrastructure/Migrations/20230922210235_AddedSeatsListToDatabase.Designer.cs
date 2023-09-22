@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaApp.Infrastructure.Migrations
 {
     [DbContext(typeof(CinemaAppDbContext))]
-    [Migration("20230824163153_ChangedSeatTable")]
-    partial class ChangedSeatTable
+    [Migration("20230922210235_AddedSeatsListToDatabase")]
+    partial class AddedSeatsListToDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,23 @@ namespace CinemaApp.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CinemaApp.Domain.Entities.AgeRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("MinimumAge")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AgeRatings");
+                });
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.Hall", b =>
                 {
@@ -55,9 +72,8 @@ namespace CinemaApp.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AgeRating")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AgeRatingId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Country")
                         .IsRequired()
@@ -90,6 +106,8 @@ namespace CinemaApp.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AgeRatingId");
 
                     b.ToTable("Movies");
                 });
@@ -146,11 +164,9 @@ namespace CinemaApp.Infrastructure.Migrations
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.Ticket", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Guid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("IsScanned")
                         .HasColumnType("bit");
@@ -175,7 +191,7 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Property<int>("ReducedPriceSeats")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("Guid");
 
                     b.HasIndex("MovieShowId");
 
@@ -391,14 +407,25 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Property<int>("SeatsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("TicketsId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("TicketsGuid")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("SeatsId", "TicketsId");
+                    b.HasKey("SeatsId", "TicketsGuid");
 
-                    b.HasIndex("TicketsId");
+                    b.HasIndex("TicketsGuid");
 
                     b.ToTable("SeatTicket");
+                });
+
+            modelBuilder.Entity("CinemaApp.Domain.Entities.Movie", b =>
+                {
+                    b.HasOne("CinemaApp.Domain.Entities.AgeRating", "AgeRating")
+                        .WithMany("Movies")
+                        .HasForeignKey("AgeRatingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AgeRating");
                 });
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.MovieShow", b =>
@@ -511,9 +538,14 @@ namespace CinemaApp.Infrastructure.Migrations
 
                     b.HasOne("CinemaApp.Domain.Entities.Ticket", null)
                         .WithMany()
-                        .HasForeignKey("TicketsId")
+                        .HasForeignKey("TicketsGuid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CinemaApp.Domain.Entities.AgeRating", b =>
+                {
+                    b.Navigation("Movies");
                 });
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.Hall", b =>

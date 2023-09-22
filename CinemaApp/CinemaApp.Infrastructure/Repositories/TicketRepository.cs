@@ -15,14 +15,12 @@ namespace CinemaApp.Infrastructure.Repositories
     {
         private readonly CinemaAppDbContext _dbContext;
         private readonly IConverter _converter;
-        private readonly StripeSettings _stripeSettings;
         private readonly EmailSettings _emailSettings;
 
-        public TicketRepository(CinemaAppDbContext dbContext, IConverter converter, IOptions<EmailSettings> emailSettings, IOptions<StripeSettings> stripeSettings)
+        public TicketRepository(CinemaAppDbContext dbContext, IConverter converter, IOptions<EmailSettings> emailSettings)
         {
             _dbContext = dbContext;
             _converter = converter;
-            _stripeSettings = stripeSettings.Value;
             _emailSettings = emailSettings.Value;
         }
 

@@ -10,6 +10,7 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
+            @Html.HiddenFor(model => model.Title)
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Genre" class="control-label text-light"></label>
@@ -22,9 +23,9 @@
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AgeRating" class="control-label text-light"></label>
-                <input asp-for="AgeRating" class="form-control" />
-                <span asp-validation-for="AgeRating" class="text-danger"></span>
+                <label asp-for="AgeRatingId" class="control-label text-light"></label>
+                <input asp-for="AgeRatingId" class="form-control" />
+                <span asp-validation-for="AgeRatingId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Language" class="control-label text-light"></label>

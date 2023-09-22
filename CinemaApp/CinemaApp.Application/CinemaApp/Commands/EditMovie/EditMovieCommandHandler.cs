@@ -27,15 +27,14 @@ namespace CinemaApp.Application.CinemaApp.Commands.EditMovie
 
             movie.Movie.Genre = request.Genre;
             movie.Movie.Country = request.Country;
-            movie.Movie.AgeRating = request.AgeRating;
+            movie.Movie.AgeRatingId = request.AgeRatingId;
             movie.Movie.Language = request.Language;
             movie.Movie.Duration = request.Duration;
             movie.Movie.Description = request.Description;
             movie.Movie.ReleaseDate = request.ReleaseDate;
-            movie.StartTime = request.StartTime;
-            movie.Hall.Number = request.HallNumber;
+            movie.StartTime = (DateTime)request.StartTime;
+            movie.Hall.Number = (int)request.HallNumber;
 
-            
             await _movieRepository.Commit();
 
             return Unit.Value;

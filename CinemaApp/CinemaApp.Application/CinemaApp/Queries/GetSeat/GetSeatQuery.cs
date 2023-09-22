@@ -8,7 +8,7 @@ namespace CinemaApp.Application.CinemaApp.Queries.GetSeat
         public List<int> RowNumber { get; set; }
         public List<int> SeatNumber { get; set; }
 
-        public GetSeatQuery(int hallNumber, List<int> rowNumber, List<int> seatNumber) 
+        public GetSeatQuery(int hallNumber, List<int> rowNumber, List<int> seatNumber)
         {
             HallNumber = hallNumber;
             RowNumber = rowNumber;

@@ -9,7 +9,6 @@ namespace CinemaApp.Application.CinemaApp.Commands.CreateMovie
             RuleFor(m => m.Title).NotEmpty();
             RuleFor(m => m.Genre).NotEmpty();
             RuleFor(m => m.Country).NotEmpty();
-            RuleFor(m => m.AgeRating).NotEmpty();
             RuleFor(m => m.Language).NotEmpty();
             RuleFor(m => m.Duration).NotEmpty();
             RuleFor(m => m.Description).NotEmpty();

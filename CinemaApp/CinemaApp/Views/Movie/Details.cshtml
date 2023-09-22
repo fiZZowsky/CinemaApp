@@ -1,4 +1,5 @@
 ﻿@model CinemaApp.Application.CinemaApp.MovieDto
+@using Microsoft.AspNetCore.Mvc.Rendering
 
 @{
     ViewData["Title"] = "Details";
@@ -21,10 +22,10 @@
             @Html.DisplayFor(model => model.Country)
         </dd>
         <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.AgeRating)
+            @Html.DisplayNameFor(model => model.AgeRatingId)
         </dt>
         <dd class="col-sm-10 text-light">
-            @Html.DisplayFor(model => model.AgeRating)
+            @ViewBag.AgeRatingName
         </dd>
         <dt class="col-sm-2 text-light">
             @Html.DisplayNameFor(model => model.Language)
@@ -73,7 +74,7 @@
        asp-route-movieTitle="@Model.Title"
        asp-route-language="@Model.Language"
        asp-route-duration="@Model.Duration"
-       asp-route-startTime="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm:ss")"
+       asp-route-startTime="@Model.StartTime?.ToString("yyyy-MM-ddTHH:mm:ss")"
        asp-route-hallNumber="@Model.HallNumber"
        class="btn btn-primary">Get Ticket
    </a>
