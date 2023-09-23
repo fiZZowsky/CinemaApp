@@ -29,6 +29,9 @@ namespace CinemaApp.MVC.Controllers
         public async Task<IActionResult> Index()
         {
             var movies = await _mediator.Send(new GetAllMoviesQuery());
+            var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
+
+            ViewBag.AgeRatings = ageRatings;
 
             return View(movies);
         }
