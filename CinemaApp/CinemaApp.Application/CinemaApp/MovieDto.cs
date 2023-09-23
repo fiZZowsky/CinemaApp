@@ -2,6 +2,7 @@
 {
     public class MovieDto
     {
+        public int MovieId { get; set; }
         public string Title { get; set; } = default!;
         public string Genre { get; set; } = default!;
         public string Country { get; set; } = default!;

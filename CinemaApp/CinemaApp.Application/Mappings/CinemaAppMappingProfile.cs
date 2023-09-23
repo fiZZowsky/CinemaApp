@@ -24,6 +24,7 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.IsScanned, opt => opt.MapFrom(src => false));
 
             CreateMap<Domain.Entities.MovieShow, MovieDto>()
+                .ForMember(dest => dest.MovieId, opt => opt.MapFrom(src => src.Movie.Id))
                 .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Movie.Title))
                 .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Movie.Genre))
                 .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Movie.Country))
@@ -36,6 +37,7 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.EncodedTitle, opt => opt.MapFrom(src => src.Movie.EncodedTitle));
 
             CreateMap<MovieDto, Domain.Entities.Movie>();
+            CreateMap<Domain.Entities.Movie, MovieDto>();
 
             CreateMap<MovieDto, EditMovieCommand>();
 

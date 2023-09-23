@@ -14,6 +14,9 @@ namespace CinemaApp.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task<IEnumerable<Hall>> GetAllHalls()
+            => await _dbContext.Halls.ToListAsync();
+
         public async Task<Hall> GetHallByNumber(int number)
             => await _dbContext.Halls
             .FirstAsync(h => h.Number == number);

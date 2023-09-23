@@ -4,7 +4,9 @@ using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
 using CinemaApp.Application.CinemaApp.Queries.GetAgeRatingById;
 using CinemaApp.Application.CinemaApp.Queries.GetAgeRatings;
+using CinemaApp.Application.CinemaApp.Queries.GetAllHalls.GetAllHalls;
 using CinemaApp.Application.CinemaApp.Queries.GetAllMovies;
+using CinemaApp.Application.CinemaApp.Queries.GetAllMoviesShows;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieByEncodedTitle;
 using CinemaApp.MVC.Extensions;
 using MediatR;
@@ -28,7 +30,7 @@ namespace CinemaApp.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var movies = await _mediator.Send(new GetAllMoviesQuery());
+            var movies = await _mediator.Send(new GetAllMoviesShowsQuery());
             var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
 
             ViewBag.AgeRatings = ageRatings;
@@ -53,6 +55,7 @@ namespace CinemaApp.MVC.Controllers
         public async Task<IActionResult> Create()
         {
             var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
+
             var ageRatingSelectList = new SelectList(ageRatings, "Id", "MinimumAge");
 
             ViewBag.AgeRatingSelectList = ageRatingSelectList;
@@ -78,8 +81,16 @@ namespace CinemaApp.MVC.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public ActionResult CreateShow()
+        public async Task<IActionResult> CreateShow()
         {
+            var movies = await _mediator.Send(new GetAllMoviesQuery());
+            var halls = await _mediator.Send(new GetAllHallsQuery());
+            var movieSelectList = new SelectList(movies, "MovieId", "Title");
+            var hallsSelectList = new SelectList(halls, "Id", "Number");
+
+            ViewBag.MovieSelectList = movieSelectList;
+            ViewBag.HallsSelectList = hallsSelectList;
+
             return View();
         }
 
@@ -89,7 +100,8 @@ namespace CinemaApp.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(command);
+                this.SetNotification("error", $"Incorrect data has been entered for the show");
+                return RedirectToAction(nameof(CreateShow));
             }
 
             await _mediator.Send(command);

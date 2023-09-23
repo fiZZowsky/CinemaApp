@@ -23,12 +23,8 @@ namespace CinemaApp.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<MovieShow>> GetAll()
-            => await _dbContext.MovieShows
-                .Include(m => m.Movie)
-                    .ThenInclude(m => m.AgeRating)
-                .Include(h => h.Hall)
-                .ToListAsync();
+        public async Task<IEnumerable<Movie>> GetAll()
+            => await _dbContext.Movies.ToListAsync();
 
         public async Task<MovieShow> GetMovieByEncodedTitle(string encodedTitle)
             => await _dbContext.MovieShows
