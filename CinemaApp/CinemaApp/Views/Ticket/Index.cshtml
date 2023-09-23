@@ -56,7 +56,7 @@
                     @Html.DisplayFor(modelItem => item.Duration)
                 </td>
                 <td class="text-light">
-                    @Html.DisplayFor(modelItem => item.StartTime)
+                    @item.StartTime.ToString("dd.MM.yyyy HH:mm")
                 </td>
                 <td class="text-light">
                     @Html.DisplayFor(modelItem => item.HallNumber)

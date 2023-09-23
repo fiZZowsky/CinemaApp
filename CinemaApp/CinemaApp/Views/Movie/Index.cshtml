@@ -32,8 +32,8 @@
                             }
                         </p>
                         <p class="text-light"><strong>Język:</strong> @movie.Language</p>
-                        <p class="text-light"><strong>Data premiery:</strong> @movie.ReleaseDate</p>
-                        <p class="text-light"><strong>Godzina rozpoczęcia:</strong> @movie.StartTime</p>
+                        <p class="text-light"><strong>Data premiery:</strong> @movie.ReleaseDate.ToShortDateString()</p>
+                        <p class="text-light"><strong>Godzina rozpoczęcia:</strong> @movie.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
                         <p class="text-light"><strong>Numer sali:</strong> @movie.HallNumber</p>
                     </div>
                     <div>

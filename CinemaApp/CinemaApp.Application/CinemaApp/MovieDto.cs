@@ -11,7 +11,7 @@
         public int Duration { get; set; }
         public string Description { get; set; } = default!;
         public DateTime ReleaseDate { get; set; }
-        public DateTime? StartTime { get; set; }
+        public DateTime StartTime { get; set; }
         public int? HallNumber { get; set; }
 
         public string? EncodedTitle { get; set; }

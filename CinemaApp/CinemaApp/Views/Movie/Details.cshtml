@@ -49,13 +49,13 @@
             @Html.DisplayNameFor(model => model.ReleaseDate)
         </dt>
         <dd class="col-sm-10 text-light">
-            @Html.DisplayFor(model => model.ReleaseDate)
+            @Model.ReleaseDate.ToShortDateString()
         </dd>
         <dt class="col-sm-2 text-light">
             @Html.DisplayNameFor(model => model.StartTime)
         </dt>
         <dd class="col-sm-10 text-light">
-            @Html.DisplayFor(model => model.StartTime)
+            @Model.StartTime.ToString("dd.MM.yyyy HH:mm")
         </dd>
         <dt class="col-sm-2 text-light">
             @Html.DisplayNameFor(model => model.HallNumber)
@@ -74,7 +74,7 @@
        asp-route-movieTitle="@Model.Title"
        asp-route-language="@Model.Language"
        asp-route-duration="@Model.Duration"
-       asp-route-startTime="@Model.StartTime?.ToString("yyyy-MM-ddTHH:mm:ss")"
+       asp-route-startTime="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")"
        asp-route-hallNumber="@Model.HallNumber"
        class="btn btn-primary">Get Ticket
    </a>
