@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AgeRatingId" class="control-label text-light"></label>
-                <input asp-for="AgeRatingId" class="form-control" />
+                @Html.DropDownListFor(model => model.AgeRatingId, ViewBag.AgeRatingSelectList as SelectList, "-- Select Age Rating --", new { @class = "form-control" })
                 <span asp-validation-for="AgeRatingId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="HallNumber" class="control-label text-light"></label>
-                <input asp-for="HallNumber" class="form-control" />
+                @Html.DropDownListFor(model => model.HallNumber, ViewBag.HallsSelectList as SelectList, "-- Select Hall --", new { @class = "form-control" })
                 <span asp-validation-for="HallNumber" class="text-danger"></span>
             </div>
             <div class="form-group">

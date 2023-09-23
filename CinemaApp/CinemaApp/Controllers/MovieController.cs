@@ -116,6 +116,14 @@ namespace CinemaApp.MVC.Controllers
         public async Task<IActionResult> Edit(string encodedTitle)
         {
             var movieDto = await _mediator.Send(new GetMovieByEncodedTitleQuery(encodedTitle));
+            var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
+            var halls = await _mediator.Send(new GetAllHallsQuery());
+
+            var ageRatingSelectList = new SelectList(ageRatings, "Id", "MinimumAge");
+            var hallsSelectList = new SelectList(halls, "Id", "Number");
+
+            ViewBag.AgeRatingSelectList = ageRatingSelectList;
+            ViewBag.HallsSelectList = hallsSelectList;
 
             EditMovieCommand model = _mapper.Map<EditMovieCommand>(movieDto);
             return View(model);
