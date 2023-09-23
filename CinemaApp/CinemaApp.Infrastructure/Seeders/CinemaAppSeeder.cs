@@ -135,13 +135,13 @@ namespace CinemaApp.Infrastructure.Seeders
                     {
                         MovieId = movie1.Id,
                         HallId = hall1.Id,
-                        StartTime = DateTime.UtcNow.AddDays(1)
+                        StartTime = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day + 1, 0, 0, 0)
                     };
                     var movieShow2 = new Domain.Entities.MovieShow
                     {
                         MovieId = movie2.Id,
                         HallId = hall2.Id,
-                        StartTime = DateTime.UtcNow.AddDays(2)
+                        StartTime = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day + 2, 0, 0, 0)
                     };
                     _dbContext.MovieShows.AddRange(movieShow1, movieShow2);
                     await _dbContext.SaveChangesAsync();
