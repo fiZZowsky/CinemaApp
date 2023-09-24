@@ -69,7 +69,13 @@ namespace CinemaApp.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(command);
+                var errors = ModelState.Values.SelectMany(v => v.Errors)
+                      .Select(e => e.ErrorMessage)
+                      .ToList();
+
+                this.SetNotification("error", "Incorrect data has been entered for the movie: " + string.Join(", ", errors));
+
+                return RedirectToAction(nameof(Create));
             }
 
             await _mediator.Send(command);
@@ -100,7 +106,10 @@ namespace CinemaApp.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.SetNotification("error", $"Incorrect data has been entered for the show");
+                var errors = ModelState.Values.SelectMany(v => v.Errors)
+                      .Select(e => e.ErrorMessage)
+                      .ToList();
+                this.SetNotification("error", "Incorrect data has been entered for the show: " + string.Join(", ", errors));
                 return RedirectToAction(nameof(CreateShow));
             }
 
@@ -136,10 +145,15 @@ namespace CinemaApp.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var errors = ModelState.Values.SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                this.SetNotification("error", "Incorrect data has been entered for the show: " + string.Join(", ", errors));
                 return View(command);
             }
 
             await _mediator.Send(command);
+            this.SetNotification("success", $"Successfully edited {command.Title}.");
             return RedirectToAction(nameof(Index));
         }
     }

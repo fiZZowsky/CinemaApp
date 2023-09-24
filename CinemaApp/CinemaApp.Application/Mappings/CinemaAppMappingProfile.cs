@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CinemaApp.Application.CinemaApp;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
-using CinemaApp.Domain.Entities;
 
 namespace CinemaApp.Application.Mappings
 {
@@ -37,7 +36,9 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.EncodedTitle, opt => opt.MapFrom(src => src.Movie.EncodedTitle));
 
             CreateMap<MovieDto, Domain.Entities.Movie>();
-            CreateMap<Domain.Entities.Movie, MovieDto>();
+            CreateMap<Domain.Entities.Movie, MovieDto>()
+                .ForMember(dest => dest.MovieId, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title));
 
             CreateMap<MovieDto, EditMovieCommand>();
 

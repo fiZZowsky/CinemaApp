@@ -65,5 +65,12 @@ namespace CinemaApp.Infrastructure.Repositories
 
             return false;
         }
+
+        public async Task<bool> IsMoviePremiered(int movieId, DateTime startTime)
+        {
+            var movie = await _dbContext.Movies
+                .FirstAsync(m => m.Id == movieId);
+            return startTime.Date >= movie.ReleaseDate.Date;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿@model CinemaApp.Application.CinemaApp.Commands.EditMovie.EditMovieCommand
+﻿@using CinemaApp.Application.CinemaApp.Commands.EditMovie;
+@model EditMovieCommand
 
 @{
     ViewData["Title"] = "Edit";
@@ -54,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="HallNumber" class="control-label text-light"></label>
-                @Html.DropDownListFor(model => model.HallNumber, ViewBag.HallsSelectList as SelectList, "-- Select Hall --", new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.HallNumber, (SelectList)ViewBag.HallsSelectList, "-- Select Hall --", new { @class = "form-control" })
                 <span asp-validation-for="HallNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
