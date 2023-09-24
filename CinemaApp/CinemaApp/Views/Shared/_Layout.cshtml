@@ -4,6 +4,8 @@
     var notification = TempData["Notification"] != null ?
             (Notification)JsonConvert.DeserializeObject<Notification>(TempData["Notification"]!.ToString()!)!
             : null;
+
+    var isUserAuthenticated = User.Identity?.IsAuthenticated;
 }
 
 <!DOCTYPE html>
@@ -34,9 +36,12 @@
                         <li class="nav-item px-3">
                             <a class="nav-link text-light" asp-area="" asp-controller="Movie" asp-action="Index">Repertoire</a>
                         </li>
-                        <li class="nav-item px-3">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Ticket" asp-action="Index">Tickets</a>
-                        </li>
+                        @if (isUserAuthenticated == true)
+                        {
+                            <li class="nav-item px-3">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Ticket" asp-action="Index">Tickets</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var isAdmin = User.IsInRole("Admin");
 }
 
 <h1 class="text-light">@Model.Title Details</h1>
@@ -66,7 +67,10 @@
     </dl>
 </div>
 <div>
-    <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle" class="text-light">Edit</a>
+    @if (isAdmin)
+    {
+        <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle" class="text-light">Edit</a>
+    }
     |
     <a asp-action="Index" class="text-light">Back to List</a>
     |
@@ -76,6 +80,7 @@
        asp-route-duration="@Model.Duration"
        asp-route-startTime="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")"
        asp-route-hallNumber="@Model.HallNumber"
-       class="btn btn-primary">Get Ticket
-   </a>
+       class="btn btn-primary">
+        Get Ticket
+    </a>
 </div>

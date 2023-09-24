@@ -177,5 +177,14 @@ namespace CinemaApp.Infrastructure.Repositories
 
         public async Task Commit()
             => await _dbContext.SaveChangesAsync();
+
+        public async Task<IEnumerable<Ticket>> GetAllByUserId(string id)
+            => await _dbContext.Tickets
+            .Include(ticket => ticket.MovieShow)
+                .ThenInclude(show => show.Movie)
+            .Include(ticket => ticket.Seats)
+                .ThenInclude(seat => seat.Hall)
+            .Where(ticket => ticket.PurchasedById == id)
+            .ToListAsync();
     }
 }

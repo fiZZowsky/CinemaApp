@@ -3,14 +3,18 @@
 
 @{
     ViewData["Title"] = "Index";
+    var isAdmin = User.IsInRole("Admin");
 }
 
 <h1 class="text-light">Index</h1>
 
 <div class="container">
     <p>
-        <a asp-action="Create" class="btn btn-primary">Create New Movie</a>
-        <a asp-action="CreateShow" class="btn btn-primary">Create New Show</a>
+        @if (isAdmin)
+        {
+            <a asp-action="Create" class="btn btn-primary">Create New Movie</a>
+            <a asp-action="CreateShow" class="btn btn-primary">Create New Show</a>
+        }
     </p>
     <div class="row">
         <div class="col">
@@ -38,7 +42,10 @@
                     </div>
                     <div>
                         <a asp-controller="Movie" asp-action="Details" asp-route-encodedTitle="@movie.EncodedTitle" class="text-light">Details</a>
-                        <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@movie.EncodedTitle" class="text-light">Edit</a>
+                        @if (isAdmin)
+                        {
+                            <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@movie.EncodedTitle" class="text-light">Edit</a>
+                        }
                     </div>
                 </div>
             }
