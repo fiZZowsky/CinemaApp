@@ -1,4 +1,5 @@
 ﻿using CinemaApp.Application.CinemaApp;
+using CinemaApp.Application.CinemaApp.Commands.CreateCheckoutInDatabase;
 using CinemaApp.Application.CinemaApp.Commands.CreateCheckoutSession;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
 using CinemaApp.Application.CinemaApp.Commands.EditTicket;
@@ -76,10 +77,12 @@ namespace CinemaApp.MVC.Controllers
                 return BadRequest(ModelState);
             }
 
-            int selectedSeatsCount = selectedSeatNumbers.Count();
+            string[] seatNumbersArray = selectedSeatNumbers.Split(',');
+            int selectedSeatsCount = seatNumbersArray.Length;
+
             if (ticketDto.NormalPriceSeats + ticketDto.ReducedPriceSeats != selectedSeatsCount)
             {
-                //this.SetNotification("error", "Sum of normal and reduced price seats must match the number of selected seats");
+                this.SetNotification("error", "Sum of normal and reduced price seats must match the number of selected seats");
                 return BadRequest(ModelState);
             }
 
@@ -98,6 +101,7 @@ namespace CinemaApp.MVC.Controllers
 
             CreateCheckoutSessionCommand command = new CreateCheckoutSessionCommand(ticketDto, successUrl, cancelURL);
             var session = await _mediator.Send(command);
+            TempData["SessionId"] = session.Id;
 
             return Ok(new { sessionUrl = session.Url });
         }
@@ -127,7 +131,14 @@ namespace CinemaApp.MVC.Controllers
             await _mediator.Send(command);
             var ticket = await _mediator.Send(new GetTicketByUserQuery(formattedPurchaseDate, ticketDto.MovieTitle));
 
-            //Send Created Ticket in Mail
+            // Add purchase to user history
+            if (TempData.TryGetValue("SessionId", out object sessionIdObj) && sessionIdObj is string sessionId)
+            {
+                CreateCheckoutInDatabaseCommand checkoutCommand = new CreateCheckoutInDatabaseCommand(sessionId, ticket.Guid);
+                await _mediator.Send(checkoutCommand);
+            }
+
+            // Send Created Ticket in Mail
             await SendEmailWithTicket(ticket.Guid);
 
             this.SetNotification("success", "Successfully bought new ticket.");

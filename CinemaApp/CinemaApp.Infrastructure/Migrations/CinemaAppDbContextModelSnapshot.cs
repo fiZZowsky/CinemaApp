@@ -135,6 +135,38 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.ToTable("MovieShows");
                 });
 
+            modelBuilder.Entity("CinemaApp.Domain.Entities.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("PurchaseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PurchasedById")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SessionId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("TicketId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PurchasedById");
+
+                    b.HasIndex("TicketId")
+                        .IsUnique();
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("CinemaApp.Domain.Entities.Seat", b =>
                 {
                     b.Property<int>("Id")
@@ -444,6 +476,25 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Navigation("Movie");
                 });
 
+            modelBuilder.Entity("CinemaApp.Domain.Entities.Payment", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "PurchasedBy")
+                        .WithMany()
+                        .HasForeignKey("PurchasedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CinemaApp.Domain.Entities.Ticket", "Ticket")
+                        .WithOne("Payment")
+                        .HasForeignKey("CinemaApp.Domain.Entities.Payment", "TicketId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("PurchasedBy");
+
+                    b.Navigation("Ticket");
+                });
+
             modelBuilder.Entity("CinemaApp.Domain.Entities.Seat", b =>
                 {
                     b.HasOne("CinemaApp.Domain.Entities.Hall", "Hall")
@@ -560,6 +611,12 @@ namespace CinemaApp.Infrastructure.Migrations
             modelBuilder.Entity("CinemaApp.Domain.Entities.MovieShow", b =>
                 {
                     b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("CinemaApp.Domain.Entities.Ticket", b =>
+                {
+                    b.Navigation("Payment")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

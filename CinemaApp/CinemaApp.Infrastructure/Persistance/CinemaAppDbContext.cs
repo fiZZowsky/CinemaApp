@@ -17,6 +17,7 @@ namespace CinemaApp.Infrastructure.Persistance
         public DbSet<Domain.Entities.Seat> Seats { get; set; }
         public DbSet<Domain.Entities.MovieShow> MovieShows { get; set; }
         public DbSet<Domain.Entities.AgeRating> AgeRatings { get; set; }
+        public DbSet<Domain.Entities.Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -51,6 +52,12 @@ namespace CinemaApp.Infrastructure.Persistance
                 .HasOne(m => m.AgeRating)
                 .WithMany(ar => ar.Movies)
                 .HasForeignKey(m => m.AgeRatingId);
+
+            modelBuilder.Entity<Domain.Entities.Payment>()
+                .HasOne(p => p.Ticket)
+                .WithOne(t => t.Payment)
+                .HasForeignKey<Domain.Entities.Payment>(p => p.TicketId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

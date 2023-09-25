@@ -22,5 +22,6 @@ namespace CinemaApp.Domain.Entities
         public int ReducedPriceSeats { get; set; }
         public IdentityUser PurchasedBy { get; set; } = default!;
         public MovieShow MovieShow { get; set; } = default!;
+        public Payment Payment { get; set; } = default!;
     }
 }

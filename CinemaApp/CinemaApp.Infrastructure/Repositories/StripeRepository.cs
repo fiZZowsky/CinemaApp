@@ -1,5 +1,6 @@
 ﻿using CinemaApp.Domain.Entities;
 using CinemaApp.Domain.Interfaces;
+using CinemaApp.Infrastructure.Persistance;
 using Microsoft.Extensions.Options;
 using Stripe;
 using Stripe.Checkout;
@@ -9,10 +10,18 @@ namespace CinemaApp.Infrastructure.Repositories
     public class StripeRepository : IStripeRepository
     {
         private readonly StripeSettings _stripeSettings;
+        private readonly CinemaAppDbContext _dbContext;
 
-        public StripeRepository(IOptions<StripeSettings> stripeSettings)
+        public StripeRepository(IOptions<StripeSettings> stripeSettings, CinemaAppDbContext dbContext)
         {
             _stripeSettings = stripeSettings.Value;
+            _dbContext = dbContext;
+        }
+
+        public async Task CreateCheckoutInDatabase(Domain.Entities.Payment payment)
+        {
+            _dbContext.Add(payment);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<Session> CreateStripeSession(Domain.Entities.Ticket ticket, Func<string> successUrl, Func<string> cancelURL)
