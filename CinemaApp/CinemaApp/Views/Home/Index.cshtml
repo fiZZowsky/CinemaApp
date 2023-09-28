@@ -1,8 +1,33 @@
-﻿@{
+﻿@model IEnumerable<CinemaApp.Application.CinemaApp.MovieDto>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center text-light">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="wrapper">
+    <h1 class="text-light">Upcoming new movies</h1>
+    <div class="row">
+        <div class="">
+            <i id="left" class="fa-solid fa-angle-left"></i>
+        </div>
+        <div class="col-md-11">
+            <ul class="carousel">
+                @foreach (var upcomingMovie in Model)
+                {
+                    <li class="card">
+                        <div class="img"><img src="~/resources/1.jpg" alt="img" draggable="false"></div>
+                        <h2>@upcomingMovie.Title</h2>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="">
+            <i id="right" class="fa-solid fa-angle-right"></i>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <link rel="stylesheet" href="~/css/MainPage/MainPageStyleSheet.css" />
+    <script src="~/js/CinemaApp/MainPage/MainPageScripts.js"></script>
+}

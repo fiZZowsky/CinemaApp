@@ -5,6 +5,30 @@
       "PackagePath": "staticwebassets\\CinemaApp.MVC.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\1.jpg",
+      "PackagePath": "staticwebassets\\Resources\\1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\2.jpg",
+      "PackagePath": "staticwebassets\\Resources\\2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\3.jpg",
+      "PackagePath": "staticwebassets\\Resources\\3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\4.jpg",
+      "PackagePath": "staticwebassets\\Resources\\4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\5.jpg",
+      "PackagePath": "staticwebassets\\Resources\\5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\6.jpg",
+      "PackagePath": "staticwebassets\\Resources\\6.jpg"
+    },
+    {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\login-background.jpg",
       "PackagePath": "staticwebassets\\Resources\\login-background.jpg"
     },
@@ -25,6 +49,10 @@
       "PackagePath": "staticwebassets\\css\\Identity\\IdentityStyleSheet.css"
     },
     {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\MainPage\\MainPageStyleSheet.css",
+      "PackagePath": "staticwebassets\\css\\MainPage\\MainPageStyleSheet.css"
+    },
+    {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Ticket\\CreateTicketStyleSheet.css",
       "PackagePath": "staticwebassets\\css\\Ticket\\CreateTicketStyleSheet.css"
     },
@@ -35,6 +63,10 @@
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\CinemaApp\\MainPage\\MainPageScripts.js",
+      "PackagePath": "staticwebassets\\js\\CinemaApp\\MainPage\\MainPageScripts.js"
     },
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\CinemaApp\\Ticket\\SeatManager.js",

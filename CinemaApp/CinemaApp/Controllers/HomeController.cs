@@ -1,4 +1,6 @@
-﻿using CinemaApp.Models;
+﻿using CinemaApp.Application.CinemaApp.Queries.GetUpcomingMovies;
+using CinemaApp.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,20 +9,20 @@ namespace CinemaApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMediator _mediator;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMediator mediator)
         {
             _logger = logger;
+            _mediator = mediator;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        [Route("/")]
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            var upcomingMovies = await _mediator.Send(new GetUpcomingMoviesQuery());
+            return View(upcomingMovies);
         }
 
         public IActionResult NoAccess()
