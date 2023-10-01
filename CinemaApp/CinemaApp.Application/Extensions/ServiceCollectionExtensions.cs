@@ -6,6 +6,7 @@ using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
 using CinemaApp.Application.CinemaApp.Commands.EditTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
+using CinemaApp.Application.CinemaApp.Commands.SendRecoveryPasswordEmail;
 using CinemaApp.Application.Mappings;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -26,6 +27,7 @@ namespace CinemaApp.Application.Extensions
             services.AddMediatR(typeof(CreateCheckoutSessionCommand));
             services.AddMediatR(typeof(EditTicketCommand));
             services.AddMediatR(typeof(EditMovieCommand));
+            services.AddMediatR(typeof(SendRecoveryPasswordEmailCommand));
 
             services.AddAutoMapper(typeof(CinemaAppMappingProfile));
 
