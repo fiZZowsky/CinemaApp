@@ -1,5 +1,4 @@
-﻿using CinemaApp.Application.CinemaApp.Queries.GetUpcomingMovies;
-using CinemaApp.Models;
+﻿using CinemaApp.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -21,8 +20,7 @@ namespace CinemaApp.Controllers
         [Route("/")]
         public async Task<IActionResult> Index()
         {
-            var upcomingMovies = await _mediator.Send(new GetUpcomingMoviesQuery());
-            return View(upcomingMovies);
+            return View();
         }
 
         public IActionResult NoAccess()

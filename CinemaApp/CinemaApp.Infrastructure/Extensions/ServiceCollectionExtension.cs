@@ -19,7 +19,10 @@ namespace CinemaApp.Infrastructure.Extensions
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<CinemaAppDbContext>();
+                .AddEntityFrameworkStores<CinemaAppDbContext>()
+                .AddDefaultTokenProviders();
+            services.Configure<DataProtectionTokenProviderOptions>(opt =>
+                opt.TokenLifespan = TimeSpan.FromHours(2));
 
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
@@ -34,6 +37,7 @@ namespace CinemaApp.Infrastructure.Extensions
             services.AddScoped<IHallRepository, HallRepository>();
             services.AddScoped<IStripeRepository, StripeRepository>();
             services.AddScoped<IAgeRatingRepository, AgeRatingRepository>();
+            services.AddScoped<IIdentityRepository, IdentityRepository>();
         }
     }
 }
