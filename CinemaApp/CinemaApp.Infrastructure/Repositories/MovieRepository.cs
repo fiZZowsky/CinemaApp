@@ -64,5 +64,11 @@ namespace CinemaApp.Infrastructure.Repositories
 
             return false;
         }
+
+        public async Task<IEnumerable<Domain.Entities.Movie>> GetUpcomingMovies()
+        => await _dbContext.Movies
+                .Include(m => m.AgeRating)
+                .Where(m => m.ReleaseDate > DateTime.UtcNow.Date)
+                .ToListAsync();
     }
 }

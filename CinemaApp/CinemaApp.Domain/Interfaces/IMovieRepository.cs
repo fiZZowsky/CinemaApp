@@ -7,6 +7,7 @@
         Task<Domain.Entities.MovieShow> GetMovieByEncodedTitle(string encodedTitle);
         Task<bool> IsHallBusy(int hallNumber, DateTime startTime);
         Task<bool> IsMovieExist(string title);
+        Task<IEnumerable<Domain.Entities.Movie>> GetUpcomingMovies();
         Task Commit();
     }
 }
