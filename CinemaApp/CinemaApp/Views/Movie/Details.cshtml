@@ -6,66 +6,159 @@
     var isAdmin = User.IsInRole("Admin");
 }
 
-<h1 class="text-light">@Model.Title Details</h1>
-
-<div>
-    <dl class="row">
-        <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.Genre)
-        </dt>
-        <dd class="col-sm-10 text-light">
-            @Html.DisplayFor(model => model.Genre)
-        </dd>
-        <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd class="col-sm-10 text-light">
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.AgeRatingId)
-        </dt>
-        <dd class="col-sm-10 text-light">
-            @ViewBag.AgeRatingName
-        </dd>
-        <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.Language)
-        </dt>
-        <dd class="col-sm-10 text-light">
-            @Html.DisplayFor(model => model.Language)
-        </dd>
-        <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.Duration)
-        </dt>
-        <dd class="col-sm-10 text-light">
-            @Html.DisplayFor(model => model.Duration)
-        </dd>
-        <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10 text-light">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-        <dd class="col-sm-10 text-light">
-            @Model.ReleaseDate.ToShortDateString()
-        </dd>
-        <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-        <dd class="col-sm-10 text-light">
-            @Model.StartTime.ToString("dd.MM.yyyy HH:mm")
-        </dd>
-        <dt class="col-sm-2 text-light">
-            @Html.DisplayNameFor(model => model.HallNumber)
-        </dt>
-        <dd class="col-sm-10 text-light">
-            @Html.DisplayFor(model => model.HallNumber)
-        </dd>
-    </dl>
+<div class="row">
+    <div class="col-md-5 d-flex flex-column align-items-start column-spacing">
+        <a asp-action="Index" asp-controller="Movie" class="btn mb-3 text-light">< Repertoire</a>
+        <img class="image-item img-fluid" src="https://via.placeholder.com/640x960" alt="Okładka filmu" />
+    </div>
+    <div class="col-md-6 d-flex flex-column text-light">
+        <h1>@Model.Title</h1>
+        <div class="pt-3">
+            <div class="genre-box p-2">
+                <p class="mb-0 text-center">@Model.Genre</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-around mt-4">
+            <button class="tab-button active" id="details-tab">Details</button>
+            <button class="tab-button" id="description-tab">Description</button>
+            <button class="tab-button" id="show-tab">Show</button>
+        </div>
+        <div id="tab-content" class="tab-content">
+        </div>
+        <a class="btn btn-primary buy-button" asp-controller="Ticket" asp-action="Create"
+                asp-route-movieTitle="@Model.Title"
+                asp-route-language="@Model.Language"
+                asp-route-duration="@Model.Duration"
+                asp-route-startTime="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")"
+                asp-route-hallNumber="@Model.HallNumber">
+            Kup bilet
+        </a>
+    </div>
 </div>
+
+<style>
+    h1 {
+        font-size: 55px;
+        margin-top: 3rem;
+        padding-top: 3rem;
+    }
+
+    .genre-box {
+        background-color: #415A77;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 10px;
+        max-width: 50%;
+    }
+
+    .tab-button {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        font-size: 16px;
+        color: #E0E1DD;
+        text-decoration: none;
+        outline: none;
+        transition: border-bottom 0.3s ease-in-out;
+    }
+
+        .tab-button.active {
+            border-bottom: 2px solid #ffffff;
+            font-weight: bold;
+        }
+
+    .tab-content {
+        margin-top: 3rem;
+    }
+
+    .column-spacing {
+        padding-right: 3rem;
+    }
+
+    .buy-button {
+        margin-top: 3rem;
+    }
+
+    @@media only screen and (max-width: 1023px) {
+        h1 {
+            margin-top: 1rem;
+            padding-top: 1rem;
+        }
+
+        .tab-content {
+            margin-bottom: 3rem;
+        }
+
+        .column-spacing {
+            padding-right: 0;
+        }
+
+        .buy-button {
+            margin-top: 0;
+        }
+    }
+</style>
+
+<script>
+    const detailsTabButton = document.getElementById('details-tab');
+    const descriptionTabButton = document.getElementById('description-tab');
+    const showTabButton = document.getElementById('show-tab');
+    const tabContent = document.getElementById('tab-content');
+
+    function displayDetails() {
+        detailsTabButton.classList.add('active');
+        descriptionTabButton.classList.remove('active');
+        showTabButton.classList.remove('active');
+        tabContent.innerHTML = `
+                        <p>Country: @Model.Country</p>
+                        <p>Age Rating: @Model.AgeRatingId</p>
+                        <p>Language: @Model.Language</p>
+                        <p>Duration: @Model.Duration</p>
+                            <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
+                    `;
+    }
+
+    function displayDescription() {
+        detailsTabButton.classList.remove('active');
+        showTabButton.classList.remove('active');
+        descriptionTabButton.classList.add('active');
+        tabContent.textContent = '@Model.Description';
+    }
+
+    function displayShow() {
+        detailsTabButton.classList.remove('active');
+        descriptionTabButton.classList.remove('active');
+        showTabButton.classList.add('active');
+        tabContent.innerHTML = `
+                        <p>Start Time: @Model.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
+                        <p>Hall Number: @Model.HallNumber</p>
+                        `;
+    }
+
+    detailsTabButton.addEventListener('click', () => {
+        displayDetails();
+    });
+
+    descriptionTabButton.addEventListener('click', () => {
+        displayDescription();
+    });
+
+    showTabButton.addEventListener('click', () => {
+        displayShow();
+    });
+
+    if (descriptionTabButton.classList.contains('active')) {
+        displayDescription();
+    } else if (showTabButton.classList.contains('active')) {
+        displayShow();
+    } else {
+        displayDetails();
+    }
+</script>
+
+@*
 <div>
     @if (isAdmin)
     {
@@ -84,3 +177,4 @@
         Get Ticket
     </a>
 </div>
+*@

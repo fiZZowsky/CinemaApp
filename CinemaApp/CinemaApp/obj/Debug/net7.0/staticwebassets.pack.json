@@ -5,46 +5,6 @@
       "PackagePath": "staticwebassets\\CinemaApp.MVC.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-1.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-1.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-10.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-10.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-2.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-2.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-3.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-3.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-4.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-4.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-5.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-5.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-6.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-6.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-7.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-7.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-8.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-8.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-9.jpg",
-      "PackagePath": "staticwebassets\\Resources\\images\\img-9.jpg"
-    },
-    {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\login-background.jpg",
       "PackagePath": "staticwebassets\\Resources\\login-background.jpg"
     },
