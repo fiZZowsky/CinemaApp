@@ -21,7 +21,7 @@
                 <input type="password" asp-for="Input.ConfirmPassword" autocomplete="new-password" aria-required="true">
                 <label asp-for="Input.ConfirmPassword">Confirm Password</label>
             </div>
-            <button id="registerSubmit" type="submit">Register</button>
+            <button class="send-button" id="registerSubmit" type="submit">Register</button>
             <div class="register">
                 <p>Have already an account <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Log in</a></p>
             </div>

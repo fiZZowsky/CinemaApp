@@ -5,28 +5,44 @@
       "PackagePath": "staticwebassets\\CinemaApp.MVC.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\1.jpg",
-      "PackagePath": "staticwebassets\\Resources\\1.jpg"
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-1.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-1.jpg"
     },
     {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\2.jpg",
-      "PackagePath": "staticwebassets\\Resources\\2.jpg"
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-10.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-10.jpg"
     },
     {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\3.jpg",
-      "PackagePath": "staticwebassets\\Resources\\3.jpg"
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-2.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-2.jpg"
     },
     {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\4.jpg",
-      "PackagePath": "staticwebassets\\Resources\\4.jpg"
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-3.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-3.jpg"
     },
     {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\5.jpg",
-      "PackagePath": "staticwebassets\\Resources\\5.jpg"
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-4.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-4.jpg"
     },
     {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\6.jpg",
-      "PackagePath": "staticwebassets\\Resources\\6.jpg"
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-5.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-6.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-7.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-8.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\images\\img-9.jpg",
+      "PackagePath": "staticwebassets\\Resources\\images\\img-9.jpg"
     },
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\Resources\\login-background.jpg",
@@ -47,10 +63,6 @@
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Identity\\IdentityStyleSheet.css",
       "PackagePath": "staticwebassets\\css\\Identity\\IdentityStyleSheet.css"
-    },
-    {
-      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\MainPage\\MainPageStyleSheet.css",
-      "PackagePath": "staticwebassets\\css\\MainPage\\MainPageStyleSheet.css"
     },
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Ticket\\CreateTicketStyleSheet.css",

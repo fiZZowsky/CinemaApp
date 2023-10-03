@@ -1,4 +1,5 @@
-﻿using CinemaApp.Models;
+﻿using CinemaApp.Application.CinemaApp.Queries.GetAllMovies;
+using CinemaApp.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -20,7 +21,8 @@ namespace CinemaApp.Controllers
         [Route("/")]
         public async Task<IActionResult> Index()
         {
-            return View();
+            var movies = await _mediator.Send(new GetAllMoviesQuery());
+            return View(movies);
         }
 
         public IActionResult NoAccess()

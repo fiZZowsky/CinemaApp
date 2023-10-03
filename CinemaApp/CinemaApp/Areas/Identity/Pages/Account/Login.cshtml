@@ -24,7 +24,7 @@
                 <label asp-for="Input.RememberMe"><input type="checkbox" asp-for="Input.RememberMe">Remember Me</label>
                 <a id="forgot-password" asp-action="ForgotPassword" asp-controller="Account">Forgot Password</a>
             </div>
-            <button id="login-submit" type="submit">Log in</button>
+            <button class="send-button" id="login-submit" type="submit">Log in</button>
             <div class="register">
                 <p>Don't have an account <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register</a></p>
             </div>
