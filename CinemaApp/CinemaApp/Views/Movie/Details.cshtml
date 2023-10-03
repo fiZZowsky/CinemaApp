@@ -31,8 +31,9 @@
                 asp-route-duration="@Model.Duration"
                 asp-route-startTime="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")"
                 asp-route-hallNumber="@Model.HallNumber">
-            Kup bilet
+            Buy Ticket
         </a>
+        <a class="btn btn-primary edit-button" asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle">Edit Show</aasp-controller>
     </div>
 </div>
 
@@ -81,6 +82,10 @@
         margin-top: 3rem;
     }
 
+    .edit-button {
+        margin-top: 2rem;
+    }
+
     @@media only screen and (max-width: 1023px) {
         h1 {
             margin-top: 1rem;
@@ -97,6 +102,11 @@
 
         .buy-button {
             margin-top: 0;
+        }
+
+        .edit-button {
+            margin-top: 1rem;
+            margin-bottom: 2rem
         }
     }
 </style>
@@ -157,24 +167,3 @@
         displayDetails();
     }
 </script>
-
-@*
-<div>
-    @if (isAdmin)
-    {
-        <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle" class="text-light">Edit</a>
-    }
-    |
-    <a asp-action="Index" class="text-light">Back to List</a>
-    |
-    <a asp-controller="Ticket" asp-action="Create"
-       asp-route-movieTitle="@Model.Title"
-       asp-route-language="@Model.Language"
-       asp-route-duration="@Model.Duration"
-       asp-route-startTime="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")"
-       asp-route-hallNumber="@Model.HallNumber"
-       class="btn btn-primary">
-        Get Ticket
-    </a>
-</div>
-*@
