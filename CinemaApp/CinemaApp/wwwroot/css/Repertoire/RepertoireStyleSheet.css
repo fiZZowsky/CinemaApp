@@ -54,13 +54,6 @@ li {
     border-bottom: 2px solid #415A77;
 }
 
-    .form .bi-search {
-        top: 50%;
-        left: 15px;
-        transform: translateY(-50%);
-        color: #ffffff;
-    }
-
 .input-group {
     border-radius: 10px;
 }
@@ -76,12 +69,18 @@ li {
         border: none;
     }
 
-.search-btn {
-    border: 1px solid #ffffff;
+.admin-btn {
+    border: 1px solid #000000;
     border-radius: 10px;
-    background: transparent;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 5px 10px 5px 10px;
+    text-decoration: none;
+    background-color: #ffffff;
+}
+
+.image-item {
+    width: 300px;
+    height: 375px;
+    object-fit: cover;
 }
 
 @@media (min-width:768px) {
@@ -257,5 +256,10 @@ li {
 
     .slider-scrollbar .scrollbar-thumb {
         width: 20%;
+    }
+
+    .image-item {
+        width: 280px;
+        height: 380px;
     }
 }

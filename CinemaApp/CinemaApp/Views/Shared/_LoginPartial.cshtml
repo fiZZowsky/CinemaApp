@@ -13,7 +13,7 @@
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
                   asp-route-returnUrl="@Url.Page("/", new { area = "" })"
                   method="post">
-                <button type="submit" class="nav-link btn btn-link text-light">Logout</button>
+                <button type="submit" class="nav-link logout-btn text-light">Logout</button>
             </form>
         </li>
     }
@@ -27,3 +27,14 @@
         </li>
     }
 </ul>
+
+<style>
+    .logout-btn {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 1rem;
+        font-weight: 400;
+        background-color: transparent;
+        border: 0;
+    }
+</style>
