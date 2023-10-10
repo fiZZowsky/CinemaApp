@@ -1,0 +1,38 @@
+﻿@using CinemaApp.Application.CinemaApp;
+@model IEnumerable<CinemaApp.Application.CinemaApp.MovieDto>
+
+@{
+    var isAdmin = User.IsInRole("Admin");
+}
+
+@foreach (var show in @Model)
+{
+    <div class="border rounded p-5 mb-3 d-flex justify-content-between align-items-center">
+        <div>
+            <p class="text-light">@show.Title</p>
+            <p class="text-light"><strong>Gatunek:</strong> @show.Genre</p>
+            <p class="text-light"><strong>Kraj:</strong> @show.Country</p>
+            <p class="text-light">
+                <strong>Wiek:</strong>
+                @{
+                    var ageRatingId = show.AgeRatingId;
+                    var ageRatings = ViewBag.AgeRatings as List<AgeRatingDto>;
+                    var ageRating = ageRatings.FirstOrDefault(ar => ar.Id == ageRatingId);
+                    var ageRatingName = ageRating != null ? ageRating.MinimumAge : "Brak danych";
+                    @ageRatingName
+                }
+            </p>
+            <p class="text-light"><strong>Język:</strong> @show.Language</p>
+            <p class="text-light"><strong>Data premiery:</strong> @show.ReleaseDate.ToShortDateString()</p>
+            <p class="text-light"><strong>Godzina rozpoczęcia:</strong> @show.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
+            <p class="text-light"><strong>Numer sali:</strong> @show.HallNumber</p>
+        </div>
+        <div>
+            <a asp-controller="Movie" asp-action="Details" asp-route-encodedTitle="@show.EncodedTitle" class="text-light">Details</a>
+            @if (isAdmin)
+            {
+                <a asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@show.EncodedTitle" class="text-light">Edit</a>
+            }
+        </div>
+    </div>
+}

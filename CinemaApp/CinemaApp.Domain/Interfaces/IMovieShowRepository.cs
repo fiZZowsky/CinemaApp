@@ -7,5 +7,6 @@
         Task<Domain.Entities.MovieShow> GetByData(DateTime startTime, int hallNumber);
         Task<bool> IsHallBusy(int hallId, DateTime startTime);
         Task<bool> IsMoviePremiered(int movieId, DateTime startTime);
+        Task<IEnumerable<Domain.Entities.MovieShow>> GetRepertoire(List<int>? hallNumber, DateTime? startTime);
     }
 }

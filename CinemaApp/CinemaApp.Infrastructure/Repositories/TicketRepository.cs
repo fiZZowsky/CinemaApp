@@ -62,6 +62,7 @@ namespace CinemaApp.Infrastructure.Repositories
                     .ThenInclude(show => show.Movie)
                 .Include(ticket => ticket.Seats)
                     .ThenInclude(seat => seat.Hall)
+                .OrderBy(ticket => ticket.PurchaseDate)
                 .ToListAsync();
 
         public async Task<Domain.Entities.Ticket> GetTicketByGuid(Guid guid)
@@ -185,6 +186,7 @@ namespace CinemaApp.Infrastructure.Repositories
             .Include(ticket => ticket.Seats)
                 .ThenInclude(seat => seat.Hall)
             .Where(ticket => ticket.PurchasedById == id)
+            .OrderBy(ticket => ticket.PurchaseDate)
             .ToListAsync();
     }
 }

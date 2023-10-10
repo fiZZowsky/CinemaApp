@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CinemaApp.Application.CinemaApp;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
@@ -6,8 +7,8 @@ using CinemaApp.Application.CinemaApp.Queries.GetAgeRatingById;
 using CinemaApp.Application.CinemaApp.Queries.GetAgeRatings;
 using CinemaApp.Application.CinemaApp.Queries.GetAllHalls.GetAllHalls;
 using CinemaApp.Application.CinemaApp.Queries.GetAllMovies;
-using CinemaApp.Application.CinemaApp.Queries.GetAllMoviesShows;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieByEncodedTitle;
+using CinemaApp.Application.CinemaApp.Queries.GetRepertoire;
 using CinemaApp.MVC.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -30,13 +31,59 @@ namespace CinemaApp.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var movies = await _mediator.Send(new GetAllMoviesShowsQuery());
+            var movies = await _mediator.Send(new GetRepertoireQuery(null, DateTime.Today));
             var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
+            var halls = await _mediator.Send(new GetAllHallsQuery());
 
             ViewBag.AgeRatings = ageRatings;
+            ViewBag.Halls = halls;
+
+            var today = DateTime.Today;
+            var calendar = new List<DateTime>();
+
+            for (int i = 0; i < 14; i++)
+            {
+                calendar.Add(today.AddDays(i));
+            }
+
+            ViewBag.Calendar = calendar;
 
             return View(movies);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> SortShowsList(string? hallNumber, DateTime? repertoireDate)
+        {
+            IEnumerable<MovieDto> movies = new List<MovieDto>();
+
+            List<int>? selectedHalls = new List<int>();
+            if (!string.IsNullOrWhiteSpace(hallNumber))
+            {
+                selectedHalls = hallNumber.Split(',').Select(int.Parse).ToList();
+            }
+
+            switch ((hallNumber, repertoireDate))
+            {
+                case (null, null):
+                    movies = await _mediator.Send(new GetRepertoireQuery(null, DateTime.Today));
+                    break;
+                case (_, null):
+                    movies = await _mediator.Send(new GetRepertoireQuery(selectedHalls, DateTime.Today));
+                    break;
+                case (null, _):
+                    movies = await _mediator.Send(new GetRepertoireQuery(null, repertoireDate));
+                    break;
+                default:
+                    movies = await _mediator.Send(new GetRepertoireQuery(selectedHalls, repertoireDate));
+                    break;
+            }
+
+            var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
+            ViewBag.AgeRatings = ageRatings;
+
+            return PartialView("_ShowsListPartial", movies);
+        }
+
 
         [HttpGet]
         [Route("CinemaApp/{encodedTitle}/Details")]

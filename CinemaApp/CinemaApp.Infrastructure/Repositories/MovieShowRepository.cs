@@ -19,6 +19,7 @@ namespace CinemaApp.Infrastructure.Repositories
                 .Include(m => m.Movie)
                     .ThenInclude(m => m.AgeRating)
                 .Include(h => h.Hall)
+                .OrderBy(ms => ms.StartTime)
                 .ToListAsync();
 
         public async Task Create(Domain.Entities.MovieShow show)
@@ -71,6 +72,28 @@ namespace CinemaApp.Infrastructure.Repositories
             var movie = await _dbContext.Movies
                 .FirstAsync(m => m.Id == movieId);
             return startTime.Date >= movie.ReleaseDate.Date;
+        }
+
+        public async Task<IEnumerable<MovieShow>> GetRepertoire(List<int>? hallNumber, DateTime? startTime)
+        {
+            var query = _dbContext.MovieShows
+                .Include(ms => ms.Movie)
+                .ThenInclude(m => m.AgeRating)
+                .Include(ms => ms.Hall)
+                .OrderBy(ms => ms.StartTime)
+                .AsQueryable();
+
+            if (hallNumber != null && hallNumber.Any())
+            {
+                query = query.Where(ms => hallNumber.Contains(ms.Hall.Number));
+            }
+
+            if (startTime.HasValue)
+            {
+                query = query.Where(ms => ms.StartTime.Date == startTime.Value.Date);
+            }
+
+            return await query.ToListAsync();
         }
     }
 }
