@@ -23,8 +23,8 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">CinemaApp</a>
+            <div class="container-fluid mx-4 my-2">
+                <a class="navbar-brand font-weight-bold text-light" asp-area="" asp-controller="Home" asp-action="Index">CinemaApp</a>
                 <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -49,10 +49,10 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container-fluid">
+        <div class="row" style="">
             @RenderBody()
-        </main>
+        </div>
     </div>
 
     <footer class="footer text-light">

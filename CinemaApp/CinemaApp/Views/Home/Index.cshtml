@@ -4,8 +4,9 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row justify-content-between content">
-    <div class="col-md-5">
+<div class="w-100">
+    <div class="row justify-content-between mx-2">
+    <div class="col-md-5 description-card">
         <h1 class="main-h">Explore the World of Big Screen Magic! 🎥</h1>
         <p class="main-text">Are you in the mood for some thrills that will grab you right from the start? For unforgettable moments that will remain deep in your memory? Imagine that you are in a comfortable chair in the cinema, surrounded by the smell of fresh popcorn, ready for an adventurous journey through the world of cinematography.</p>
     </div>
@@ -36,6 +37,7 @@
                 <div class="scrollbar-thumb"></div>
             </div>
         </div>
+        </div>
     </div>
 </div>
 
@@ -44,6 +46,20 @@
 }
 
 <style>
+
+    .description-card {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #495057;
+        border-radius: 15px;
+        background: rgb(255,255,255);
+        background: radial-gradient(circle at 100px 100px, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+    }
+
+     .description-card * {
+         padding: 1rem;
+     }
+
     container {
         margin: 0;
         padding: 0;
@@ -57,14 +73,14 @@
 
     .main-h {
         color: white;
-        font-family: monospace;
         padding-top: 3rem;
         font-weight: bold;
     }
 
     .main-text {
         color: white;
-        font-family: monospace;
+        font-size: 1.2rem;
+        font-weight: 400;
         padding-top: 3rem;
         text-align: start;
     }
