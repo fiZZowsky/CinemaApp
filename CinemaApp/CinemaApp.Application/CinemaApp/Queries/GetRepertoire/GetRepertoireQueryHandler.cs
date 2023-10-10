@@ -17,7 +17,7 @@ namespace CinemaApp.Application.CinemaApp.Queries.GetRepertoire
 
         public async Task<IEnumerable<MovieDto>> Handle(GetRepertoireQuery request, CancellationToken cancellationToken)
         {
-            var shows = await _movieShowRepository.GetRepertoire(request?.HallNumber, request?.StartTime);
+            var shows = await _movieShowRepository.GetRepertoire(request?.HallNumber, request?.StartTime, request?.SearchString);
             var dto = _mapper.Map<IEnumerable<MovieDto>>(shows);
 
             return dto;

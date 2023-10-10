@@ -31,7 +31,7 @@ namespace CinemaApp.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var movies = await _mediator.Send(new GetRepertoireQuery(null, DateTime.Today));
+            var movies = await _mediator.Send(new GetRepertoireQuery(null, DateTime.Today, null));
             var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
             var halls = await _mediator.Send(new GetAllHallsQuery());
 
@@ -52,9 +52,14 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SortShowsList(string? hallNumber, DateTime? repertoireDate)
+        public async Task<IActionResult> SortShowsList(string? hallNumber, DateTime? repertoireDate, string? searchString)
         {
             IEnumerable<MovieDto> movies = new List<MovieDto>();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                movies = await _mediator.Send(new GetRepertoireQuery(null, null, searchString));
+            }
 
             List<int>? selectedHalls = new List<int>();
             if (!string.IsNullOrWhiteSpace(hallNumber))
@@ -62,21 +67,7 @@ namespace CinemaApp.MVC.Controllers
                 selectedHalls = hallNumber.Split(',').Select(int.Parse).ToList();
             }
 
-            switch ((hallNumber, repertoireDate))
-            {
-                case (null, null):
-                    movies = await _mediator.Send(new GetRepertoireQuery(null, DateTime.Today));
-                    break;
-                case (_, null):
-                    movies = await _mediator.Send(new GetRepertoireQuery(selectedHalls, DateTime.Today));
-                    break;
-                case (null, _):
-                    movies = await _mediator.Send(new GetRepertoireQuery(null, repertoireDate));
-                    break;
-                default:
-                    movies = await _mediator.Send(new GetRepertoireQuery(selectedHalls, repertoireDate));
-                    break;
-            }
+            movies = await _mediator.Send(new GetRepertoireQuery(selectedHalls, repertoireDate, searchString));
 
             var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
             ViewBag.AgeRatings = ageRatings;

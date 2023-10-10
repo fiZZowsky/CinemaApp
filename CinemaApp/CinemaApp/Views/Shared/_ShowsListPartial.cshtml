@@ -5,6 +5,11 @@
     var isAdmin = User.IsInRole("Admin");
 }
 
+@if (isAdmin)
+{
+    <a asp-action="Create" class="btn btn-primary">Create New Movie</a>
+    <a asp-action="CreateShow" class="btn btn-primary">Create New Show</a>
+}
 @foreach (var show in @Model)
 {
     <div class="border rounded p-5 mb-3 d-flex justify-content-between align-items-center">
@@ -18,7 +23,7 @@
                     var ageRatingId = show.AgeRatingId;
                     var ageRatings = ViewBag.AgeRatings as List<AgeRatingDto>;
                     var ageRating = ageRatings.FirstOrDefault(ar => ar.Id == ageRatingId);
-                    var ageRatingName = ageRating != null ? ageRating.MinimumAge : "Brak danych";
+                    var ageRatingName = ageRating != null ? ageRating.MinimumAge : "No data";
                     @ageRatingName
                 }
             </p>

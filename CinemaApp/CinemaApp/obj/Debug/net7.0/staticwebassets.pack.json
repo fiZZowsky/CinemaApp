@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\js\\CinemaApp\\MainPage\\MainPageScripts.js"
     },
     {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\CinemaApp\\Repertoire\\RepertoirePageScripts.js",
+      "PackagePath": "staticwebassets\\js\\CinemaApp\\Repertoire\\RepertoirePageScripts.js"
+    },
+    {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\CinemaApp\\Ticket\\SeatManager.js",
       "PackagePath": "staticwebassets\\js\\CinemaApp\\Ticket\\SeatManager.js"
     },

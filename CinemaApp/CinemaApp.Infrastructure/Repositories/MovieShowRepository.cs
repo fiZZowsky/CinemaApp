@@ -74,7 +74,7 @@ namespace CinemaApp.Infrastructure.Repositories
             return startTime.Date >= movie.ReleaseDate.Date;
         }
 
-        public async Task<IEnumerable<MovieShow>> GetRepertoire(List<int>? hallNumber, DateTime? startTime)
+        public async Task<IEnumerable<MovieShow>> GetRepertoire(List<int>? hallNumber, DateTime? startTime, string? searchString)
         {
             var query = _dbContext.MovieShows
                 .Include(ms => ms.Movie)
@@ -91,6 +91,11 @@ namespace CinemaApp.Infrastructure.Repositories
             if (startTime.HasValue)
             {
                 query = query.Where(ms => ms.StartTime.Date == startTime.Value.Date);
+            }
+
+            if(searchString != null)
+            {
+                query = query.Where(ms => ms.Movie.Title.Contains(searchString) || ms.Movie.Genre.Contains(searchString));
             }
 
             return await query.ToListAsync();
