@@ -28,6 +28,13 @@ namespace CinemaApp.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task<Domain.Entities.MovieShow> GetMovieShowByEncodedTitle(string encodedTitle)
+            => await _dbContext.MovieShows
+                .Include(m => m.Movie)
+                    .ThenInclude(m => m.AgeRating)
+                .Include(h => h.Hall)
+                .FirstAsync(m => m.Movie.EncodedTitle == encodedTitle);
+
         public async Task<Domain.Entities.MovieShow> GetByData(DateTime startTime, int hallNumber)
         {
             var movieShow = await _dbContext.MovieShows
@@ -45,20 +52,20 @@ namespace CinemaApp.Infrastructure.Repositories
             return movieShow;
         }
 
-        public async Task<bool> IsHallBusy(int hallId, DateTime startTime)
+        public async Task<bool> IsHallBusy(int hallNumber, DateTime startTime, string movieTitle)
         {
             var showsInHall = await _dbContext.MovieShows
                 .Include(ms => ms.Movie)
                     .ThenInclude(m => m.AgeRating)
                 .Include(ms => ms.Hall)
-                .Where(ms => ms.HallId == hallId)
+                .Where(ms => ms.Hall.Number == hallNumber)
                 .ToListAsync();
 
             foreach (var show in showsInHall)
             {
                 var endTime = show.StartTime.AddMinutes(show.Movie.Duration + 15);
 
-                if (startTime >= show.StartTime && startTime < endTime)
+                if (startTime >= show.StartTime && startTime < endTime && show.Movie.Title != movieTitle)
                 {
                     return true;
                 }
@@ -93,12 +100,15 @@ namespace CinemaApp.Infrastructure.Repositories
                 query = query.Where(ms => ms.StartTime.Date == startTime.Value.Date);
             }
 
-            if(searchString != null)
+            if (searchString != null)
             {
                 query = query.Where(ms => ms.Movie.Title.Contains(searchString) || ms.Movie.Genre.Contains(searchString));
             }
 
             return await query.ToListAsync();
         }
+
+        public async Task Commit()
+            => await _dbContext.SaveChangesAsync();
     }
 }

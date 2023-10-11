@@ -11,9 +11,7 @@ namespace CinemaApp.Domain.Entities
     {
         public int Id { get; set; }
         public string Title { get; set; } = default!;
-        // TO DO: Rozbić na osobne tabele
         public string Genre { get; set; } = default!;
-        // -------------------------
         public string Country { get; set; } = default!;
         public string Language { get; set; } = default!;
         public int Duration { get; set; }

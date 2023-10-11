@@ -23,37 +23,8 @@ namespace CinemaApp.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Movie>> GetAll()
+        public async Task<IEnumerable<Domain.Entities.Movie>> GetAll()
             => await _dbContext.Movies.ToListAsync();
-
-        public async Task<MovieShow> GetMovieByEncodedTitle(string encodedTitle)
-            => await _dbContext.MovieShows
-                .Include(m => m.Movie)
-                    .ThenInclude(m => m.AgeRating)
-                .Include(h => h.Hall)
-                .FirstAsync(m => m.Movie.EncodedTitle == encodedTitle);
-
-        public async Task<bool> IsHallBusy(int hallNumber, DateTime startTime)
-        {
-            var showsInHall = await _dbContext.MovieShows
-                .Include(ms => ms.Movie)
-                    .ThenInclude(m => m.AgeRating)
-                .Include(ms => ms.Hall)
-                .Where(ms => ms.Hall.Number == hallNumber)
-                .ToListAsync();
-
-            foreach (var show in showsInHall)
-            {
-                var endTime = show.StartTime.AddMinutes(show.Movie.Duration + 15);
-
-                if (startTime >= show.StartTime && startTime < endTime)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
 
         public async Task<bool> IsMovieExist(string title)
         {
@@ -66,9 +37,21 @@ namespace CinemaApp.Infrastructure.Repositories
         }
 
         public async Task<IEnumerable<Domain.Entities.Movie>> GetUpcomingMovies()
-        => await _dbContext.Movies
+            => await _dbContext.Movies
+                    .Include(m => m.AgeRating)
+                    .Where(m => m.ReleaseDate > DateTime.UtcNow.Date)
+                    .ToListAsync();
+
+        public async Task<Domain.Entities.Movie> GetMovieByEncodedTitle(string encodedTitle)
+            => await _dbContext.Movies
                 .Include(m => m.AgeRating)
-                .Where(m => m.ReleaseDate > DateTime.UtcNow.Date)
-                .ToListAsync();
+                .Where(m => m.EncodedTitle == encodedTitle)
+                .FirstAsync();
+
+        public async Task<Movie> GetMovieById(int id)
+            => await _dbContext.Movies
+            .Include(m => m.AgeRating)
+            .Where(m => m.Id == id)
+            .FirstAsync();
     }
 }

@@ -25,15 +25,13 @@ namespace CinemaApp.Application.CinemaApp.Commands.EditMovie
 
             var movie = await _movieRepository.GetMovieByEncodedTitle(request.EncodedTitle!);
 
-            movie.Movie.Genre = request.Genre;
-            movie.Movie.Country = request.Country;
-            movie.Movie.AgeRatingId = request.AgeRatingId;
-            movie.Movie.Language = request.Language;
-            movie.Movie.Duration = request.Duration;
-            movie.Movie.Description = request.Description;
-            movie.Movie.ReleaseDate = request.ReleaseDate;
-            movie.StartTime = (DateTime)request.StartTime;
-            movie.Hall.Number = (int)request.HallNumber;
+            movie.Genre = request.Genre;
+            movie.Country = request.Country;
+            movie.AgeRatingId = request.AgeRatingId;
+            movie.Language = request.Language;
+            movie.Duration = request.Duration;
+            movie.Description = request.Description;
+            movie.ReleaseDate = request.ReleaseDate;
 
             await _movieRepository.Commit();
 

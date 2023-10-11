@@ -15,8 +15,8 @@
 @foreach (var show in @Model)
 {
     <div class="mb-3">
-        <a asp-controller="Movie" asp-action="Details" asp-route-encodedTitle="@show.EncodedTitle" class="text-decoration-none">
-            <img class="image-item pb-2" src="https://via.placeholder.com/640x960" alt="Okładka filmu" />
+        <a asp-controller="Movie" asp-action="DetailsShow" asp-route-encodedTitle="@show.EncodedTitle" class="text-decoration-none">
+            <img class="image-item pb-2" src="https://via.placeholder.com/640x960" alt="Movie Cover" />
             <p class="text-light"><strong>@show.Title / @show.Language</strong></p>
             <p class="text-light">@show.Genre</p>
             <p class="text-light">

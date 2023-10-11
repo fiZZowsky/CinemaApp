@@ -20,11 +20,13 @@
                 @foreach (var movie in Model)
                 {
                     <li>
-                        <div>
-                            <img class="image-item" src="https://via.placeholder.com/640x960" alt="Okładka filmu" />
+                        <a asp-controller="Movie" asp-action="Details" asp-route-encodedTitle="@movie.EncodedTitle" class="text-decoration-none">
+                            <div>
+                            <img class="image-item" src="https://via.placeholder.com/640x960" alt="Movie cover" />
                         </div>
                         <h2 class="title">@movie.Title</h2>
                         <h5 class="genre">@movie.Genre</h5>
+                        </a>
                     </li>
                 }
             </ul>

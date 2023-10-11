@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-5 d-flex flex-column align-items-start column-spacing">
         <a asp-action="Index" asp-controller="Movie" class="btn mb-3 text-light">< Repertoire</a>
-        <img class="image-item img-fluid" src="https://via.placeholder.com/640x960" alt="Okładka filmu" />
+        <img class="image-item img-fluid" src="https://via.placeholder.com/640x960" alt="Movie Cover" />
     </div>
     <div class="col-md-6 d-flex flex-column text-light">
         <h1>@Model.Title</h1>
@@ -21,19 +21,13 @@
         <div class="d-flex justify-content-around mt-4">
             <button class="tab-button active" id="details-tab">Details</button>
             <button class="tab-button" id="description-tab">Description</button>
-            <button class="tab-button" id="show-tab">Show</button>
         </div>
         <div id="tab-content" class="tab-content">
         </div>
-        <a class="btn btn-primary buy-button" asp-controller="Ticket" asp-action="Create"
-                asp-route-movieTitle="@Model.Title"
-                asp-route-language="@Model.Language"
-                asp-route-duration="@Model.Duration"
-                asp-route-startTime="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")"
-                asp-route-hallNumber="@Model.HallNumber">
-            Buy Ticket
-        </a>
-        <a class="btn btn-primary edit-button" asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle">Edit Show</a>
+        @if (isAdmin)
+        {
+            <a class="btn btn-primary edit-button" asp-controller="Movie" asp-action="EditMovie" asp-route-encodedTitle="@Model.EncodedTitle">Edit Movie</a>
+        }
     </div>
 </div>
 
@@ -114,37 +108,24 @@
 <script>
     const detailsTabButton = document.getElementById('details-tab');
     const descriptionTabButton = document.getElementById('description-tab');
-    const showTabButton = document.getElementById('show-tab');
     const tabContent = document.getElementById('tab-content');
 
     function displayDetails() {
         detailsTabButton.classList.add('active');
         descriptionTabButton.classList.remove('active');
-        showTabButton.classList.remove('active');
         tabContent.innerHTML = `
-                        <p>Country: @Model.Country</p>
-                        <p>Age Rating: @Model.AgeRatingId</p>
-                        <p>Language: @Model.Language</p>
-                        <p>Duration: @Model.Duration</p>
-                            <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
-                    `;
+                            <p>Country: @Model.Country</p>
+                            <p>Age Rating: @Model.AgeRatingId</p>
+                            <p>Language: @Model.Language</p>
+                            <p>Duration: @Model.Duration</p>
+                                <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
+                        `;
     }
 
     function displayDescription() {
         detailsTabButton.classList.remove('active');
-        showTabButton.classList.remove('active');
         descriptionTabButton.classList.add('active');
         tabContent.textContent = '@Model.Description';
-    }
-
-    function displayShow() {
-        detailsTabButton.classList.remove('active');
-        descriptionTabButton.classList.remove('active');
-        showTabButton.classList.add('active');
-        tabContent.innerHTML = `
-                        <p>Start Time: @Model.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
-                        <p>Hall Number: @Model.HallNumber</p>
-                        `;
     }
 
     detailsTabButton.addEventListener('click', () => {
@@ -155,14 +136,8 @@
         displayDescription();
     });
 
-    showTabButton.addEventListener('click', () => {
-        displayShow();
-    });
-
     if (descriptionTabButton.classList.contains('active')) {
         displayDescription();
-    } else if (showTabButton.classList.contains('active')) {
-        displayShow();
     } else {
         displayDetails();
     }

@@ -4,6 +4,7 @@ using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
+using CinemaApp.Application.CinemaApp.Commands.EditMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.EditTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
 using CinemaApp.Application.CinemaApp.Commands.SendRecoveryPasswordEmail;
@@ -27,6 +28,7 @@ namespace CinemaApp.Application.Extensions
             services.AddMediatR(typeof(CreateCheckoutSessionCommand));
             services.AddMediatR(typeof(EditTicketCommand));
             services.AddMediatR(typeof(EditMovieCommand));
+            services.AddMediatR(typeof(EditMovieShowCommand));
             services.AddMediatR(typeof(SendRecoveryPasswordEmailCommand));
 
             services.AddAutoMapper(typeof(CinemaAppMappingProfile));
@@ -38,8 +40,12 @@ namespace CinemaApp.Application.Extensions
             services.AddValidatorsFromAssemblyContaining<CreateMovieShowCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
-            
-            services.AddValidatorsFromAssemblyContaining<CreateMovieCommandValidator>()
+
+            services.AddValidatorsFromAssemblyContaining<EditMovieShowCommandValidator>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
+
+            services.AddValidatorsFromAssemblyContaining<EditMovieCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
         }
