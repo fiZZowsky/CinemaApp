@@ -26,7 +26,7 @@
         </div>
         @if (isAdmin)
         {
-            <a class="btn btn-primary edit-button" asp-controller="Movie" asp-action="EditMovie" asp-route-encodedTitle="@Model.EncodedTitle">Edit Movie</a>
+            <a class="btn btn-primary edit-button" asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle">Edit Movie</a>
         }
     </div>
 </div>
@@ -80,6 +80,13 @@
         margin-top: 2rem;
     }
 
+    .image-item {
+        display: flex;
+        padding-left: 3rem;
+        padding-bottom: 3rem;
+        max-height: 760px;
+    }
+
     @@media only screen and (max-width: 1023px) {
         h1 {
             margin-top: 1rem;
@@ -102,6 +109,10 @@
             margin-top: 1rem;
             margin-bottom: 2rem
         }
+
+        .image-item {
+            padding-left: 0;
+        }
     }
 </style>
 
@@ -115,7 +126,7 @@
         descriptionTabButton.classList.remove('active');
         tabContent.innerHTML = `
                             <p>Country: @Model.Country</p>
-                            <p>Age Rating: @Model.AgeRatingId</p>
+                            <p>Age Rating: @ViewBag.AgeRating</p>
                             <p>Language: @Model.Language</p>
                             <p>Duration: @Model.Duration</p>
                                 <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>

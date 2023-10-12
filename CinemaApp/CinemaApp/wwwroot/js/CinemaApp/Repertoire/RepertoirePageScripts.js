@@ -40,7 +40,7 @@ function updateMovieList() {
     }).get().join(',');
 
     $.ajax({
-        url: '/Movie/SortShowsList',
+        url: '/MovieShow/SortShowsList',
         data: {
             hallNumber: selectedHalls,
             repertoireDate: selectedDate,

@@ -1,0 +1,80 @@
+﻿@using CinemaApp.Application.CinemaApp;
+@model IEnumerable<CinemaApp.Application.CinemaApp.MovieDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="wrapper">
+    <aside id="sidebar">
+        <div class="h-100">
+            <ul class="sidebar-nav">
+                <li class="sidebar-item">
+                    <form class="form">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-input" placeholder="Search anything..." id="search-input">
+                        </div>
+                    </form>
+                </li>
+                <li class="sidebar-header">
+                    Halls
+                </li>
+                @foreach (var hall in ViewBag.Halls)
+                {
+                    <li class="sidebar-item">
+                        <input type="checkbox" class="hall-checkbox" value="@hall.Number">
+                        <label>Hall @hall.Number</label>
+                    </li>
+                }
+            </ul>
+        </div>
+    </aside>
+    <div class="main">
+        <nav class="navbar navbar-expand px-3">
+            <button class="btn text-light border" type="button">
+                <span class="bi bi-funnel"></span>
+            </button>
+        </nav>
+        <main class="px-3">
+            <div class="list">
+                <div class="slider-wrapper">
+                    <button id="prev-slide" class="slide-button material-symbols-rounded">
+                        <i class="bi bi-caret-left-fill"></i>
+                    </button>
+                    <ul class="image-list">
+                        @foreach (var date in ViewBag.Calendar)
+                        {
+                            <li>
+                                <div class="calendar-box">
+                                    <a class="calendar-date text-decoration-none" data-date="@date.ToString("yyyy-MM-dd HH:mm:ss")">
+                                        <div class="date-container">
+                                            <p class="day">@date.Day</p>
+                                            <p class="month">@date.ToString("MMM", new System.Globalization.CultureInfo("en-US"))</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    <button id="next-slide" class="slide-button material-symbols-rounded">
+                        <i class="bi bi-caret-right-fill"></i>
+                    </button>
+                </div>
+                <div class="slider-scrollbar">
+                    <div class="scrollbar-track">
+                        <div class="scrollbar-thumb"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ps-5 pt-5" id="shows-list-partial">
+                <partial name="_ShowsListPartial" model="@Model" />
+            </div>
+        </main>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Cinemaapp/MainPage/MainPageScripts.js"></script>
+    <link href="~/css/Repertoire/RepertoireStyleSheet.css" rel="stylesheet" />
+    <script src="~/js/CinemaApp/Repertoire/RepertoirePageScripts.js"></script>
+}

@@ -5,76 +5,90 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="wrapper">
-    <aside id="sidebar">
-        <div class="h-100">
-            <ul class="sidebar-nav">
-                <li class="sidebar-item">
-                    <form class="form">
-                        <div class="input-group">
-                            <input type="text" class="form-control form-input" placeholder="Search anything..." id="search-input">
-                        </div>
-                    </form>
-                </li>
-                <li class="sidebar-header">
-                    Halls
-                </li>
-                @foreach (var hall in ViewBag.Halls)
-                {
-                    <li class="sidebar-item">
-                        <input type="checkbox" class="hall-checkbox" value="@hall.Number">
-                        <label>Hall @hall.Number</label>
-                    </li>
-                }
-            </ul>
-        </div>
-    </aside>
-    <div class="main">
-        <nav class="navbar navbar-expand px-3">
-            <button class="btn text-light border" type="button">
-                <span class="bi bi-funnel"></span>
-            </button>
-        </nav>
-        <main class="px-3">
-            <div class="list">
-                <div class="slider-wrapper">
-                    <button id="prev-slide" class="slide-button material-symbols-rounded">
-                        <i class="bi bi-caret-left-fill"></i>
-                    </button>
-                    <ul class="image-list">
-                        @foreach (var date in ViewBag.Calendar)
-                        {
-                            <li>
-                                <div class="calendar-box">
-                                    <a class="calendar-date text-decoration-none" data-date="@date.ToString("yyyy-MM-dd HH:mm:ss")">
-                                        <div class="date-container">
-                                            <p class="day">@date.Day</p>
-                                            <p class="month">@date.ToString("MMM", new System.Globalization.CultureInfo("en-US"))</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                    <button id="next-slide" class="slide-button material-symbols-rounded">
-                        <i class="bi bi-caret-right-fill"></i>
-                    </button>
-                </div>
-                <div class="slider-scrollbar">
-                    <div class="scrollbar-track">
-                        <div class="scrollbar-thumb"></div>
-                    </div>
-                </div>
+<div class="px-4">
+    <div class="d-flex justify-content-between pb-3">
+        <form class="form">
+            <div class="input-group">
+                <input type="text" class="form-control form-input" placeholder="Search existing movie..." id="search-input">
             </div>
-            <div class="ps-5 pt-5" id="shows-list-partial">
-                <partial name="_ShowsListPartial" model="@Model" />
-            </div>
-        </main>
+        </form>
+        <a class="btn btn-primary" asp-action="Create" asp-controller="Movie">Create New</a>
     </div>
+    <table class="table text-light">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Country)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AgeRatingId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Language)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReleaseDate)
+                </th>
+            </tr>
+        </thead>
+        <tbody id="movies-list-partial">
+            <partial name="_MoviesListPartial" model="@Model" />
+        </tbody>
+    </table>
 </div>
 
+<style>
+    .input-group {
+        border-radius: 10px;
+    }
+
+    .form-input {
+        height: 45px;
+        border: none;
+        border-radius: 10px;
+    }
+
+        .form-input:focus {
+            box-shadow: none;
+            border: none;
+        }
+</style>
+
 @section Scripts {
-    <script src="~/js/Cinemaapp/MainPage/MainPageScripts.js"></script>
-    <link href="~/css/Repertoire/RepertoireStyleSheet.css" rel="stylesheet" />
-    <script src="~/js/CinemaApp/Repertoire/RepertoirePageScripts.js"></script>
+    <script>
+        // Search input
+        var searchString = null;
+        $('#search-input').on('input', function () {
+            searchString = $(this).val();
+            updateMovieList(searchString);
+        });
+
+        // Function to update the movie list based on filters and sorting
+        function updateMovieList() {
+            $.ajax({
+                url: '/Movie1/SortMoviesList',
+                data: {
+                    searchString: searchString
+                },
+                success: function (data) {
+                    $('#movies-list-partial').html(data);
+                },
+                error: function (xhr, status, error) {
+                    toastr["error"]("Something went wrong");
+                }
+            });
+        }
+    </script>
 }

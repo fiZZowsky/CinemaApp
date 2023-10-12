@@ -201,6 +201,7 @@ namespace CinemaApp.MVC.Controllers
             return RedirectToAction("Create", "Ticket", ticketDto);
         }
 
+        // https://10.0.2.2:7190/Ticket/TicketCheck/{guid}
         [HttpGet]
         [Authorize(Roles = "Admin")]
         [Route("/Ticket/TicketCheck/{guid}")]
