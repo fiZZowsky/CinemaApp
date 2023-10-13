@@ -94,7 +94,7 @@ namespace CinemaApp.Infrastructure.Seeders
                     {
                         new Movie
                         {
-                            Title = "Film 1",
+                            Title = "Movie 1",
                             Genre = "Sci-fi",
                             Country = "United States",
                             AgeRatingId = ageRating12.Id,
@@ -128,7 +128,7 @@ namespace CinemaApp.Infrastructure.Seeders
                 {
                     var hall1 = await _dbContext.Halls.FirstOrDefaultAsync(h => h.Number == 1);
                     var hall2 = await _dbContext.Halls.FirstOrDefaultAsync(h => h.Number == 2);
-                    var movie1 = await _dbContext.Movies.FirstOrDefaultAsync(m => m.Title == "Film 1");
+                    var movie1 = await _dbContext.Movies.FirstOrDefaultAsync(m => m.Title == "Movie 1");
                     var movie2 = await _dbContext.Movies.FirstOrDefaultAsync(m => m.Title == "Film 2");
 
                     var movieShow1 = new Domain.Entities.MovieShow
