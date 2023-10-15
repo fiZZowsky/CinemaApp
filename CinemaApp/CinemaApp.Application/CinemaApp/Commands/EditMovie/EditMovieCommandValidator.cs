@@ -16,6 +16,8 @@ namespace CinemaApp.Application.CinemaApp.Commands.EditMovie
             RuleFor(m => m.Duration).NotEmpty();
             RuleFor(m => m.Description).NotEmpty();
             RuleFor(m => m.ReleaseDate).NotEmpty();
+            RuleFor(m => m.NormalTicketPrice).NotEmpty();
+            RuleFor(m => m.ReducedTicketPrice).NotEmpty();
         }
     }
 }

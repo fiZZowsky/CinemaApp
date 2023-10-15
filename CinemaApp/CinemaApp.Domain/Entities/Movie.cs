@@ -21,6 +21,7 @@ namespace CinemaApp.Domain.Entities
         public AgeRating AgeRating { get; set; } = default!;
 
         public List<MovieShow> MovieShows { get; set; } = default!;
+        public PriceList PriceList { get; set; } = default!;
 
         public string EncodedTitle { get; private set; } = default!;
 

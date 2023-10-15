@@ -50,6 +50,16 @@
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
             </div>
             <div class="form-group mb-3">
+                <label class="control-label text-light" asp-for="NormalTicketPrice">NormalTicketPrice (in pennies)</label>
+                <input class="form-control" type="text" asp-for="NormalTicketPrice" />
+                <span asp-validation-for="NormalTicketPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label class="control-label text-light" asp-for="ReducedTicketPrice">ReducedTicketPrice (in pennies)</label>
+                <input class="form-control" type="text" asp-for="ReducedTicketPrice" />
+                <span asp-validation-for="ReducedTicketPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

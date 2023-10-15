@@ -1,4 +1,5 @@
-﻿using CinemaApp.Application.CinemaApp;
+﻿using AutoMapper;
+using CinemaApp.Application.CinemaApp;
 using CinemaApp.Application.CinemaApp.Commands.CreateCheckoutInDatabase;
 using CinemaApp.Application.CinemaApp.Commands.CreateCheckoutSession;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
@@ -6,7 +7,9 @@ using CinemaApp.Application.CinemaApp.Commands.EditTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
 using CinemaApp.Application.CinemaApp.Queries.GetAllTickets;
 using CinemaApp.Application.CinemaApp.Queries.GetHallByNumber;
+using CinemaApp.Application.CinemaApp.Queries.GetMovieById;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieShow;
+using CinemaApp.Application.CinemaApp.Queries.GetMovieShowByEncodedTitle;
 using CinemaApp.Application.CinemaApp.Queries.GetPdfFromTicket;
 using CinemaApp.Application.CinemaApp.Queries.GetSeat;
 using CinemaApp.Application.CinemaApp.Queries.GetTicketByGuid;
@@ -25,12 +28,14 @@ namespace CinemaApp.MVC.Controllers
     public class TicketController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
         private readonly IConverter _pdfConverter;
         private readonly StripeSettings _stripeSettings;
 
-        public TicketController(IMediator mediator, IConverter pdfConverter, IOptions<StripeSettings> stripeSettings)
+        public TicketController(IMediator mediator, IMapper mapper, IConverter pdfConverter, IOptions<StripeSettings> stripeSettings)
         {
             _mediator = mediator;
+            _mapper = mapper;
             _pdfConverter = pdfConverter;
             _stripeSettings = stripeSettings.Value;
         }
@@ -45,18 +50,10 @@ namespace CinemaApp.MVC.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult Create(string movieTitle, string language, int duration, DateTime startTime, int hallNumber)
+        public async Task<IActionResult> Create(string encodedTitle)
         {
-            var ticketDto = new TicketDto
-            {
-                MovieTitle = movieTitle,
-                Language = language,
-                Duration = duration,
-                StartTime = startTime,
-                HallNumber = hallNumber,
-                RowNumber = new List<int>(),
-                SeatNumber = new List<int>()
-            };
+            var movieDto = await _mediator.Send(new GetMovieShowByEncodedTitleQuery(encodedTitle));
+            var ticketDto = _mapper.Map<TicketDto>(movieDto);
 
             return View(ticketDto);
         }

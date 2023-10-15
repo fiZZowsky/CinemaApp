@@ -1,5 +1,4 @@
-﻿using CinemaApp.Domain.Entities;
-using CinemaApp.Infrastructure.Persistance;
+﻿using CinemaApp.Infrastructure.Persistance;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,7 +21,7 @@ namespace CinemaApp.Infrastructure.Seeders
         {
             if (await _dbContext.Database.CanConnectAsync())
             {
-                if(!await _userManager.Users.AnyAsync())
+                if (!await _userManager.Users.AnyAsync())
                 {
                     var user1 = new IdentityUser
                     {
@@ -37,7 +36,7 @@ namespace CinemaApp.Infrastructure.Seeders
                     await _userManager.CreateAsync(user1, "Admin123!");
                     await _userManager.CreateAsync(user2, "User123!");
                 }
-                if(!await _roleManager.Roles.AnyAsync())
+                if (!await _roleManager.Roles.AnyAsync())
                 {
                     var user1 = await _userManager.FindByNameAsync("admin@example.com");
                     var user2 = await _userManager.FindByNameAsync("piotrekr852@gmail.com");
@@ -58,31 +57,33 @@ namespace CinemaApp.Infrastructure.Seeders
                 }
                 if (!_dbContext.Halls.Any())
                 {
-                    var hall1 = new Domain.Entities.Hall { 
-                        Number = 1, 
-                        NumberOfRows = 5, 
-                        PlacesInARow = 10 
+                    var hall1 = new Domain.Entities.Hall
+                    {
+                        Number = 1,
+                        NumberOfRows = 5,
+                        PlacesInARow = 10
                     };
-                    var hall2 = new Domain.Entities.Hall { 
-                        Number = 2, 
-                        NumberOfRows = 6, 
-                        PlacesInARow = 8 
+                    var hall2 = new Domain.Entities.Hall
+                    {
+                        Number = 2,
+                        NumberOfRows = 6,
+                        PlacesInARow = 8
                     };
-                    _dbContext.Halls.AddRange(hall1, hall2);
+                    await _dbContext.Halls.AddRangeAsync(hall1, hall2);
                     await _dbContext.SaveChangesAsync();
                 }
                 if (!_dbContext.AgeRatings.Any())
                 {
-                    var ageRatings = new List<AgeRating>
+                    var ageRatings = new List<Domain.Entities.AgeRating>
                     {
-                        new AgeRating { MinimumAge = "From 3 years old" },
-                        new AgeRating { MinimumAge = "From 7 years old" },
-                        new AgeRating { MinimumAge = "From 12 years old" },
-                        new AgeRating { MinimumAge = "From 16 years old" },
-                        new AgeRating { MinimumAge = "From 18 years old" }
+                        new Domain.Entities.AgeRating { MinimumAge = "From 3 years old" },
+                        new Domain.Entities.AgeRating { MinimumAge = "From 7 years old" },
+                        new Domain.Entities.AgeRating { MinimumAge = "From 12 years old" },
+                        new Domain.Entities.AgeRating { MinimumAge = "From 16 years old" },
+                        new Domain.Entities.AgeRating { MinimumAge = "From 18 years old" }
                     };
 
-                    _dbContext.AgeRatings.AddRange(ageRatings);
+                    await _dbContext.AgeRatings.AddRangeAsync(ageRatings);
                     await _dbContext.SaveChangesAsync();
                 }
                 if (!_dbContext.Movies.Any())
@@ -90,9 +91,9 @@ namespace CinemaApp.Infrastructure.Seeders
                     var ageRating12 = await _dbContext.AgeRatings.FirstAsync(ar => ar.MinimumAge == "From 12 years old");
                     var ageRating7 = await _dbContext.AgeRatings.FirstAsync(ar => ar.MinimumAge == "From 7 years old");
 
-                    var movies = new List<Movie>
+                    var movies = new List<Domain.Entities.Movie>
                     {
-                        new Movie
+                        new Domain.Entities.Movie
                         {
                             Title = "Movie 1",
                             Genre = "Sci-fi",
@@ -101,9 +102,14 @@ namespace CinemaApp.Infrastructure.Seeders
                             Language = "english",
                             Duration = 120,
                             Description = "Example description.",
-                            ReleaseDate = DateTime.Today
+                            ReleaseDate = DateTime.Today,
+                            PriceList = new()
+                            {
+                                NormalTicketPrice = 2500,
+                                ReducedTicketPrice = 1500,
+                            }
                         },
-                        new Movie
+                        new Domain.Entities.Movie
                         {
                             Title = "Film 2",
                             Genre = "Comedy",
@@ -112,7 +118,12 @@ namespace CinemaApp.Infrastructure.Seeders
                             Language = "polish",
                             Duration = 135,
                             Description = "Example description 2.",
-                            ReleaseDate = DateTime.Today
+                            ReleaseDate = DateTime.Today,
+                            PriceList = new()
+                            {
+                                NormalTicketPrice = 3000,
+                                ReducedTicketPrice = 2000,
+                            }
                         }
                     };
 
@@ -121,7 +132,7 @@ namespace CinemaApp.Infrastructure.Seeders
                         movie.EncodeTitle();
                     }
 
-                    _dbContext.Movies.AddRange(movies);
+                    await _dbContext.Movies.AddRangeAsync(movies);
                     await _dbContext.SaveChangesAsync();
                 }
                 if (!_dbContext.MovieShows.Any())
@@ -143,7 +154,7 @@ namespace CinemaApp.Infrastructure.Seeders
                         HallId = hall2.Id,
                         StartTime = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day + 2, 15, 0, 0)
                     };
-                    _dbContext.MovieShows.AddRange(movieShow1, movieShow2);
+                    await _dbContext.MovieShows.AddRangeAsync(movieShow1, movieShow2);
                     await _dbContext.SaveChangesAsync();
                 }
                 if (!_dbContext.Seats.Any())
@@ -161,7 +172,7 @@ namespace CinemaApp.Infrastructure.Seeders
                                 RowNumber = row,
                                 HallId = hall1.Id
                             };
-                            _dbContext.Seats.Add(seat);
+                            await _dbContext.Seats.AddAsync(seat);
                         }
                     }
 
@@ -175,7 +186,7 @@ namespace CinemaApp.Infrastructure.Seeders
                                 RowNumber = row,
                                 HallId = hall2.Id
                             };
-                            _dbContext.Seats.Add(seat);
+                            await _dbContext.Seats.AddAsync(seat);
                         }
                     }
 

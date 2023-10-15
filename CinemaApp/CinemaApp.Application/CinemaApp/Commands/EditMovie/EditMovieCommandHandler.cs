@@ -32,6 +32,8 @@ namespace CinemaApp.Application.CinemaApp.Commands.EditMovie
             movie.Duration = request.Duration;
             movie.Description = request.Description;
             movie.ReleaseDate = request.ReleaseDate;
+            movie.PriceList.NormalTicketPrice = request.NormalTicketPrice;
+            movie.PriceList.ReducedTicketPrice = request.ReducedTicketPrice;
 
             await _movieRepository.Commit();
 

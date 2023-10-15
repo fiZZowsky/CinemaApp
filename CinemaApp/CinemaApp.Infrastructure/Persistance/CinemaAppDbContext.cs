@@ -58,6 +58,9 @@ namespace CinemaApp.Infrastructure.Persistance
                 .WithOne(t => t.Payment)
                 .HasForeignKey<Domain.Entities.Payment>(p => p.TicketId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Domain.Entities.Movie>()
+                .OwnsOne(m => m.PriceList);
         }
     }
 }

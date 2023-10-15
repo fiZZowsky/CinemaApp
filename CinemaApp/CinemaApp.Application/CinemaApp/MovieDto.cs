@@ -13,6 +13,8 @@
         public DateTime ReleaseDate { get; set; }
         public DateTime StartTime { get; set; }
         public int? HallNumber { get; set; }
+        public int NormalTicketPrice { get; set; }
+        public int ReducedTicketPrice { get; set; }
 
         public string? EncodedTitle { get; set; }
     }

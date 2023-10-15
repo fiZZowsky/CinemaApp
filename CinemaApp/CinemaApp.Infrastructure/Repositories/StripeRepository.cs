@@ -24,7 +24,7 @@ namespace CinemaApp.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<Session> CreateStripeSession(Domain.Entities.Ticket ticket, Func<string> successUrl, Func<string> cancelURL)
+        public async Task<Session> CreateStripeSession(Domain.Entities.Ticket ticket, int normalTicketPrice, int reducedTicketPrice, Func<string> successUrl, Func<string> cancelURL)
         {
             string successUrlResult = successUrl.Invoke();
             string cancelUrlResult = cancelURL.Invoke();
@@ -44,7 +44,7 @@ namespace CinemaApp.Infrastructure.Repositories
                         PriceData = new SessionLineItemPriceDataOptions
                         {
                             Currency = "pln",
-                            UnitAmount = CalculateOrderAmount(ticket.NormalPriceSeats, ticket.ReducedPriceSeats),
+                            UnitAmount = CalculateOrderAmount(ticket, normalTicketPrice, reducedTicketPrice),
                             ProductData = new SessionLineItemPriceDataProductDataOptions
                             {
                                 Name = "Ticket",
@@ -65,12 +65,10 @@ namespace CinemaApp.Infrastructure.Repositories
             return session;
         }
 
-        private int CalculateOrderAmount(int normalTicketPriceNumber, int reducedTicketPriceNumber)
+        private int CalculateOrderAmount(Domain.Entities.Ticket ticket, int normalTicketPrice, int reducedTicketPrice)
         {
-            int normalTicketPrice = 2500; // Cena normalnych miejsc w groszach
-            int reducedTicketPrice = 1500; // Cena miejsc ulgowych w groszach
 
-            int totalAmount = (normalTicketPriceNumber * normalTicketPrice) + (reducedTicketPriceNumber * reducedTicketPrice);
+            int totalAmount = (ticket.NormalPriceSeats * normalTicketPrice) + (ticket.ReducedPriceSeats * reducedTicketPrice);
 
             return totalAmount;
         }

@@ -35,6 +35,12 @@
             @Convert.ToDateTime(item.ReleaseDate).ToString("dd.MM.yyyy")
         </td>
         <td>
+            @String.Format("{0:C}", item.NormalTicketPrice / 100.0)
+        </td>
+        <td>
+            @String.Format("{0:C}", item.ReducedTicketPrice / 100.0)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { item.EncodedTitle }) |
             @Html.ActionLink("Details", "Details", new { item.EncodedTitle })
         </td>

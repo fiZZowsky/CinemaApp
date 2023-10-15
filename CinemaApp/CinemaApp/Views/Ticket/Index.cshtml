@@ -31,12 +31,6 @@
                 @Html.DisplayNameFor(model => model.SeatNumber)
             </th>
             <th class="text-light">
-                @Html.DisplayNameFor(model => model.NormalPriceSeats)
-            </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.ReducedPriceSeats)
-            </th>
-            <th class="text-light">
                 @Html.DisplayNameFor(model => model.QRCode)
             </th>
             <th></th>
@@ -74,12 +68,6 @@
                         @Html.DisplayFor(modelItem => seatNumber)
                         <br />
                     }
-                </td>
-                <td class="text-light">
-                    @Html.DisplayFor(modelItem => item.NormalPriceSeats)
-                </td>
-                <td class="text-light">
-                    @Html.DisplayFor(modelItem => item.ReducedPriceSeats)
                 </td>
                 <td class="text-light">
                     @if (item.QRCode != null && item.QRCode.Length > 0)

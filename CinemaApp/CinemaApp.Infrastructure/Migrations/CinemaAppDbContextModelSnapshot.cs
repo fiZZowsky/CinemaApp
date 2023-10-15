@@ -454,7 +454,32 @@ namespace CinemaApp.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.OwnsOne("CinemaApp.Domain.Entities.PriceList", "PriceList", b1 =>
+                        {
+                            b1.Property<int>("MovieId")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("Id")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("NormalTicketPrice")
+                                .HasColumnType("int");
+
+                            b1.Property<int>("ReducedTicketPrice")
+                                .HasColumnType("int");
+
+                            b1.HasKey("MovieId");
+
+                            b1.ToTable("Movies");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MovieId");
+                        });
+
                     b.Navigation("AgeRating");
+
+                    b.Navigation("PriceList")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.MovieShow", b =>

@@ -41,6 +41,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.ReleaseDate)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NormalTicketPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ReducedTicketPrice)
+                </th>
             </tr>
         </thead>
         <tbody id="movies-list-partial">
@@ -78,7 +84,7 @@
         // Function to update the movie list based on filters and sorting
         function updateMovieList() {
             $.ajax({
-                url: '/Movie1/SortMoviesList',
+                url: '/Movie/SortMoviesList',
                 data: {
                     searchString: searchString
                 },

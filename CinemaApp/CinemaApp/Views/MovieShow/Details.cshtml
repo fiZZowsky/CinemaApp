@@ -25,12 +25,7 @@
         </div>
         <div id="tab-content" class="tab-content">
         </div>
-        <a class="btn btn-primary buy-button" asp-controller="Ticket" asp-action="Create"
-                asp-route-movieTitle="@Model.Title"
-                asp-route-language="@Model.Language"
-                asp-route-duration="@Model.Duration"
-                asp-route-startTime="@Model.StartTime.ToString("yyyy-MM-ddTHH:mm")"
-                asp-route-hallNumber="@Model.HallNumber">
+        <a class="btn btn-primary buy-button" asp-controller="Ticket" asp-action="Create" asp-route-encodedTitle="@Model.EncodedTitle">
             Buy Ticket
         </a>
         @if (isAdmin)

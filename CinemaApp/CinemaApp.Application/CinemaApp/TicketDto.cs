@@ -12,6 +12,8 @@
         public List<int> SeatNumber { get; set; } = default!;
         public int NormalPriceSeats { get; set; }
         public int ReducedPriceSeats { get; set; }
+        public int NormalTicketPrice { get; set; }
+        public int ReducedTicketPrice { get; set; }
         public DateTime PurchaseDate { get; set; }
         public byte[] QRCode { get; set; } = default!;
     }

@@ -8,7 +8,7 @@
 <h1 class="text-light">Edit @Model.Title</h1>
 
 <hr />
-<div class="row">
+<div class="row text-light">
     <div class="col-md-4">
         <form asp-action="Edit">
             @Html.HiddenFor(model => model.Title)
@@ -47,6 +47,16 @@
                 <label asp-for="ReleaseDate" class="control-label text-light"></label>
                 <input asp-for="ReleaseDate" class="form-control" type="date" />
                 <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NormalTicketPrice" class="control-label text-light"></label> (in pennies)
+                <input asp-for="NormalTicketPrice" class="form-control" />
+                <span asp-validation-for="NormalTicketPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReducedTicketPrice" class="control-label text-light"></label> (in pennies)
+                <input asp-for="ReducedTicketPrice" class="form-control" />
+                <span asp-validation-for="ReducedTicketPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
