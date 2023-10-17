@@ -6,9 +6,14 @@
     ViewData["Title"] = "Create";
 }
 
-<h1 class="text-light">Create new ticket</h1>
+<h1 class="text-light px-3">Create new ticket</h1>
 
 <div class="container">
+    <div class="row mt-3 mb-3">
+        <div class="col">
+            <a asp-action="Index" class="text-light">Back to List</a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-8">
             <div>
@@ -18,15 +23,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 pt-3">
             <p class="text-light"><strong>Movie Title:</strong> @Model.MovieTitle</p>
             <p class="text-light"><strong>Language:</strong> @Model.Language</p>
             <p class="text-light"><strong>Duration:</strong> @Model.Duration</p>
             <p class="text-light"><strong>Start Time:</strong> @Model.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
             <p class="text-light"><strong>Hall Number:</strong> @Model.HallNumber</p>
             <div class="selected-seats">
-                <h3 class="text-light">Selected places:</h3>
-                <ul class="text-light" id="selected-seats-list"></ul>
+                <h4 class="text-light">Selected places:</h4>
+                <span class="text-light" id="selected-seats-list"></span>
             </div>
             <br />
             <div id="CreateTicketModal">
@@ -59,16 +64,11 @@
                             <span asp-validation-for="ReducedPriceSeats" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <input type="submit" id="submitButton" value="Create" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col">
-            <a asp-action="Index" class="text-light">Back to List</a>
         </div>
     </div>
 </div>
@@ -107,4 +107,21 @@
             });
         });
     </script>
+
+    <style>
+        .row {
+            --bs-gutter-x: 0;
+        }
+
+        .selected-seats {
+            margin: 0;
+            padding: 0;
+        }
+
+        .selected-seats p{
+            border: 1px solid #656565;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
 }

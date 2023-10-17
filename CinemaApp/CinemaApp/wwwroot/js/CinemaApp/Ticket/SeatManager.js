@@ -125,9 +125,9 @@
         selectedSeatsList.innerHTML = '';
 
         for (let i = 0; i < selectedSeatNumbers.length; i++) {
-            const li = document.createElement('li');
-            li.textContent = `Rząd ${selectedRowNumbers[i]}, Miejsce ${selectedSeatNumbers[i]}`;
-            selectedSeatsList.appendChild(li);
+            const paragraph = document.createElement('p');
+            paragraph.textContent = `${selectedRowNumbers[i]} row ${selectedSeatNumbers[i]} seat`;
+            selectedSeatsList.appendChild(paragraph);
         }
     }
 
