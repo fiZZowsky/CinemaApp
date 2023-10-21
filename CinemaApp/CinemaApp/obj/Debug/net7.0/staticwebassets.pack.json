@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\css\\Ticket\\CreateTicketStyleSheet.css"
     },
     {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Ticket\\PdfWithTicketStyleSheet.css",
+      "PackagePath": "staticwebassets\\css\\Ticket\\PdfWithTicketStyleSheet.css"
+    },
+    {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

@@ -1,52 +1,24 @@
 ﻿<html>
-<head>
-    <title>Bilet na film - @Model.Title</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .ticket {
-            max-width: 400px;
-            padding: 20px;
-            border: 1px solid #ccc;
-        }
-
-        .movie-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .info {
-            font-size: 16px;
-            margin-bottom: 5px;
-        }
-
-        .qr-code {
-            width: 100px;
-            height: 100px;
-        }
-    </style>
-</head>
 <body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="ticket">
-                    <div class="movie-title">Film: @Model.Title</div>
-                    <div class="info">Język: @Model.Language</div>
-                    <div class="info">Długość: @Model.Duration</div>
-                    <div class="info">Start: @Model.StartTime</div>
-                    <div class="info">HallNumber: @Model.HallNumber</div>
-                    <div class="info">RowNumber: @Model.RowNumber</div>
-                    <div class="info">SeatNumber: @Model.SeatNumber</div>
-                </div>
-            </div>
-            <div class="col-md-6 d-flex justify-content-center align-items-center">
-                <img src="@Model.QRCode" alt="QR Code" class="qr-code" />
-            </div>
-        </div>
-    </div>
+    <table class="header">
+        <tr>
+            <td>Ticket No : @Model.Guid</td>
+            <td class="bold">CinemaApp Ticket</td>
+        </tr>
+    </table>
+    <table>
+        <tr class="spacing-beween">
+            <td class="qr-code" style="border-right: 2px dashed #000000; padding-right: 50px;">
+                <img src="@Model.QRCode" alt="QR Code" />
+            </td>
+            <td class="ticket-data" style="padding: 1rem; margin-left: 50px;">
+                <p>Hall : @Model.HallNumber</p>
+                <p>Seats : @Model.SeatNumber / Rows : @Model.RowNumber</p>
+                <p>Date : @Model.StartTime</p>
+                <h2>@Model.Title ( @Model.Language )</h2>
+                <p>Duration : @Model.Duration min</p>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

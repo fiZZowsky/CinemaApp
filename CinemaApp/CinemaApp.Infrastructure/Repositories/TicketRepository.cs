@@ -83,7 +83,7 @@ namespace CinemaApp.Infrastructure.Repositories
                 Orientation = Orientation.Portrait,
                 PaperSize = PaperKind.A4,
                 Margins = new MarginSettings { Top = 10 },
-                DocumentTitle = "Ticket"
+                DocumentTitle = "Ticket " + guid
             };
 
             string base64Image = Convert.ToBase64String(ticket.QRCode);
@@ -93,6 +93,7 @@ namespace CinemaApp.Infrastructure.Repositories
             var rowNumbers = string.Join(", ", ticket.Seats.Select(seat => seat.RowNumber.ToString()).Distinct());
 
             htmlContent = htmlContent
+                .Replace("@Model.Guid", guid.ToString())
                 .Replace("@Model.Title", ticket.MovieShow.Movie.Title)
                 .Replace("@Model.Language", ticket.MovieShow.Movie.Language)
                 .Replace("@Model.Duration", ticket.MovieShow.Movie.Duration.ToString())
@@ -106,9 +107,7 @@ namespace CinemaApp.Infrastructure.Repositories
             {
                 PagesCount = true,
                 HtmlContent = htmlContent,
-                WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = Path.Combine(Directory.GetCurrentDirectory(), "assets", "styles.css") },
-                HeaderSettings = { FontName = "Arial", FontSize = 9, Right = "Page [page] of [toPage]", Line = true },
-                FooterSettings = { FontName = "Arial", FontSize = 9, Line = true, Center = "Report Footer" }
+                WebSettings = { DefaultEncoding = "utf-8", UserStyleSheet = @"wwwroot\css\Ticket\PdfWithTicketStyleSheet.css" }
             };
 
             var pdf = new HtmlToPdfDocument()
