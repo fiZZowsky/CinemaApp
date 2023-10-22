@@ -120,6 +120,9 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Property<int>("HallId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 

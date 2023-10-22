@@ -146,15 +146,29 @@ namespace CinemaApp.Infrastructure.Seeders
                     {
                         MovieId = movie1.Id,
                         HallId = hall1.Id,
-                        StartTime = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day + 1, 12, 0, 0)
+                        StartTime = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day + 1, 12, 0, 0),
+                        IsActive = true
                     };
                     var movieShow2 = new Domain.Entities.MovieShow
                     {
                         MovieId = movie2.Id,
                         HallId = hall2.Id,
-                        StartTime = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day + 2, 15, 0, 0)
+                        StartTime = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day + 2, 15, 0, 0),
+                        IsActive = true
                     };
                     await _dbContext.MovieShows.AddRangeAsync(movieShow1, movieShow2);
+                    await _dbContext.SaveChangesAsync();
+                }
+                if(_dbContext.MovieShows.Any())
+                {
+                    var showsToUpdate = await _dbContext.MovieShows
+                        .Where(ms => ms.IsActive && ms.StartTime < DateTime.Now)
+                        .ToListAsync();
+
+                    foreach( var show in showsToUpdate )
+                    {
+                        show.IsActive = false;
+                    }
                     await _dbContext.SaveChangesAsync();
                 }
                 if (!_dbContext.Seats.Any())

@@ -18,6 +18,7 @@ namespace CinemaApp.Domain.Entities
         [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy HH:mm}")]
         public DateTime StartTime { get; set; }
+        public bool IsActive { get; set; }
         public List<Ticket> Tickets { get; set; } = default!;
         public Movie Movie { get; set; } = default!;
         public Hall Hall { get; set; } = default!;

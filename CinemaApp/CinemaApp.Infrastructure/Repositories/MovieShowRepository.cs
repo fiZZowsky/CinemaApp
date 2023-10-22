@@ -24,6 +24,7 @@ namespace CinemaApp.Infrastructure.Repositories
 
         public async Task Create(Domain.Entities.MovieShow show)
         {
+            show.IsActive = true;
             _dbContext.Add(show);
             await _dbContext.SaveChangesAsync();
         }
@@ -87,6 +88,7 @@ namespace CinemaApp.Infrastructure.Repositories
                 .Include(ms => ms.Movie)
                 .ThenInclude(m => m.AgeRating)
                 .Include(ms => ms.Hall)
+                .Where(ms => ms.IsActive)
                 .OrderBy(ms => ms.StartTime)
                 .AsQueryable();
 
