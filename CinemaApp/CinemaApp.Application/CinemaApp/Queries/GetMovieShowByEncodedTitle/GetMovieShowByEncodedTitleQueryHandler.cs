@@ -17,7 +17,7 @@ namespace CinemaApp.Application.CinemaApp.Queries.GetMovieShowByEncodedTitle
 
         public async Task<MovieDto> Handle(GetMovieShowByEncodedTitleQuery request, CancellationToken cancellationToken)
         {
-            var movie = await _movieShowRepository.GetMovieShowByEncodedTitle(request.EncodedTitle);
+            var movie = await _movieShowRepository.GetMovieShowByEncodedTitle(request.EncodedTitle, request.StartTime);
             var dto = _mapper.Map<MovieDto>(movie);
 
             return dto;

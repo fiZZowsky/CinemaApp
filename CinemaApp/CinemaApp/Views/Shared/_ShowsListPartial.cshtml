@@ -14,7 +14,7 @@
 @foreach (var show in @Model)
 {
     <div class="mb-5">
-        <a asp-controller="MovieShow" asp-action="Details" asp-route-encodedTitle="@show.EncodedTitle" class="text-decoration-none">
+        <a href="@Url.Action("Details", "MovieShow", new{encodedTitle = @show.EncodedTitle, startTime = @show.StartTime})" class="text-decoration-none">
             <div class="movie-item">
                 <div>
                     <img class="image-item pb-2" src="https://via.placeholder.com/640x960" alt="Movie Cover" />
@@ -33,7 +33,7 @@
                     </p>
                     <p class="text-light">@show.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
                     <p class="text-light pb-4">@show.Duration minutes</p>
-                    <a class="admin-btn" asp-controller="Ticket" asp-action="Create" asp-route-encodedTitle="@show.EncodedTitle">Buy Ticket</a>
+                    <a class="admin-btn" href="@Url.Action("Create", "Ticket", new{encodedTitle = show.EncodedTitle, startTime = show.StartTime})">Buy Ticket</a>
                 </div>
             </div>
         </a>

@@ -25,12 +25,12 @@
         </div>
         <div id="tab-content" class="tab-content">
         </div>
-        <a class="btn btn-primary buy-button" asp-controller="Ticket" asp-action="Create" asp-route-encodedTitle="@Model.EncodedTitle">
+        <a class="btn btn-primary buy-button" href="@Url.Action("Create", "Ticket", new{encodedTitle = Model.EncodedTitle, startTime = Model.StartTime})">
             Buy Ticket
         </a>
         @if (isAdmin)
         {
-            <a class="btn btn-primary edit-button" asp-controller="MovieShow" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle">Edit Show</a>
+            <a class="btn btn-primary edit-button" href="@Url.Action("Edit", "MovieShow", new{encodedTitle = Model.EncodedTitle, startTime = Model.StartTime})">Edit Show</a>
         }
     </div>
 </div>
@@ -88,7 +88,7 @@
         display: flex;
         padding-left: 3rem;
         padding-bottom: 3rem;
-        max-height:760px;
+        max-height: 760px;
     }
 
     @@media only screen and (max-width: 1023px) {
@@ -132,12 +132,12 @@
         descriptionTabButton.classList.remove('active');
         showTabButton.classList.remove('active');
         tabContent.innerHTML = `
-                        <p>Country: @Model.Country</p>
-                        <p>Age Rating: @ViewBag.AgeRating</p>
-                        <p>Language: @Model.Language</p>
-                        <p>Duration: @Model.Duration</p>
-                            <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
-                    `;
+                            <p>Country: @Model.Country</p>
+                            <p>Age Rating: @ViewBag.AgeRating</p>
+                            <p>Language: @Model.Language</p>
+                            <p>Duration: @Model.Duration</p>
+                                <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
+                        `;
     }
 
     function displayDescription() {
@@ -152,9 +152,9 @@
         descriptionTabButton.classList.remove('active');
         showTabButton.classList.add('active');
         tabContent.innerHTML = `
-                        <p>Start Time: @Model.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
-                        <p>Hall Number: @Model.HallNumber</p>
-                        `;
+                            <p>Start Time: @Model.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
+                            <p>Hall Number: @Model.HallNumber</p>
+                            `;
     }
 
     detailsTabButton.addEventListener('click', () => {

@@ -24,9 +24,7 @@ namespace CinemaApp.Infrastructure.Repositories
 
         public async Task<List<Domain.Entities.Seat>> GetUnavailableSeats(int hallNumber, DateTime startTime)
             => await _dbContext.Seats
-               .Where(seat => seat.Hall.Number == hallNumber)
-               .Where(seat => seat.Tickets
-               .Any(ticket => ticket.MovieShow.StartTime == startTime))
+               .Where(seat => seat.Hall.Number == hallNumber && seat.Tickets.Any(ticket => ticket.MovieShow.StartTime == startTime))
                .ToListAsync();
     }
 }

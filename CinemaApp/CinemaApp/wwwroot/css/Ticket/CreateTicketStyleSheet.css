@@ -10,9 +10,19 @@
 .selected-seats {
     flex-shrink: 0;
     width: 30%;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
 }
 
+    .selected-seats p {
+        border: 1px solid #656565;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
 .row {
+    --bs-gutter-x: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,8 +52,4 @@
 
 .unavailable {
     background-image: url('../../Resources/seat-na.png');
-}
-
-.selected-seats {
-    margin-top: 20px;
 }

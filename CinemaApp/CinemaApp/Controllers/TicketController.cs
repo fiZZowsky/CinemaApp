@@ -50,9 +50,9 @@ namespace CinemaApp.MVC.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> Create(string encodedTitle)
+        public async Task<IActionResult> Create(string encodedTitle, DateTime startTime)
         {
-            var movieDto = await _mediator.Send(new GetMovieShowByEncodedTitleQuery(encodedTitle));
+            var movieDto = await _mediator.Send(new GetMovieShowByEncodedTitleQuery(encodedTitle, startTime));
             var ticketDto = _mapper.Map<TicketDto>(movieDto);
 
             return View(ticketDto);

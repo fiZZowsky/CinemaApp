@@ -75,10 +75,9 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpGet]
-        [Route("CinemaApp/{encodedTitle}/DetailsShow")]
-        public async Task<IActionResult> Details(string encodedTitle)
+        public async Task<IActionResult> Details(string encodedTitle, DateTime startTime)
         {
-            var movieDto = await _mediator.Send(new GetMovieShowByEncodedTitleQuery(encodedTitle));
+            var movieDto = await _mediator.Send(new GetMovieShowByEncodedTitleQuery(encodedTitle, startTime));
             var ageRatingDto = await _mediator.Send(new GetAgeRatingByIdQuery(movieDto.AgeRatingId));
 
             ViewBag.AgeRating = ageRatingDto.MinimumAge;
@@ -121,11 +120,10 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpGet]
-        [Route("CinemaApp/{encodedTitle}/EditShow")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(string encodedTitle)
+        public async Task<IActionResult> Edit(string encodedTitle, DateTime startTime)
         {
-            var movieDto = await _mediator.Send(new GetMovieShowByEncodedTitleQuery(encodedTitle));
+            var movieDto = await _mediator.Send(new GetMovieShowByEncodedTitleQuery(encodedTitle, startTime));
             var ageRatings = await _mediator.Send(new GetAgeRatingsQuery());
             var halls = await _mediator.Send(new GetAllHallsQuery());
 
@@ -141,7 +139,6 @@ namespace CinemaApp.MVC.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        [Route("CinemaApp/{encodedTitle}/EditShow")]
         public async Task<IActionResult> Edit(EditMovieShowCommand command)
         {
             if (!ModelState.IsValid)

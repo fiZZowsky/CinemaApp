@@ -29,12 +29,12 @@ namespace CinemaApp.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<Domain.Entities.MovieShow> GetMovieShowByEncodedTitle(string encodedTitle)
+        public async Task<Domain.Entities.MovieShow> GetMovieShowByEncodedTitle(string encodedTitle, DateTime startTime)
             => await _dbContext.MovieShows
                 .Include(m => m.Movie)
                     .ThenInclude(m => m.AgeRating)
                 .Include(h => h.Hall)
-                .FirstAsync(m => m.Movie.EncodedTitle == encodedTitle);
+                .FirstAsync(m => m.Movie.EncodedTitle == encodedTitle && m.StartTime == startTime);
 
         public async Task<Domain.Entities.MovieShow> GetByData(DateTime startTime, int hallNumber)
         {
