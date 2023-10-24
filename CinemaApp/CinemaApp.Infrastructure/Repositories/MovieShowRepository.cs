@@ -112,5 +112,12 @@ namespace CinemaApp.Infrastructure.Repositories
 
         public async Task Commit()
             => await _dbContext.SaveChangesAsync();
+
+        public async Task<MovieShow> GetMovieById(int id)
+            => await _dbContext.MovieShows
+            .Include(ms => ms.Movie)
+            .ThenInclude(m => m.AgeRating)
+            .Include(ms => ms.Hall)
+            .FirstAsync(ms => ms.Id == id);
     }
 }

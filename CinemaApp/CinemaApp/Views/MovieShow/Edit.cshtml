@@ -50,7 +50,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="StartTime" class="control-label text-light"></label>
-                <input asp-for="StartTime" class="form-control" type="datetime-local" />
+                @{
+                    var formattedStartTime = Model.StartTime.ToString("yyyy-MM-ddTHH:mm");
+                }
+                <input asp-for="StartTime" class="form-control" type="datetime-local" value="@formattedStartTime" />
                 <span asp-validation-for="StartTime" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,6 +61,8 @@
                 @Html.DropDownListFor(model => model.HallNumber, (SelectList)ViewBag.HallsSelectList, "-- Select Hall --", new { @class = "form-control" })
                 <span asp-validation-for="HallNumber" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <input type="hidden" asp-for="EncodedTitle" value="@Model.EncodedTitle" />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

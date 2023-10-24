@@ -4,6 +4,7 @@
     {
         Task<IEnumerable<Domain.Entities.MovieShow>> GetAll();
         Task Create(Domain.Entities.MovieShow show);
+        Task<Domain.Entities.MovieShow> GetMovieById(int id);
         Task<Domain.Entities.MovieShow> GetMovieShowByEncodedTitle(string encodedTitle, DateTime startTime);
         Task<Domain.Entities.MovieShow> GetByData(DateTime startTime, int hallNumber);
         Task<bool> IsHallBusy(int hallNumber, DateTime startTime, string movieTitle);

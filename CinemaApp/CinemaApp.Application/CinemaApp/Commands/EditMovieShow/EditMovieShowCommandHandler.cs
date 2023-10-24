@@ -25,7 +25,7 @@ namespace CinemaApp.Application.CinemaApp.Commands.EditMovieShow
                 return Unit.Value;
             }
 
-            var show = await _movieShowRepository.GetMovieShowByEncodedTitle(request.EncodedTitle!, request.StartTime);
+            var show = await _movieShowRepository.GetMovieById(request.Id);
             var hall = await _hallRepository.GetHallByNumber((int)request.HallNumber!);
 
             show.Movie.Genre = request.Genre;
