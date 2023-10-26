@@ -130,6 +130,7 @@ namespace CinemaApp.Infrastructure.Seeders
                     foreach (var movie in movies)
                     {
                         movie.EncodeTitle();
+                        movie.CountRate();
                     }
 
                     await _dbContext.Movies.AddRangeAsync(movies);

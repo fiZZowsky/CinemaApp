@@ -10,6 +10,6 @@ namespace CinemaApp.Domain.Entities
     {
         public int Id { get; set; }
         public string MinimumAge { get; set; } = string.Empty;
-        public List<Movie> Movies { get; set; }
+        public List<Movie> Movies { get; set; } = default!;
     }
 }

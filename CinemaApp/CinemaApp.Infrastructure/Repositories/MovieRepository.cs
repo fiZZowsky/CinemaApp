@@ -1,5 +1,4 @@
-﻿using CinemaApp.Domain.Entities;
-using CinemaApp.Domain.Interfaces;
+﻿using CinemaApp.Domain.Interfaces;
 using CinemaApp.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,7 +47,7 @@ namespace CinemaApp.Infrastructure.Repositories
                 .Where(m => m.EncodedTitle == encodedTitle)
                 .FirstAsync();
 
-        public async Task<Movie> GetMovieById(int id)
+        public async Task<Domain.Entities.Movie> GetMovieById(int id)
             => await _dbContext.Movies
             .Include(m => m.AgeRating)
             .Where(m => m.Id == id)

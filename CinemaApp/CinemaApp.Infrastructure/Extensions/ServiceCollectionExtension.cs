@@ -38,6 +38,7 @@ namespace CinemaApp.Infrastructure.Extensions
             services.AddScoped<IStripeRepository, StripeRepository>();
             services.AddScoped<IAgeRatingRepository, AgeRatingRepository>();
             services.AddScoped<IIdentityRepository, IdentityRepository>();
+            services.AddScoped<IRatingRepository, RatingRepository>();
         }
     }
 }

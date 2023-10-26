@@ -79,6 +79,10 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.SeatNumber, opt => opt.MapFrom(src => src.Seats.Select(seat => seat.Number).ToList()));
 
             CreateMap<Domain.Entities.AgeRating, AgeRatingDto>();
+
+            CreateMap<RatingDto, Domain.Entities.Rating>();
+
+            CreateMap<Domain.Entities.Rating, RatingDto>();
         }
     }
 }

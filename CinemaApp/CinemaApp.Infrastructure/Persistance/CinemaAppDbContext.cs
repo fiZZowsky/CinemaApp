@@ -18,6 +18,7 @@ namespace CinemaApp.Infrastructure.Persistance
         public DbSet<Domain.Entities.MovieShow> MovieShows { get; set; }
         public DbSet<Domain.Entities.AgeRating> AgeRatings { get; set; }
         public DbSet<Domain.Entities.Payment> Payments { get; set; }
+        public DbSet<Domain.Entities.Rating> Ratings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +62,12 @@ namespace CinemaApp.Infrastructure.Persistance
 
             modelBuilder.Entity<Domain.Entities.Movie>()
                 .OwnsOne(m => m.PriceList);
+
+            modelBuilder.Entity<Domain.Entities.Rating>()
+                .HasOne(r => r.Movie)
+                .WithMany(m => m.RatingList)
+                .HasForeignKey(r => r.MovieId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

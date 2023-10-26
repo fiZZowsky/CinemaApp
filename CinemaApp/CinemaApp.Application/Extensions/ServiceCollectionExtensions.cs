@@ -2,6 +2,7 @@
 using CinemaApp.Application.CinemaApp.Commands.CreateCheckoutSession;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
+using CinemaApp.Application.CinemaApp.Commands.CreateRating;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
 using CinemaApp.Application.CinemaApp.Commands.EditMovieShow;
@@ -24,6 +25,7 @@ namespace CinemaApp.Application.Extensions
             services.AddMediatR(typeof(CreateMovieCommand));
             services.AddMediatR(typeof(CreateTicketCommand));
             services.AddMediatR(typeof(CreateMovieShowCommand));
+            services.AddMediatR(typeof(CreateRatingCommand));
             services.AddMediatR(typeof(SendEmailWithAttachementCommand));
             services.AddMediatR(typeof(CreateCheckoutSessionCommand));
             services.AddMediatR(typeof(EditTicketCommand));
@@ -38,6 +40,10 @@ namespace CinemaApp.Application.Extensions
                 .AddFluentValidationClientsideAdapters();
 
             services.AddValidatorsFromAssemblyContaining<CreateMovieShowCommandValidator>()
+                .AddFluentValidationAutoValidation()
+                .AddFluentValidationClientsideAdapters();
+
+            services.AddValidatorsFromAssemblyContaining<CreateRatingCommandValidator>()
                 .AddFluentValidationAutoValidation()
                 .AddFluentValidationClientsideAdapters();
 

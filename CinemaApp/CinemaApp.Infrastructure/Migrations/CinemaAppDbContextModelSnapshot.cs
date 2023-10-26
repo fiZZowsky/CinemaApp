@@ -95,6 +95,9 @@ namespace CinemaApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
                     b.Property<DateTime>("ReleaseDate")
                         .HasColumnType("datetime2");
 
@@ -168,6 +171,40 @@ namespace CinemaApp.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("CinemaApp.Domain.Entities.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RateValue")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.Seat", b =>
@@ -523,6 +560,23 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Navigation("Ticket");
                 });
 
+            modelBuilder.Entity("CinemaApp.Domain.Entities.Rating", b =>
+                {
+                    b.HasOne("CinemaApp.Domain.Entities.Movie", "Movie")
+                        .WithMany("RatingList")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("CinemaApp.Domain.Entities.Seat", b =>
                 {
                     b.HasOne("CinemaApp.Domain.Entities.Hall", "Hall")
@@ -634,6 +688,8 @@ namespace CinemaApp.Infrastructure.Migrations
             modelBuilder.Entity("CinemaApp.Domain.Entities.Movie", b =>
                 {
                     b.Navigation("MovieShows");
+
+                    b.Navigation("RatingList");
                 });
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.MovieShow", b =>
