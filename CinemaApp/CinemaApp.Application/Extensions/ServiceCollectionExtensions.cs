@@ -5,6 +5,7 @@ using CinemaApp.Application.CinemaApp.Commands.CreateMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.CreateRating;
 using CinemaApp.Application.CinemaApp.Commands.CreateTicket;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
+using CinemaApp.Application.CinemaApp.Commands.DeleteMovieRating;
 using CinemaApp.Application.CinemaApp.Commands.EditMovieShow;
 using CinemaApp.Application.CinemaApp.Commands.EditTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
@@ -31,6 +32,7 @@ namespace CinemaApp.Application.Extensions
             services.AddMediatR(typeof(EditTicketCommand));
             services.AddMediatR(typeof(EditMovieCommand));
             services.AddMediatR(typeof(EditMovieShowCommand));
+            services.AddMediatR(typeof(DeleteMovieRatingCommand));
             services.AddMediatR(typeof(SendRecoveryPasswordEmailCommand));
 
             services.AddAutoMapper(typeof(CinemaAppMappingProfile));

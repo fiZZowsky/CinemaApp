@@ -52,5 +52,23 @@ namespace CinemaApp.Infrastructure.Repositories
             .Include(m => m.AgeRating)
             .Where(m => m.Id == id)
             .FirstAsync();
+
+        public async Task RemoveRatingFromList(int ratingId, int movieId)
+        {
+            var movie = await _dbContext.Movies
+                .Include(m => m.RatingList)
+                .Where(m => m.Id == movieId)
+                .FirstOrDefaultAsync();
+
+            if (movie != null)
+            {
+                var ratingToRemove = movie.RatingList.FirstOrDefault(rl => rl.Id == ratingId);
+
+                if (ratingToRemove != null)
+                {
+                    movie.RatingList.Remove(ratingToRemove);
+                }
+            }
+        }
     }
 }

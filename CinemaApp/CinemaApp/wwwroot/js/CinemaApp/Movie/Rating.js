@@ -1,8 +1,7 @@
 $(document).ready(function () {
 
-    const RenderRatings = (comments, container) => {
+    const RenderRatings = (comments, container, currUserId) => {
         container.empty();
-        console.log(comments);
         for (const comment of comments) {
             const ratingStars = Array(5).fill('<span class="bi bi-star"></span>');
             for (let i = 0; i < 5; i++) {
@@ -13,21 +12,28 @@ $(document).ready(function () {
                 }
             }
 
+            const deleteButton = comment.createdBy === currUserId
+                ? `<button class="btn btn-danger delete-rating" data-comment-id="${comment.id}" data-created-by="${comment.createdBy}">Delete</button>`
+                : '';
+
             container.append(`
-        <div class="d-flex flex-column mb-3" style="border: 1px solid #495057; border-radius: 15px; background: rgb(255,255,255);
-             background: radial-gradient(circle at 100px 100px, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%); padding: 1rem;">
-            <div class="rating-stars">${ratingStars.join('')}</div>
-            <div class="card-body">
-                <h5 class="card-title">${comment.comment}</h5>
+            <div class="d-flex flex-column mb-3" style="border: 1px solid #495057; border-radius: 15px; background: rgb(255,255,255);
+                background: radial-gradient(circle at 100px 100px, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%); padding: 1rem;">
+                <div class="rating-stars">${ratingStars.join('')}</div>
+                <div class="card-body">
+                    <h5 class="card-title">${comment.comment}</h5>
+                    ${deleteButton}
+                </div>
             </div>
-        </div>
-    `);
+            `);
         }
     }
 
     const LoadRatings = () => {
         const container = $("#comments");
         const movieId = container.data("movieId");
+        const currUserId = container.data("currUserId");
+
         $.ajax({
             url: `/CinemaApp/${movieId}/MovieRatings`,
             type: 'get',
@@ -35,7 +41,7 @@ $(document).ready(function () {
                 if (!data.length) {
                     container.html("There are no ratings for this movie");
                 } else {
-                    RenderRatings(data, container);
+                    RenderRatings(data, container, currUserId);
                 }
             },
             error: function () {
@@ -61,5 +67,23 @@ $(document).ready(function () {
                 toastr["error"]("Something went wrong.")
             }
         })
+    });
+
+    $("#comments").on("click", ".delete-rating", function () {
+        const commentId = $(this).data("comment-id");
+        const movieId = $("#comments").data("movieId");
+        const createdBy = $(this).data("createdBy");
+
+        $.ajax({
+            url: `/CinemaApp/${movieId}/DeleteRating/${commentId}/${createdBy}`,
+            type: 'DELETE',
+            success: function (data) {
+                toastr["success"]("Successfully deleted your rating.");
+                LoadRatings();
+            },
+            error: function () {
+                toastr["error"]("An error occurred while deleting your rating.");
+            }
+        });
     });
 });

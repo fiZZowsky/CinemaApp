@@ -20,8 +20,5 @@
     <ProjectReference Include="..\CinemaApp.Application\CinemaApp.Application.csproj" />
     <ProjectReference Include="..\CinemaApp.Infrastructure\CinemaApp.Infrastructure.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\js\CinemaApp\Movie\" />
-  </ItemGroup>
 
 </Project>

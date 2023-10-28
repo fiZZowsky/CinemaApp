@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using CinemaApp.Application.ApplicationUser;
 using CinemaApp.Application.CinemaApp;
 using CinemaApp.Application.CinemaApp.Commands.CreateMovie;
 using CinemaApp.Application.CinemaApp.Commands.CreateRating;
+using CinemaApp.Application.CinemaApp.Commands.DeleteMovieRating;
 using CinemaApp.Application.CinemaApp.Commands.EditMovie;
 using CinemaApp.Application.CinemaApp.Queries.GetAgeRatingById;
 using CinemaApp.Application.CinemaApp.Queries.GetAgeRatings;
@@ -21,11 +23,13 @@ namespace CinemaApp.MVC.Controllers
     {
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
+        private readonly IUserContext _userContext;
 
-        public MovieController(IMediator mediator, IMapper mapper)
+        public MovieController(IMediator mediator, IMapper mapper, IUserContext userContext)
         {
             _mediator = mediator;
             _mapper = mapper;
+            _userContext = userContext;
         }
 
         [HttpGet]
@@ -160,6 +164,26 @@ namespace CinemaApp.MVC.Controllers
         {
             var data = await _mediator.Send(new GetMovieRatingsQuery() { MovieId = movieId });
             return Ok(data);
+        }
+
+        [HttpDelete]
+        [Authorize]
+        [Route("CinemaApp/{movieId}/DeleteRating/{id}/{createdBy}")]
+        public async Task<IActionResult> DeleteRating(int id, int movieId, string createdBy)
+        {
+            var currentUser = _userContext.GetCurrentUser();
+            if (currentUser == null || (!currentUser.IsInRole("Admin") && currentUser.Id != createdBy))
+            {
+                return BadRequest(ModelState);
+            }
+
+            DeleteMovieRatingCommand command = new();
+            command.Id = id;
+            command.MovieId = movieId;
+            command.CreatedBy = createdBy;
+
+            await _mediator.Send(command);
+            return Ok();
         }
     }
 }
