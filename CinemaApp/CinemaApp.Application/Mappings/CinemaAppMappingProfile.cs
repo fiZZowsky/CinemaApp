@@ -36,6 +36,7 @@ namespace CinemaApp.Application.Mappings
                 .ForMember(dest => dest.Duration, opt => opt.MapFrom(src => src.Movie.Duration))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Movie.Description))
                 .ForMember(dest => dest.ReleaseDate, opt => opt.MapFrom(src => src.Movie.ReleaseDate))
+                .ForMember(dest => dest.Rating, opt => opt.MapFrom(src => src.Movie.Rating))
                 .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.Hall.Number))
                 .ForMember(dest => dest.NormalTicketPrice, opt => opt.MapFrom(src => src.Movie.PriceList.NormalTicketPrice))
                 .ForMember(dest => dest.ReducedTicketPrice, opt => opt.MapFrom(src => src.Movie.PriceList.ReducedTicketPrice))
