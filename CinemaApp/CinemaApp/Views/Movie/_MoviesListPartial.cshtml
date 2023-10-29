@@ -1,0 +1,48 @@
+﻿@using CinemaApp.Application.CinemaApp;
+@model IEnumerable<CinemaApp.Application.CinemaApp.MovieDto>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @{
+                var ageRatingId = item.AgeRatingId;
+                var ageRatings = ViewBag.AgeRatings as List<AgeRatingDto>;
+                var ageRating = ageRatings.FirstOrDefault(ar => ar.Id == ageRatingId);
+                var ageRatingName = ageRating != null ? ageRating.MinimumAge : "No data";
+                @ageRatingName
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Language)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Convert.ToDateTime(item.ReleaseDate).ToString("dd.MM.yyyy")
+        </td>
+        <td>
+            @String.Format("{0:C}", item.NormalTicketPrice / 100.0)
+        </td>
+        <td>
+            @String.Format("{0:C}", item.ReducedTicketPrice / 100.0)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { item.EncodedTitle }) |
+            @Html.ActionLink("Details", "Details", new { item.EncodedTitle })
+        </td>
+    </tr>
+}

@@ -21,8 +21,16 @@
       "PackagePath": "staticwebassets\\Resources\\seat.png"
     },
     {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Home\\HomeSiteStyleSheet.css",
+      "PackagePath": "staticwebassets\\css\\Home\\HomeSiteStyleSheet.css"
+    },
+    {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Identity\\IdentityStyleSheet.css",
       "PackagePath": "staticwebassets\\css\\Identity\\IdentityStyleSheet.css"
+    },
+    {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Movie\\MovieDetailsStyleSheet.css",
+      "PackagePath": "staticwebassets\\css\\Movie\\MovieDetailsStyleSheet.css"
     },
     {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Repertoire\\RepertoireStyleSheet.css",

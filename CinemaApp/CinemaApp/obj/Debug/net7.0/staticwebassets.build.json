@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FmFSfPGV3PA0InGoUO+/nD9VAQLGlMINWVOnPECieic=",
+  "Hash": "O/eDwyuIXJlMEiqJXsrE41CYyyC3wE16yRGzodQaEao=",
   "Source": "CinemaApp.MVC",
   "BasePath": "_content/CinemaApp.MVC",
   "Mode": "Default",
@@ -1071,6 +1071,23 @@
       "OriginalItemSpec": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\CinemaApp.MVC.bundle.scp.css"
     },
     {
+      "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Home\\HomeSiteStyleSheet.css",
+      "SourceId": "CinemaApp.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\",
+      "BasePath": "_content/CinemaApp.MVC",
+      "RelativePath": "css/Home/HomeSiteStyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Home\\HomeSiteStyleSheet.css"
+    },
+    {
       "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Identity\\IdentityStyleSheet.css",
       "SourceId": "CinemaApp.MVC",
       "SourceType": "Discovered",
@@ -1086,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Identity\\IdentityStyleSheet.css"
+    },
+    {
+      "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Movie\\MovieDetailsStyleSheet.css",
+      "SourceId": "CinemaApp.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\",
+      "BasePath": "_content/CinemaApp.MVC",
+      "RelativePath": "css/Movie/MovieDetailsStyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Movie\\MovieDetailsStyleSheet.css"
     },
     {
       "Identity": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\css\\Repertoire\\RepertoireStyleSheet.css",
