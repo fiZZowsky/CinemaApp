@@ -1,0 +1,79 @@
+﻿@model CinemaApp.Application.CinemaApp.Commands.CreateRating.CreateRatingCommand
+
+<div class="row" id="CreateRatingPartial">
+    <div class="col-md-4">
+        <form asp-action="CreateRating" asp-controller="Movie">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="MovieId" class="form-control" type="hidden" />
+            <div class="form-group rating-box">
+                <label asp-for="RateValue" class="control-label"> Rate Value</label>
+                <input asp-for="RateValue" class="form-control" type="hidden" id="rate-value-input" name="RateValue" value="0" />
+                <div class="stars">
+                    <i class="bi bi-star" data-value="1"></i>
+                    <i class="bi bi-star" data-value="2"></i>
+                    <i class="bi bi-star" data-value="3"></i>
+                    <i class="bi bi-star" data-value="4"></i>
+                    <i class="bi bi-star" data-value="5"></i>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment" class="control-label"></label>
+                <input asp-for="Comment" class="form-control" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top: 1rem;">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    .rating-box .stars {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+        .rating-box .stars i {
+            color: #E0E1DD;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+            .rating-box .stars i.active {
+                color: #E0E1DD;
+            }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const stars = document.querySelectorAll(".rating-box .stars i");
+        const rateValueInput = document.getElementById("rate-value-input");
+
+        stars.forEach((star) => {
+            star.addEventListener("click", () => {
+                const value = star.getAttribute("data-value");
+                rateValueInput.value = value;
+                stars.forEach((s) => {
+                    if (s.getAttribute("data-value") <= value) {
+                        s.classList.add("active");
+                        s.classList.remove("bi-star");
+                        s.classList.add("bi-star-fill");
+                    } else {
+                        s.classList.remove("active");
+                        s.classList.remove("bi-star-fill");
+                        s.classList.add("bi-star");
+                    }
+                });
+            });
+        });
+    });
+</script>

@@ -1,5 +1,4 @@
-﻿using CinemaApp.Domain.Entities;
-using CinemaApp.Domain.Interfaces;
+﻿using CinemaApp.Domain.Interfaces;
 using CinemaApp.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,10 +47,29 @@ namespace CinemaApp.Infrastructure.Repositories
                 .Where(m => m.EncodedTitle == encodedTitle)
                 .FirstAsync();
 
-        public async Task<Movie> GetMovieById(int id)
+        public async Task<Domain.Entities.Movie> GetMovieById(int id)
             => await _dbContext.Movies
             .Include(m => m.AgeRating)
+            .Include(m => m.RatingList)
             .Where(m => m.Id == id)
             .FirstAsync();
+
+        public async Task RemoveRatingFromList(int ratingId, int movieId)
+        {
+            var movie = await _dbContext.Movies
+                .Include(m => m.RatingList)
+                .Where(m => m.Id == movieId)
+                .FirstOrDefaultAsync();
+
+            if (movie != null)
+            {
+                var ratingToRemove = movie.RatingList.FirstOrDefault(rl => rl.Id == ratingId);
+
+                if (ratingToRemove != null)
+                {
+                    movie.RatingList.Remove(ratingToRemove);
+                }
+            }
+        }
     }
 }

@@ -17,6 +17,12 @@
             <div class="genre-box p-2">
                 <p class="mb-0 text-center">@Model.Genre</p>
             </div>
+            <div class="rating-stars">
+                @for (int i = 0; i < 5; i++)
+                {
+                    <span class="bi @(i < Math.Floor(Model.Rating) ? "bi-star-fill" : i + 0.5 <= Model.Rating ? "bi-star-half" : "bi-star")"></span>
+                }
+            </div>
         </div>
         <div class="d-flex justify-content-around mt-4">
             <button class="tab-button active" id="details-tab">Details</button>
@@ -91,6 +97,24 @@
         max-height: 760px;
     }
 
+    .rating-stars {
+        padding-top: 1rem;
+        font-size: 24px;
+        color: #E0E1DD;
+    }
+
+        .rating-stars .bi {
+            margin-right: 5px;
+        }
+
+        .rating-stars .bi-star-fill {
+            color: #E0E1DD;
+        }
+
+        .rating-stars .bi-star-half {
+            color: #E0E1DD;
+        }
+
     @@media only screen and (max-width: 1023px) {
         h1 {
             margin-top: 1rem;
@@ -132,12 +156,12 @@
         descriptionTabButton.classList.remove('active');
         showTabButton.classList.remove('active');
         tabContent.innerHTML = `
-                            <p>Country: @Model.Country</p>
-                            <p>Age Rating: @ViewBag.AgeRating</p>
-                            <p>Language: @Model.Language</p>
-                            <p>Duration: @Model.Duration</p>
-                                <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
-                        `;
+                                <p>Country: @Model.Country</p>
+                                <p>Age Rating: @ViewBag.AgeRating</p>
+                                <p>Language: @Model.Language</p>
+                                <p>Duration: @Model.Duration</p>
+                                    <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
+                            `;
     }
 
     function displayDescription() {
@@ -152,9 +176,9 @@
         descriptionTabButton.classList.remove('active');
         showTabButton.classList.add('active');
         tabContent.innerHTML = `
-                            <p>Start Time: @Model.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
-                            <p>Hall Number: @Model.HallNumber</p>
-                            `;
+                                <p>Start Time: @Model.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
+                                <p>Hall Number: @Model.HallNumber</p>
+                                `;
     }
 
     detailsTabButton.addEventListener('click', () => {

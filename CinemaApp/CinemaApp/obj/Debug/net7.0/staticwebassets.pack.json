@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\js\\CinemaApp\\MainPage\\MainPageScripts.js"
     },
     {
+      "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\CinemaApp\\Movie\\Rating.js",
+      "PackagePath": "staticwebassets\\js\\CinemaApp\\Movie\\Rating.js"
+    },
+    {
       "Id": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp\\wwwroot\\js\\CinemaApp\\Repertoire\\RepertoirePageScripts.js",
       "PackagePath": "staticwebassets\\js\\CinemaApp\\Repertoire\\RepertoirePageScripts.js"
     },

@@ -1,35 +1,62 @@
 ﻿@model CinemaApp.Application.CinemaApp.MovieDto
+@using CinemaApp.Application.CinemaApp.Commands.CreateRating;
 @using Microsoft.AspNetCore.Mvc.Rendering
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<IdentityUser> UserManager
 
 @{
     ViewData["Title"] = "Details";
     var isAdmin = User.IsInRole("Admin");
+    var isAuthenticated = User.Identity.IsAuthenticated;
+
+    var currUser = await UserManager.GetUserAsync(User);
+    var currUserId = currUser?.Id;
 }
 
-<div class="row">
-    <div class="col-md-5 d-flex flex-column align-items-start column-spacing">
-        <a asp-action="Index" asp-controller="MovieShow" class="btn mb-3 text-light">< Repertoire</a>
-        <img class="image-item img-fluid" src="https://via.placeholder.com/640x960" alt="Movie Cover" />
-    </div>
-    <div class="col-md-6 d-flex flex-column text-light">
-        <h1>@Model.Title</h1>
-        <div class="pt-3">
-            <div class="genre-box p-2">
-                <p class="mb-0 text-center">@Model.Genre</p>
+<div>
+    <div class="row">
+        <div class="col-md-5 d-flex flex-column align-items-start column-spacing">
+            <a asp-action="Index" asp-controller="MovieShow" class="btn mb-3 text-light">< Repertoire</a>
+            <img class="image-item img-fluid" src="https://via.placeholder.com/640x960" alt="Movie Cover" />
+        </div>
+        <div class="col-md-6 d-flex flex-column text-light">
+            <h1>@Model.Title</h1>
+            <div class="pt-3">
+                <div class="genre-box p-2">
+                    <p class="mb-0 text-center">@Model.Genre</p>
+                </div>
+                <div class="rating-stars">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <span class="bi @(i < Math.Floor(Model.Rating) ? "bi-star-fill" : i + 0.5 <= Model.Rating ? "bi-star-half" : "bi-star")"></span>
+                    }
+                </div>
             </div>
+            <div class="d-flex justify-content-around mt-4">
+                <button class="tab-button active" id="details-tab">Details</button>
+                <button class="tab-button" id="description-tab">Description</button>
+            </div>
+            <div id="tab-content" class="tab-content">
+            </div>
+            @if (isAdmin)
+            {
+                <a class="btn btn-primary edit-button" asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle">Edit Movie</a>
+            }
         </div>
-        <div class="d-flex justify-content-around mt-4">
-            <button class="tab-button active" id="details-tab">Details</button>
-            <button class="tab-button" id="description-tab">Description</button>
-        </div>
-        <div id="tab-content" class="tab-content">
-        </div>
-        @if (isAdmin)
+    </div>
+    <div class="comment-section">
+        <h2 style="border-bottom: 2px solid #415A77; padding-bottom: 1rem;">User ratings</h2>
+        @if (isAuthenticated)
         {
-            <a class="btn btn-primary edit-button" asp-controller="Movie" asp-action="Edit" asp-route-encodedTitle="@Model.EncodedTitle">Edit Movie</a>
+            <partial name="_CreateMovieRatingPartial" model="new CreateRatingCommand() { MovieId = Model.MovieId }" />
         }
     </div>
+    <div class="comment-section" id="comments" data-movie-id="@Model.MovieId" data-curr-user-id="@currUserId"></div>
 </div>
+
+@section Scripts {
+    <script src="~/js/CinemaApp/Movie/Rating.js"></script>
+}
 
 <style>
     h1 {
@@ -87,14 +114,38 @@
         max-height: 760px;
     }
 
+    .rating-stars {
+        font-size: 24px;
+        color: #E0E1DD;
+    }
+
+        .rating-stars .bi {
+            margin-right: 5px;
+        }
+
+        .rating-stars .bi-star-fill {
+            color: #E0E1DD;
+        }
+
+        .rating-stars .bi-star-half {
+            color: #E0E1DD;
+        }
+
+    .comment-section {
+        color: #ffffff;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-bottom: 3rem;
+    }
+
     @@media only screen and (max-width: 1023px) {
+        .row {
+            --bs-gutter-x: 0;
+        }
+
         h1 {
             margin-top: 1rem;
             padding-top: 1rem;
-        }
-
-        .tab-content {
-            margin-bottom: 3rem;
         }
 
         .column-spacing {
@@ -113,6 +164,12 @@
         .image-item {
             padding-left: 0;
         }
+
+        .comment-section {
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 3rem;
+        }
     }
 </style>
 
@@ -125,12 +182,12 @@
         detailsTabButton.classList.add('active');
         descriptionTabButton.classList.remove('active');
         tabContent.innerHTML = `
-                            <p>Country: @Model.Country</p>
-                            <p>Age Rating: @ViewBag.AgeRating</p>
-                            <p>Language: @Model.Language</p>
-                            <p>Duration: @Model.Duration</p>
-                                <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
-                        `;
+                                    <p>Country: @Model.Country</p>
+                                    <p>Age Rating: @ViewBag.AgeRating</p>
+                                    <p>Language: @Model.Language</p>
+                                    <p>Duration: @Model.Duration</p>
+                                        <p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
+                                `;
     }
 
     function displayDescription() {

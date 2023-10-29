@@ -8,6 +8,7 @@
         Task<IEnumerable<Domain.Entities.Movie>> GetUpcomingMovies();
         Task<Domain.Entities.Movie> GetMovieByEncodedTitle(string encodedTitle);
         Task<Domain.Entities.Movie> GetMovieById(int id);
+        Task RemoveRatingFromList(int ratingId, int movieId);
         Task Commit();
     }
 }
