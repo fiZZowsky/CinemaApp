@@ -144,8 +144,14 @@
 
         const normalPriceSeats = parseInt($("#normalPriceSeats").val());
         const reducedPriceSeats = parseInt($("#reducedPriceSeats").val());
+        const sum = normalPriceSeats + reducedPriceSeats;
 
-        if (isNaN(normalPriceSeats) || isNaN(reducedPriceSeats)) {
+        if (selectedSeatNumbers.length < 1) {
+            toastr["error"]("No seat in the room was chosen.");
+            return;
+        }
+
+        if (isNaN(normalPriceSeats) || isNaN(reducedPriceSeats) || (sum != selectedSeatNumbers.length)) {
             toastr["error"]("Please enter valid numbers for normal and reduced price seats.");
             return;
         }
@@ -157,7 +163,6 @@
             data: $(this).serialize(),
             success: function (data) {
                 window.location.href = data.sessionUrl;
-                /*toastr["success"]("Bought new ticket");*/
             },
             error: function (data) {
                 toastr["error"]("Something went wrong");
