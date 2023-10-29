@@ -168,11 +168,11 @@ namespace CinemaApp.MVC.Controllers
 
         [HttpDelete]
         [Authorize]
-        [Route("CinemaApp/{movieId}/DeleteRating/{id}/{createdBy}")]
-        public async Task<IActionResult> DeleteRating(int id, int movieId, string createdBy)
+        [Route("CinemaApp/{movieId}/DeleteRating/{id}/{createdByUserId}")]
+        public async Task<IActionResult> DeleteRating(int id, int movieId, string createdByUserId)
         {
             var currentUser = _userContext.GetCurrentUser();
-            if (currentUser == null || (!currentUser.IsInRole("Admin") && currentUser.Id != createdBy))
+            if (currentUser == null || (!currentUser.IsInRole("Admin") && currentUser.Id != createdByUserId))
             {
                 return BadRequest(ModelState);
             }
@@ -180,7 +180,7 @@ namespace CinemaApp.MVC.Controllers
             DeleteMovieRatingCommand command = new();
             command.Id = id;
             command.MovieId = movieId;
-            command.CreatedBy = createdBy;
+            command.CreatedByUserId = createdByUserId;
 
             await _mediator.Send(command);
             return Ok();

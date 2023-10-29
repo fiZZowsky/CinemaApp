@@ -32,7 +32,8 @@ namespace CinemaApp.Application.CinemaApp.Commands.CreateRating
 
             var rating = _mapper.Map<Domain.Entities.Rating>(request);
 
-            rating.CreatedBy = currentUser.Id;
+            rating.CreatedByUserId = currentUser.Id;
+            rating.CreatedBy = currentUser.Email;
             await _ratingRepository.Create(rating);
 
             movie.CountRate();

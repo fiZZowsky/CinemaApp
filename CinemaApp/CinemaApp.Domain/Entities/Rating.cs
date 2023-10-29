@@ -12,6 +12,7 @@ namespace CinemaApp.Domain.Entities
         public int Id { get; set; }
         public int RateValue { get; set; }
         public string Comment { get; set; } = string.Empty;
+        public string CreatedByUserId { get; set; } = string.Empty;
         public string CreatedBy { get; set; } = string.Empty;
         public int MovieId { get; set; }
         public IdentityUser User { get; set; } = default!;

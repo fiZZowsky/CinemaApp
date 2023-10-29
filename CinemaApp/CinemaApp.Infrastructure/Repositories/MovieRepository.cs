@@ -50,6 +50,7 @@ namespace CinemaApp.Infrastructure.Repositories
         public async Task<Domain.Entities.Movie> GetMovieById(int id)
             => await _dbContext.Movies
             .Include(m => m.AgeRating)
+            .Include(m => m.RatingList)
             .Where(m => m.Id == id)
             .FirstAsync();
 

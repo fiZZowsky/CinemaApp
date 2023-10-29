@@ -12,14 +12,16 @@ $(document).ready(function () {
                 }
             }
 
-            const deleteButton = comment.createdBy === currUserId
-                ? `<button class="btn btn-danger delete-rating" data-comment-id="${comment.id}" data-created-by="${comment.createdBy}">Delete</button>`
+            const deleteButton = comment.createdByUserId === currUserId
+                ? `<button class="btn btn-danger delete-rating" data-comment-id="${comment.id}" data-created-by-user-id="${comment.createdByUserId}">Delete</button>`
                 : '';
 
             container.append(`
-            <div class="d-flex flex-column mb-3" style="border: 1px solid #495057; border-radius: 15px; background: rgb(255,255,255);
-                background: radial-gradient(circle at 100px 100px, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%); padding: 1rem;">
-                <div class="rating-stars">${ratingStars.join('')}</div>
+            <div class="d-flex flex-column mb-3" style="border: 1px solid #495057; border-radius: 15px; background: radial-gradient(circle at 100px 100px, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%); padding: 1rem;">
+                <div class="d-flex align-items-center card-header">
+                    <div style="margin-right:1rem;">${comment.createdBy}</div>
+                    <div class="rating-stars">${ratingStars.join('')}</div>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">${comment.comment}</h5>
                     ${deleteButton}
@@ -72,10 +74,10 @@ $(document).ready(function () {
     $("#comments").on("click", ".delete-rating", function () {
         const commentId = $(this).data("comment-id");
         const movieId = $("#comments").data("movieId");
-        const createdBy = $(this).data("createdBy");
+        const createdByUserId = $(this).data("createdByUserId");
 
         $.ajax({
-            url: `/CinemaApp/${movieId}/DeleteRating/${commentId}/${createdBy}`,
+            url: `/CinemaApp/${movieId}/DeleteRating/${commentId}/${createdByUserId}`,
             type: 'DELETE',
             success: function (data) {
                 toastr["success"]("Successfully deleted your rating.");
