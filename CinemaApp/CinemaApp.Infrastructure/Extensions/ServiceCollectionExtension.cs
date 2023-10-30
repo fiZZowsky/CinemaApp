@@ -17,7 +17,7 @@ namespace CinemaApp.Infrastructure.Extensions
             services.AddDbContext<CinemaAppDbContext>(options => options.UseSqlServer(
                 configuration.GetConnectionString("CinemaApp")));
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<CinemaAppDbContext>()
                 .AddDefaultTokenProviders();

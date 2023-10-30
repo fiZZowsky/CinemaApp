@@ -1,6 +1,9 @@
 ﻿using CinemaApp.Infrastructure.Persistance;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+using static QRCoder.PayloadGenerator;
 
 namespace CinemaApp.Infrastructure.Seeders
 {
@@ -23,18 +26,16 @@ namespace CinemaApp.Infrastructure.Seeders
             {
                 if (!await _userManager.Users.AnyAsync())
                 {
-                    var user1 = new IdentityUser
+                    var usersToCreate = new List<IdentityUser>
                     {
-                        UserName = "admin@example.com",
-                        Email = "admin@example.com"
+                        new IdentityUser { UserName = "admin@example.com", Email = "admin@example.com", EmailConfirmed = true },
+                        new IdentityUser { UserName = "piotrekr852@gmail.com", Email = "piotrekr852@gmail.com", EmailConfirmed = true }
                     };
-                    var user2 = new IdentityUser
+
+                    foreach (var userToCreate in usersToCreate)
                     {
-                        UserName = "piotrekr852@gmail.com",
-                        Email = "piotrekr852@gmail.com"
-                    };
-                    await _userManager.CreateAsync(user1, "Admin123!");
-                    await _userManager.CreateAsync(user2, "User123!");
+                        await _userManager.CreateAsync(userToCreate, "Password123!");
+                    }
                 }
                 if (!await _roleManager.Roles.AnyAsync())
                 {
@@ -160,13 +161,13 @@ namespace CinemaApp.Infrastructure.Seeders
                     await _dbContext.MovieShows.AddRangeAsync(movieShow1, movieShow2);
                     await _dbContext.SaveChangesAsync();
                 }
-                if(_dbContext.MovieShows.Any())
+                if (_dbContext.MovieShows.Any())
                 {
                     var showsToUpdate = await _dbContext.MovieShows
                         .Where(ms => ms.IsActive && ms.StartTime < DateTime.Now)
                         .ToListAsync();
 
-                    foreach( var show in showsToUpdate )
+                    foreach (var show in showsToUpdate)
                     {
                         show.IsActive = false;
                     }

@@ -245,8 +245,6 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\osx-x86\native\libwkhtmltox.dylib
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win7-x64\native\libwkhtmltox.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win7-x86\native\libwkhtmltox.dll
-C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
-C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
@@ -254,7 +252,6 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
-C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win\lib\net7.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
@@ -289,3 +286,6 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\refint\Ci
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\CinemaApp.MVC.pdb
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\CinemaApp.MVC.genruntimeconfig.cache
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Debug\net7.0\ref\CinemaApp.MVC.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
