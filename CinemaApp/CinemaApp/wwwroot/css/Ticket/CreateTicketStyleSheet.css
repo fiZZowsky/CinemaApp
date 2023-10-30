@@ -53,3 +53,48 @@
 .unavailable {
     background-image: url('../../Resources/seat-na.png');
 }
+
+.legend {
+    display: flex;
+    justify-content:space-between;
+    padding: 1rem 2rem 0.5rem 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    font-weight: 600;
+    max-width: 600px;
+}
+
+.legend-item {
+    display: flex;
+}
+
+.legend .img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.legend-item p {
+    margin-right: 10px;
+}
+
+.legend-container {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 2rem 2rem 1rem;
+}
+
+.form-control {
+    max-width: 100px;
+}
+
+@media only screen and (max-width: 1023px) {
+    .legend-container {
+        margin: 0;
+        padding: 1rem 1rem 0.5rem 1rem;
+    }
+
+    .legend {
+        padding: 1rem 1rem 0.5rem 1rem;
+    }
+}

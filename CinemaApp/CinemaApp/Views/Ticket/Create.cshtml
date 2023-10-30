@@ -21,6 +21,22 @@
                 <div class="seating">
                     <!-- Seats will be generated here -->
                 </div>
+                <div class="legend-container">
+                    <div class="legend">
+                        <div class="legend-item">
+                            <img src="~/resources/seat.png" class="img" />
+                            <p>Available</p>
+                        </div>
+                        <div class="legend-item">
+                            <img src="~/resources/seat-na.png" class="img" />
+                            <p>Unavailable</p>
+                        </div>
+                        <div class="legend-item">
+                            <img src="~/resources/seat-sel.png" class="img" />
+                            <p>Selected</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-4 pt-3">
@@ -46,26 +62,26 @@
                     <input type="hidden" asp-for="RowNumber" id="selected-rows" name="selectedRowNumbers" />
                     <input type="hidden" asp-for="NormalTicketPrice" value="@Model.NormalTicketPrice" />
                     <input type="hidden" asp-for="ReducedTicketPrice" value="@Model.ReducedTicketPrice" />
-                    <div class="form-group">
+                    <div class="form-group pb-2">
                         <label asp-for="NormalPriceSeats" class="control-label text-light">Number of normal tickets:</label>
                         <div class="input-group">
                             <button type="button" class="btn btn-danger btn-square" id="decreaseNormal">-</button>
-                            <input type="text" asp-for="NormalPriceSeats" class="form-control" id="normalPriceSeats" />
-                            <button type="button" class="btn btn-success btn-square" id="increaseNormal">+</button>
+                            <input type="text" asp-for="NormalPriceSeats" class="form-control text-center" id="normalPriceSeats" />
+                            <button type="button" class="btn btn-success btn-square" style="border-radius: 0 5px 5px 0;" id="increaseNormal">+</button>
                             <span asp-validation-for="NormalPriceSeats" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group pb-2">
                         <label asp-for="ReducedPriceSeats" class="control-label text-light">Number of discount tickets:</label>
                         <div class="input-group">
                             <button type="button" class="btn btn-danger btn-square" id="decreaseReduced">-</button>
-                            <input type="text" asp-for="ReducedPriceSeats" class="form-control" id="reducedPriceSeats" />
-                            <button type="button" class="btn btn-success btn-square" id="increaseReduced">+</button>
+                            <input type="text" asp-for="ReducedPriceSeats" class="form-control text-center" id="reducedPriceSeats" />
+                            <button type="button" class="btn btn-success btn-square" style="border-radius: 0 5px 5px 0;" id="increaseReduced">+</button>
                             <span asp-validation-for="ReducedPriceSeats" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group mt-2">
-                        <input type="submit" id="submitButton" value="Create" class="btn btn-primary" />
+                        <input type="submit" id="submitButton" value="Purchase Ticket" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
