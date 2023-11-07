@@ -26,7 +26,7 @@ namespace CinemaApp.Infrastructure.Repositories
 
         public async Task Create(Domain.Entities.Ticket ticket, int movieShowId, List<Domain.Entities.Seat> seats)
         {
-            ticket.Guid = GenerateNewGuid();
+            ticket.Uid = GenerateNewUid();
             ticket.MovieShowId = movieShowId;
             ticket.Seats = seats;
 
@@ -38,7 +38,7 @@ namespace CinemaApp.Infrastructure.Repositories
 
         private async Task<byte[]> CreateQRCode(Domain.Entities.Ticket ticket)
         {
-            string data = $"https://10.0.2.2:7190/Ticket/TicketCheck/{ticket.Guid}";
+            string data = $"http://192.168.8.143:8082/Ticket/TicketCheck/{ticket.Uid}";
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -51,9 +51,33 @@ namespace CinemaApp.Infrastructure.Repositories
             }
         }
 
-        private static Guid GenerateNewGuid()
+        private string GenerateNewUid()
         {
-            return Guid.NewGuid();
+            Random random = new Random();
+            string UID = "";
+
+            do
+            {
+                byte[] uidBytes = new byte[4];
+                random.NextBytes(uidBytes);
+
+
+                for (int i = 0; i < uidBytes.Length; i++)
+                {
+                    UID += "0x" + uidBytes[i].ToString("X2");
+                }
+            } while (IsNewUidAlreadyExist(UID));
+
+            return UID;
+        }
+
+        private bool IsNewUidAlreadyExist(string uid)
+        {
+            if (_dbContext.Tickets.Any(t => t.Uid == uid))
+            {
+                return true;
+            }
+            return false;
         }
 
         public async Task<IEnumerable<Ticket>> GetAll()
@@ -65,17 +89,9 @@ namespace CinemaApp.Infrastructure.Repositories
                 .OrderBy(ticket => ticket.PurchaseDate)
                 .ToListAsync();
 
-        public async Task<Domain.Entities.Ticket> GetTicketByGuid(Guid guid)
-            => await _dbContext.Tickets
-            .Include(ticket => ticket.MovieShow)
-                .ThenInclude(show => show.Movie)
-            .Include(ticket => ticket.Seats)
-                .ThenInclude(seat => seat.Hall)
-            .FirstAsync(ticket => ticket.Guid == guid);
-
-        public async Task<byte[]> CreatePdf(Guid guid, string htmlContent)
+        public async Task<byte[]> CreatePdf(string uid, string htmlContent)
         {
-            var ticket = await GetTicketByGuid(guid);
+            var ticket = await GetTicketByUid(uid);
 
             var globalSettings = new GlobalSettings
             {
@@ -83,7 +99,7 @@ namespace CinemaApp.Infrastructure.Repositories
                 Orientation = Orientation.Portrait,
                 PaperSize = PaperKind.A4,
                 Margins = new MarginSettings { Top = 10 },
-                DocumentTitle = "Ticket " + guid
+                DocumentTitle = "Ticket " + uid
             };
 
             string base64Image = Convert.ToBase64String(ticket.QRCode);
@@ -93,7 +109,7 @@ namespace CinemaApp.Infrastructure.Repositories
             var rowNumbers = string.Join(", ", ticket.Seats.Select(seat => seat.RowNumber.ToString()).Distinct());
 
             htmlContent = htmlContent
-                .Replace("@Model.Guid", guid.ToString())
+                .Replace("@Model.Uid", uid)
                 .Replace("@Model.Title", ticket.MovieShow.Movie.Title)
                 .Replace("@Model.Language", ticket.MovieShow.Movie.Language)
                 .Replace("@Model.Duration", ticket.MovieShow.Movie.Duration.ToString())
@@ -187,5 +203,15 @@ namespace CinemaApp.Infrastructure.Repositories
             .Where(ticket => ticket.PurchasedById == id)
             .OrderBy(ticket => ticket.PurchaseDate)
             .ToListAsync();
+
+        public async Task<Ticket> GetTicketByUid(string uid)
+            => await _dbContext.Tickets
+            .Include(ticket => ticket.MovieShow)
+                .ThenInclude(show => show.Movie)
+                .ThenInclude(m => m.AgeRating)
+            .Include(ticket => ticket.Seats)
+                .ThenInclude(seat => seat.Hall)
+            .Where(t => t.Uid == uid)
+            .FirstOrDefaultAsync();
     }
 }

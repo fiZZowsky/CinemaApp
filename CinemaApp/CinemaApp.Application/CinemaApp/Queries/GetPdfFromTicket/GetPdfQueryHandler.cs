@@ -14,7 +14,7 @@ namespace CinemaApp.Application.CinemaApp.Queries.GetPdfFromTicket
 
         public async Task<byte[]> Handle(GetPdfQuery request, CancellationToken cancellationToken)
         {
-            var pdf = await _ticketRepository.CreatePdf(request.Guid, request.HtmlContent);
+            var pdf = await _ticketRepository.CreatePdf(request.Uid, request.HtmlContent);
             return pdf;
         }
     }

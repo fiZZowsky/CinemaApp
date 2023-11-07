@@ -1,0 +1,100 @@
+﻿.cinema-container {
+    padding: 20px;
+}
+
+.seating {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.selected-seats {
+    flex-shrink: 0;
+    width: 30%;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+}
+
+    .selected-seats p {
+        border: 1px solid #656565;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+.row {
+    --bs-gutter-x: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.seat {
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.available {
+    background-image: url('../../Resources/seat.png');
+}
+
+.selected {
+    background-image: url('../../Resources/seat-sel.png');
+}
+
+.unavailable {
+    background-image: url('../../Resources/seat-na.png');
+}
+
+.legend {
+    display: flex;
+    justify-content:space-between;
+    padding: 1rem 2rem 0.5rem 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    font-weight: 600;
+    max-width: 600px;
+}
+
+.legend-item {
+    display: flex;
+}
+
+.legend .img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.legend-item p {
+    margin-right: 10px;
+}
+
+.legend-container {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 2rem 2rem 1rem;
+}
+
+.form-control {
+    max-width: 100px;
+}
+
+@media only screen and (max-width: 1023px) {
+    .legend-container {
+        margin: 0;
+        padding: 1rem 1rem 0.5rem 1rem;
+    }
+
+    .legend {
+        padding: 1rem 1rem 0.5rem 1rem;
+    }
+}

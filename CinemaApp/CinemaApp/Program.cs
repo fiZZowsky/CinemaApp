@@ -3,6 +3,7 @@ using CinemaApp.Infrastructure.Seeders;
 using CinemaApp.Application.Extensions;
 using DinkToPdf.Contracts;
 using DinkToPdf;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,17 @@ builder.Services.AddControllersWithViews(option => option.SuppressImplicitRequir
 
 builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
 builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+        builder => builder
+            .WithOrigins("http://192.168.8.143:8082")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials());
+});
+
 builder.Services.AddApplication();
 
 var app = builder.Build();
@@ -30,6 +42,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseCors("AllowSpecificOrigins");
 
 app.UseAuthorization();
 

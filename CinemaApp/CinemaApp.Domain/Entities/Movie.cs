@@ -23,12 +23,18 @@ namespace CinemaApp.Domain.Entities
 
         public List<MovieShow> MovieShows { get; set; } = default!;
         public PriceList PriceList { get; set; } = default!;
-        public ICollection<Rating> RatingList { get; set; } = default!;
+        public ICollection<Rating>? RatingList { get; set; } = default!;
 
         public string EncodedTitle { get; private set; } = default!;
 
         public void EncodeTitle() => EncodedTitle = Title.ToLower().Replace(" ", "_");
 
-        public void CountRate() => Rating = RatingList.Any() ? Math.Round(RatingList.Average(rl => rl.RateValue), 1) : 0.0;
+        public void CountRate()
+        {
+            Rating = RatingList?.Any() == true
+        ? Math.Round(RatingList.Average(rl => rl.RateValue), 1)
+        : 0.0;
+        }
+
     }
 }

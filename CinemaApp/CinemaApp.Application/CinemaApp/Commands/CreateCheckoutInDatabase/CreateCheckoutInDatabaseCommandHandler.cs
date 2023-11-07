@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using CinemaApp.Application.ApplicationUser;
-using CinemaApp.Application.CinemaApp.Queries.GetTicketByGuid;
+﻿using CinemaApp.Application.ApplicationUser;
 using CinemaApp.Domain.Interfaces;
 using MediatR;
 
@@ -27,12 +25,12 @@ namespace CinemaApp.Application.CinemaApp.Commands.CreateCheckoutInDatabase
                 return Unit.Value;
             }
 
-            var ticket = await _ticketRepository.GetTicketByGuid(request.TicketId);
+            var ticket = await _ticketRepository.GetTicketByUid(request.TicketId);
 
             var payment = new Domain.Entities.Payment
             {
                 SessionId = request.SessionId,
-                TicketId = ticket.Guid,
+                TicketId = ticket.Uid,
                 PurchasedById = ticket.PurchasedById,
                 PurchaseDate = ticket.PurchaseDate
             };

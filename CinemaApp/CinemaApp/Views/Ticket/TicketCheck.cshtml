@@ -8,7 +8,7 @@
 
 <div class="container"> 
     <div class="row">
-        <h1 class="text-light">Ticket @Model.Guid</h1>
+        <h1 class="text-light">Ticket @Model.Uid</h1>
         <p class="text-light">Movie: @Model.MovieTitle</p>
         <p class="text-light">Start Time: @Model.StartTime</p>
         <p class="text-light">Hall Number: @Model.HallNumber</p>
@@ -28,7 +28,7 @@
         <p class="text-light">Is Scanned: @Model.IsScanned</p>
         <br />
         <form asp-controller="Ticket" asp-action="TicketCheck" method="post">
-            @Html.HiddenFor(model => model.Guid)
+            @Html.HiddenFor(model => model.Uid)
             @Html.HiddenFor(model => model.IsScanned)
             <button type="submit" class="btn btn-primary">Set Ticket As Checked</button>
         </form>

@@ -1,0 +1,43 @@
+﻿body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    border: 1px solid #000000;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #2A4247;
+    width: 100%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.spacing-beween {
+    display: flex;
+    justify-content: space-between;
+}
+
+.qr-code {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.ticket-data {
+    font-size: 15px;
+    color: #2A4247;
+    font-weight: 700;
+}
+
+    .ticket-data h2 {
+        padding-bottom: 0.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }

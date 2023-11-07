@@ -11,7 +11,7 @@ namespace CinemaApp.Domain.Entities
     {
         public int Id { get; set; }
         public string SessionId { get; set; } = default!;
-        public Guid TicketId { get; set; }
+        public string TicketId { get; set; } = default!;
         public string PurchasedById { get; set; } = default!;
         public DateTime PurchaseDate { get; set; }
         public Ticket Ticket { get; set; } = default!;

@@ -74,6 +74,7 @@ namespace CinemaApp.Application.Mappings
 
             CreateMap<Domain.Entities.Ticket, TicketCheckDto>()
                 .ForMember(dest => dest.MovieTitle, opt => opt.MapFrom(src => src.MovieShow.Movie.Title))
+                .ForMember(dest => dest.MovieDuration, opt => opt.MapFrom(src => src.MovieShow.Movie.Duration))
                 .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.MovieShow.StartTime))
                 .ForMember(dest => dest.HallNumber, opt => opt.MapFrom(src => src.MovieShow.Hall.Number))
                 .ForMember(dest => dest.RowNumber, opt => opt.MapFrom(src => src.Seats.Select(seat => seat.RowNumber).ToList()))

@@ -4,11 +4,11 @@ namespace CinemaApp.Application.CinemaApp.Commands.EditTicket
 {
     public class EditTicketCommand : IRequest
     {
-        public Guid Guid { get; set; }
+        public string Uid { get; set; }
 
-        public EditTicketCommand(Guid guid)
+        public EditTicketCommand(string uid)
         {
-            Guid = guid;
+            Uid = uid;
         }
     }
 }

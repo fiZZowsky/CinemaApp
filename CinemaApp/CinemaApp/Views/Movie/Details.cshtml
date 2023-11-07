@@ -51,7 +51,7 @@
             <partial name="_CreateMovieRatingPartial" model="new CreateRatingCommand() { MovieId = Model.MovieId }" />
         }
     </div>
-    <div class="comment-section" id="comments" data-movie-id="@Model.MovieId" data-curr-user-id="@currUserId"></div>
+    <div class="comment-section" id="comments" data-movie-id="@Model.MovieId" data-curr-user-id="@currUserId" data-is-admin="@isAdmin"></div>
 </div>
 
 @section Scripts {

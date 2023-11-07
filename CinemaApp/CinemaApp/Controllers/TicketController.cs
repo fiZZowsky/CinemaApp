@@ -7,12 +7,11 @@ using CinemaApp.Application.CinemaApp.Commands.EditTicket;
 using CinemaApp.Application.CinemaApp.Commands.SendEmailWithAttachement;
 using CinemaApp.Application.CinemaApp.Queries.GetAllTickets;
 using CinemaApp.Application.CinemaApp.Queries.GetHallByNumber;
-using CinemaApp.Application.CinemaApp.Queries.GetMovieById;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieShow;
 using CinemaApp.Application.CinemaApp.Queries.GetMovieShowByEncodedTitle;
 using CinemaApp.Application.CinemaApp.Queries.GetPdfFromTicket;
 using CinemaApp.Application.CinemaApp.Queries.GetSeat;
-using CinemaApp.Application.CinemaApp.Queries.GetTicketByGuid;
+using CinemaApp.Application.CinemaApp.Queries.GetTicketByUid;
 using CinemaApp.Application.CinemaApp.Queries.GetTicketByUser;
 using CinemaApp.Application.CinemaApp.Queries.GetUnavailableSeats;
 using CinemaApp.Domain.Entities;
@@ -22,6 +21,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Text;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -131,12 +131,12 @@ namespace CinemaApp.MVC.Controllers
             // Add purchase to user history
             if (TempData.TryGetValue("SessionId", out object sessionIdObj) && sessionIdObj is string sessionId)
             {
-                CreateCheckoutInDatabaseCommand checkoutCommand = new CreateCheckoutInDatabaseCommand(sessionId, ticket.Guid);
+                CreateCheckoutInDatabaseCommand checkoutCommand = new CreateCheckoutInDatabaseCommand(sessionId, ticket.Uid);
                 await _mediator.Send(checkoutCommand);
             }
 
             // Send Created Ticket in Mail
-            await SendEmailWithTicket(ticket.Guid);
+            await SendEmailWithTicket(ticket.Uid);
 
             this.SetNotification("success", "Successfully bought new ticket.");
 
@@ -145,27 +145,27 @@ namespace CinemaApp.MVC.Controllers
 
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> GetPdfTicketFile(Guid guid)
+        public async Task<IActionResult> GetPdfTicketFile(string uid)
         {
-            byte[] pdfBytes = await GeneratePDF(guid);
+            byte[] pdfBytes = await GeneratePDF(uid);
             return File(pdfBytes, "application/pdf", "ticket.pdf");
         }
 
         [Authorize]
-        private async Task<byte[]> GeneratePDF(Guid guid)
+        private async Task<byte[]> GeneratePDF(string uid)
         {
             var templateFilePath = Path.Combine(Directory.GetCurrentDirectory(), "assets", "Ticket.html");
             var htmlContent = System.IO.File.ReadAllText("Templates\\Ticket.html");
 
-            byte[] pdfBytes = await _mediator.Send(new GetPdfQuery(guid, htmlContent));
+            byte[] pdfBytes = await _mediator.Send(new GetPdfQuery(uid, htmlContent));
 
             return pdfBytes;
         }
 
         [Authorize]
-        private async Task<IActionResult> SendEmailWithTicket(Guid guid)
+        private async Task<IActionResult> SendEmailWithTicket(string uid)
         {
-            var ticketPdf = await GeneratePDF(guid);
+            var ticketPdf = await GeneratePDF(uid);
             string emailTemplateText = System.IO.File.ReadAllText("Templates\\Email.html");
 
             SendEmailWithAttachementCommand command = new SendEmailWithAttachementCommand(emailTemplateText, ticketPdf);
@@ -198,19 +198,19 @@ namespace CinemaApp.MVC.Controllers
             return RedirectToAction("Create", "Ticket", ticketDto);
         }
 
-        // https://10.0.2.2:7190/Ticket/TicketCheck/{guid}
+        // https://localhost/Ticket/TicketCheck/{uid}
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        [Route("/Ticket/TicketCheck/{guid}")]
-        public async Task<IActionResult> TicketCheck(Guid guid)
+        [Route("/Ticket/TicketCheck/{uid}")]
+        public async Task<IActionResult> TicketCheck(string uid)
         {
-            var ticket = await _mediator.Send(new GetTicketByGuidQuery(guid));
+            var ticket = await _mediator.Send(new GetTicketByUidQuery(uid));
             return View(ticket);
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> TicketCheck(Guid guid, bool isScanned)
+        public async Task<IActionResult> TicketCheck(string uid, bool isScanned)
         {
             if (isScanned == true)
             {
@@ -218,12 +218,54 @@ namespace CinemaApp.MVC.Controllers
             }
             else
             {
-                EditTicketCommand command = new EditTicketCommand(guid);
+                EditTicketCommand command = new EditTicketCommand(uid);
                 await _mediator.Send(command);
                 this.SetNotification("success", "Ticket scanned successfully.");
             }
 
-            return RedirectToAction(nameof(TicketCheck), new { guid });
+            return RedirectToAction(nameof(TicketCheck), new { uid });
+        }
+
+        // RFID card have UID: 0x530xdd0xb20x05
+        [HttpPost]
+        public async Task<IActionResult> ScannedTicketCheck()
+        {
+            try
+            {
+                using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+                {
+                    string receivedData = await reader.ReadToEndAsync();
+
+                    DateTime actualDateTime = DateTime.Now;
+                    int hallNumber = 1; // Example hall (possible values: 1 or 2)
+
+                    var ticket = await _mediator.Send(new GetTicketByUidQuery(receivedData));
+
+                    if (ticket != null)
+                    {
+                        DateTime movieStartTime = ticket.StartTime;
+                        DateTime earliestEntryTime = movieStartTime.AddMinutes(-10);
+                        DateTime latestEntryTime = movieStartTime.AddMinutes(ticket.MovieDuration);
+
+                        if (ticket.HallNumber == hallNumber && (actualDateTime >= earliestEntryTime && actualDateTime <= latestEntryTime))
+                        {
+                            if (ticket.IsScanned == false)
+                            {
+                                EditTicketCommand command = new EditTicketCommand(ticket.Uid);
+                                await _mediator.Send(command);
+                            }
+
+                            return Ok("success");
+                        }
+                    }
+
+                    return Ok("failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("An error occurred while processing data from Arduino. " + ex.Message);
+            }
         }
     }
 }

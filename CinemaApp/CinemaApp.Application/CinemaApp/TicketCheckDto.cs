@@ -2,8 +2,9 @@
 {
     public class TicketCheckDto
     {
-        public Guid Guid { get; set; }
+        public string Uid { get; set; } = default!;
         public string MovieTitle { get; set; } = default!;
+        public int MovieDuration { get; set; }
         public DateTime StartTime { get; set; }
         public int HallNumber { get; set; }
         public List<int> RowNumber { get; set; } = default!;

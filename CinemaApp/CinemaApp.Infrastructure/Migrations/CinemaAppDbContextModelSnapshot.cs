@@ -17,7 +17,7 @@ namespace CinemaApp.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -160,8 +160,9 @@ namespace CinemaApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("TicketId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("TicketId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -237,9 +238,8 @@ namespace CinemaApp.Infrastructure.Migrations
 
             modelBuilder.Entity("CinemaApp.Domain.Entities.Ticket", b =>
                 {
-                    b.Property<Guid>("Guid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Uid")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsScanned")
                         .HasColumnType("bit");
@@ -264,7 +264,7 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Property<int>("ReducedPriceSeats")
                         .HasColumnType("int");
 
-                    b.HasKey("Guid");
+                    b.HasKey("Uid");
 
                     b.HasIndex("MovieShowId");
 
@@ -480,12 +480,12 @@ namespace CinemaApp.Infrastructure.Migrations
                     b.Property<int>("SeatsId")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("TicketsGuid")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("TicketsUid")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("SeatsId", "TicketsGuid");
+                    b.HasKey("SeatsId", "TicketsUid");
 
-                    b.HasIndex("TicketsGuid");
+                    b.HasIndex("TicketsUid");
 
                     b.ToTable("SeatTicket");
                 });
@@ -672,7 +672,7 @@ namespace CinemaApp.Infrastructure.Migrations
 
                     b.HasOne("CinemaApp.Domain.Entities.Ticket", null)
                         .WithMany()
-                        .HasForeignKey("TicketsGuid")
+                        .HasForeignKey("TicketsUid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

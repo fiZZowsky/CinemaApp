@@ -14,7 +14,7 @@ namespace CinemaApp.Application.CinemaApp.Commands.EditTicket
 
         public async Task<Unit> Handle(EditTicketCommand request, CancellationToken cancellationToken)
         {
-            var ticket = await _ticketRepository.GetTicketByGuid(request.Guid);
+            var ticket = await _ticketRepository.GetTicketByUid(request.Uid);
 
             ticket.IsScanned = true;
 

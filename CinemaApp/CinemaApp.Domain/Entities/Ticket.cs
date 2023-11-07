@@ -11,7 +11,7 @@ namespace CinemaApp.Domain.Entities
     public class Ticket
     {
         [Key]
-        public Guid Guid { get; set; }
+        public required string Uid { get; set; }
         public int MovieShowId { get; set; } = default!;
         public List<Seat> Seats { get; set; } = new();
         public DateTime PurchaseDate { get; set; }
