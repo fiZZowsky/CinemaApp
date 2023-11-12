@@ -11,6 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Application", "Ci
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Infrastructure", "CinemaApp.Infrastructure\CinemaApp.Infrastructure.csproj", "{5F253848-8899-4DBB-B460-B319F048F95C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Domain.Tests", "CinemaApp.Domain.Tests\CinemaApp.Domain.Tests.csproj", "{5CFE8CC4-1ABB-407A-96B6-52F9A6042EA7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.Application.Tests", "CinemaApp.Application.Tests\CinemaApp.Application.Tests.csproj", "{DDDDF851-8E9B-40C6-9EC4-94C338F007E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{104C6A9D-D80C-4235-AF12-8DCEEC53052E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaApp.MVC.Tests", "CinemaApp.MVC.Tests\CinemaApp.MVC.Tests.csproj", "{EBF51806-CEF6-44C1-BF5B-5A90AA257EBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +41,26 @@ Global
 		{5F253848-8899-4DBB-B460-B319F048F95C}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{5F253848-8899-4DBB-B460-B319F048F95C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F253848-8899-4DBB-B460-B319F048F95C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CFE8CC4-1ABB-407A-96B6-52F9A6042EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CFE8CC4-1ABB-407A-96B6-52F9A6042EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CFE8CC4-1ABB-407A-96B6-52F9A6042EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CFE8CC4-1ABB-407A-96B6-52F9A6042EA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDDDF851-8E9B-40C6-9EC4-94C338F007E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDDDF851-8E9B-40C6-9EC4-94C338F007E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDDDF851-8E9B-40C6-9EC4-94C338F007E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDDDF851-8E9B-40C6-9EC4-94C338F007E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBF51806-CEF6-44C1-BF5B-5A90AA257EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBF51806-CEF6-44C1-BF5B-5A90AA257EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBF51806-CEF6-44C1-BF5B-5A90AA257EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBF51806-CEF6-44C1-BF5B-5A90AA257EBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5CFE8CC4-1ABB-407A-96B6-52F9A6042EA7} = {104C6A9D-D80C-4235-AF12-8DCEEC53052E}
+		{DDDDF851-8E9B-40C6-9EC4-94C338F007E0} = {104C6A9D-D80C-4235-AF12-8DCEEC53052E}
+		{EBF51806-CEF6-44C1-BF5B-5A90AA257EBE} = {104C6A9D-D80C-4235-AF12-8DCEEC53052E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FBF696F7-704F-428F-90EC-AC92948F1EB0}

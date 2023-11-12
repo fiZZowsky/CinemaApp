@@ -1,0 +1,6 @@
+{
+  "CinemaApp.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp.Application",
+  "CinemaApp.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp.Domain",
+  "CinemaApp.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp.Infrastructure",
+  "CinemaApp.MVC, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp"
+}

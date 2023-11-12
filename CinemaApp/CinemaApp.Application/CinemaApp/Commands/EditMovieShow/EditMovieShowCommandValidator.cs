@@ -20,13 +20,16 @@ namespace CinemaApp.Application.CinemaApp.Commands.EditMovieShow
                 .NotEmpty()
                 .Custom((hallNumber, context) =>
             {
-                var startTime = context.InstanceToValidate.StartTime;
-                var movieTitle = context.InstanceToValidate.Title;
-
-                var isHallBusy = movieShowRepository.IsHallBusy((int)hallNumber, startTime, movieTitle).Result;
-                if (isHallBusy)
+                if (hallNumber.HasValue)
                 {
-                    context.AddFailure("This hall is not available in this time.");
+                    var startTime = context.InstanceToValidate.StartTime;
+                    var movieTitle = context.InstanceToValidate.Title;
+
+                    var isHallBusy = movieShowRepository.IsHallBusy(hallNumber.Value, startTime, movieTitle).Result;
+                    if (isHallBusy)
+                    {
+                        context.AddFailure("This hall is not available in this time.");
+                    }
                 }
             });
         }
