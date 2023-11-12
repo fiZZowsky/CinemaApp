@@ -1,0 +1,3 @@
+// #define SERVER_IP_ADDRESS {192, 168, 226, 146}
+#define SERVER_IP_ADDRESS {192, 168, 137, 1}
+#define PORT 8082

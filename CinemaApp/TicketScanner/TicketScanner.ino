@@ -3,6 +3,7 @@
 #include <WiFiS3.h>
 
 #include "wifi_secrets.h"
+#include "env.h"
 
 #define duration 5000
 
@@ -13,16 +14,14 @@ unsigned long time;
 
 char ssid[] = SECRET_SSID;
 char pass[] = SECRET_PASS;
+
+IPAddress serverIPAddress(SERVER_IP_ADDRESS);
+String host = serverIPAddress + ":" + PORT;
+
 int keyIndex = 0;
 
 int status = WL_IDLE_STATUS;
 WiFiClient client;
-
-// IPAddress server(192, 168, 137, 1);
-IPAddress server(192, 168, 226, 146);
-
-// String host = "192.168.137.1:8082";
-String host = "192.168.226.146:8082";
 
 unsigned long lastConnectionTime = 0;
 const unsigned long postingInterval = 5L * 1000L;
@@ -91,7 +90,7 @@ void loop() {
 void httpRequest() {
   client.stop();
 
-  if (client.connect(server, 8082)) {
+  if (client.connect(serverIPAddress, PORT)) {
     Serial.println("connecting...");
 
     // Tworzenie pełnego żądania HTTP
