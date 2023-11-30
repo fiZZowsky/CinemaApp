@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Text;
+using System.Text.Json;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -198,14 +199,12 @@ namespace CinemaApp.MVC.Controllers
             return RedirectToAction("Create", "Ticket", ticketDto);
         }
 
-        // https://localhost/Ticket/TicketCheck/{uid}
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        [Route("/Ticket/TicketCheck/{uid}")]
-        public async Task<IActionResult> TicketCheck(string uid)
+        public async Task<IActionResult> GetTicketByUid(string uid)
         {
             var ticket = await _mediator.Send(new GetTicketByUidQuery(uid));
-            return View(ticket);
+            return PartialView("_TicketDetailsPartial", ticket);
         }
 
         [HttpPost]

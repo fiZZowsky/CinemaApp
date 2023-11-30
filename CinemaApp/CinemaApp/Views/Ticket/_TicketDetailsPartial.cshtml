@@ -1,0 +1,40 @@
+﻿@using CinemaApp.Application.CinemaApp;
+@model TicketCheckDto;
+
+@{
+    var isAdmin = User.IsInRole("Admin");
+}
+
+<div class="border-light m-2">
+    <div class="text-light">
+        <h3 class="bold pb-3">Ticket @Model.Uid</h3>
+        <div class="pb-3"><i class="bi bi-film"></i><span class="pe-3"> @Model.MovieTitle </span><i class="bi bi-clock"><span> @Model.MovieDuration min</span></i></div>
+        <div class="pb-3"><i class="bi bi-calendar"></i> @Model.StartTime</div>
+        <div class="pb-3">Hall @Model.HallNumber</div>
+        <div class="pb-3">
+            Seats: @foreach (var seat in Model.SeatNumber)
+            {
+                <span>@seat </span>
+            }
+        </div>
+        <div class="pb-3">
+            Rows: @foreach (var row in Model.RowNumber)
+            {
+                <span>@row </span>
+            }
+        </div>
+        <div class="pb-3">Normal Price Seats: @Model.NormalPriceSeats</div>
+        <div class="pb-3">Reduced Price Seats: @Model.ReducedPriceSeats</div>
+        <div class="pb-3"><i class="bi bi-credit-card"></i> @Model.PurchaseDate</div>
+        <div class="pb-3">Scanned: @Model.IsScanned</div>
+        <br />
+        @if (isAdmin)
+        {
+            <form asp-controller="Ticket" asp-action="TicketCheck" method="post">
+                @Html.HiddenFor(model => model.Uid)
+                @Html.HiddenFor(model => model.IsScanned)
+                <button type="submit" class="btn btn-primary">Set Ticket As Checked</button>
+            </form>
+        }
+    </div>
+</div>

@@ -1,86 +1,85 @@
-﻿@model IEnumerable<CinemaApp.Application.CinemaApp.TicketDto>
+﻿@using CinemaApp.Application.CinemaApp;
+@model IEnumerable<CinemaApp.Application.CinemaApp.TicketDto>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tickets";
 }
 
-<h1 class="text-light">Index</h1>
+<div class="container py-3">
+    <div class="row">
+        <div class="col-md-4">
+            @foreach (var ticket in Model)
+            {
+                <div class="card mb-2" onclick="showTicketDetails('@ticket.Uid')">
+                    <div class="row mt-1">
+                        <div class="col-md-6">
+                            <h4 class="pt-3 font-weight-bold">
+                                @ticket.Uid.ToString()
+                            </h4>
+                            <div class="d-flex flex-row">
+                                <div><i class="bi bi-calendar"></i><span class="ml-2">@ticket.StartTime.ToString("dd.MM.yyyy HH:mm")</span></div>
+                                <div class="px-2"><i class="bi bi-clock"></i><span class="ml-2">@ticket.Duration min</span></div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div><i class="bi bi-film"></i><span class="ml-2">@ticket.MovieTitle</span></div>
+                            <div>Hall @ticket.HallNumber</div>
+                            <div>
+                                Seats: @foreach (var seat in ticket.SeatNumber)
+                                {
+                                    <span>@seat </span>
+                                }
+                            </div>
+                            <div>
+                                Rows: @foreach (var row in ticket.RowNumber)
+                                {
+                                    <span>@row </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-2 d-flex align-items-center">
+                            <a class="btn btn-primary" asp-controller="Ticket" asp-action="GetPdfTicketFile" asp-route-uid="@ticket.Uid">Get ticket</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-8 p-3 text-light" id="details">
+        </div>
+    </div>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.MovieTitle)
-            </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.Language)
-            </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.Duration)
-            </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.StartTime)
-            </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.HallNumber)
-            </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.RowNumber)
-            </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.SeatNumber)
-            </th>
-            <th class="text-light">
-                @Html.DisplayNameFor(model => model.QRCode)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td class="text-light">
-                    @Html.DisplayFor(modelItem => item.MovieTitle)
-                </td>
-                <td class="text-light">
-                    @Html.DisplayFor(modelItem => item.Language)
-                </td>
-                <td class="text-light">
-                    @Html.DisplayFor(modelItem => item.Duration)
-                </td>
-                <td class="text-light">
-                    @item.StartTime.ToString("dd.MM.yyyy HH:mm")
-                </td>
-                <td class="text-light">
-                    @Html.DisplayFor(modelItem => item.HallNumber)
-                </td>
-                <td class="text-light">
-                    @foreach (var rowNumber in item.RowNumber)
-                    {
-                        @Html.DisplayFor(modelItem => rowNumber)
-                        <br />
-                    }
-                </td>
-                <td class="text-light">
-                    @foreach (var seatNumber in item.SeatNumber)
-                    {
-                        @Html.DisplayFor(modelItem => seatNumber)
-                        <br />
-                    }
-                </td>
-                <td class="text-light">
-                    @if (item.QRCode != null && item.QRCode.Length > 0)
-                    {
-                        string base64Image = Convert.ToBase64String(item.QRCode);
-                        string imgSrc = $"data:image/png;base64,{base64Image}";
-                        <img src="@imgSrc" alt="QR Code" />
-                    }
-                </td>
-                <td>
-                    <a class="btn btn-primary" asp-controller="Ticket" asp-action="GetPdfTicketFile" asp-route-uid="@item.Uid">Get PDF</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<script>
+    function showTicketDetails(ticketUid) {
+        $.ajax({
+            url: '@Url.Action("GetTicketByUid", "Ticket")',
+            type: 'GET',
+            data: { uid: ticketUid },
+            success: function (result) {
+                $('#details').html(result);
+            },
+            error: function () {
+                toastr['error']("An error occurred while loading ticket details.");
+            }
+        });
+    };
+</script>
+
+<style>
+    .ml-2 {
+        margin-left: 0.5rem;
+    }
+
+    .pl-3 {
+        padding-left: 1rem;
+    }
+
+    .font-weight-bold {
+        font-weight: bold;
+    }
+
+    .card {
+        padding: 1rem 2rem;
+        cursor: pointer;
+    }
+</style>
