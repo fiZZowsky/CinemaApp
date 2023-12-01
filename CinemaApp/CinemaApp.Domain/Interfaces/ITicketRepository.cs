@@ -10,6 +10,7 @@
         Task SendEmailWithAttachement(string recipient, string emailTemplateText, byte[] attachement);
         Task<int> GetMaxSeatsNumber(int hallNumber);
         Task<Domain.Entities.Ticket> GetTicketByUid(string uid);
+        Task<IEnumerable<Domain.Entities.Ticket>> GetTicketsBySearchString(string? uid);
         Task Commit();
     }
 }

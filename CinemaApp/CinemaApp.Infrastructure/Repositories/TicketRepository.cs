@@ -6,6 +6,7 @@ using DinkToPdf.Contracts;
 using MailKit.Net.Smtp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using MimeKit;
 using QRCoder;
 
@@ -213,5 +214,24 @@ namespace CinemaApp.Infrastructure.Repositories
                 .ThenInclude(seat => seat.Hall)
             .Where(t => t.Uid == uid)
             .FirstOrDefaultAsync();
+
+        public async Task<IEnumerable<Ticket>> GetTicketsBySearchString(string? uid)
+        {
+            var query = _dbContext.Tickets
+                .Include(ticket => ticket.MovieShow)
+                    .ThenInclude(show => show.Movie)
+                    .ThenInclude(m => m.AgeRating)
+                .Include(ticket => ticket.Seats)
+                    .ThenInclude(seat => seat.Hall)
+                .OrderBy(ms => ms.MovieShow.StartTime)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(uid))
+            {
+                query = query.Where(ms => ms.Uid.Contains(uid));
+            }
+
+            return await query.ToListAsync();
+        }
     }
 }

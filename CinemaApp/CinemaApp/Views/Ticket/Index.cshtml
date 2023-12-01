@@ -8,78 +8,61 @@
 <div class="container py-3">
     <div class="row">
         <div class="col-md-4">
-            @foreach (var ticket in Model)
-            {
-                <div class="card mb-2" onclick="showTicketDetails('@ticket.Uid')">
-                    <div class="row mt-1">
-                        <div class="col-md-6">
-                            <h4 class="pt-3 font-weight-bold">
-                                @ticket.Uid.ToString()
-                            </h4>
-                            <div class="d-flex flex-row">
-                                <div><i class="bi bi-calendar"></i><span class="ml-2">@ticket.StartTime.ToString("dd.MM.yyyy HH:mm")</span></div>
-                                <div class="px-2"><i class="bi bi-clock"></i><span class="ml-2">@ticket.Duration min</span></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div><i class="bi bi-film"></i><span class="ml-2">@ticket.MovieTitle</span></div>
-                            <div>Hall @ticket.HallNumber</div>
-                            <div>
-                                Seats: @foreach (var seat in ticket.SeatNumber)
-                                {
-                                    <span>@seat </span>
-                                }
-                            </div>
-                            <div>
-                                Rows: @foreach (var row in ticket.RowNumber)
-                                {
-                                    <span>@row </span>
-                                }
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex align-items-center">
-                            <a class="btn btn-primary" asp-controller="Ticket" asp-action="GetPdfTicketFile" asp-route-uid="@ticket.Uid">Get ticket</a>
-                        </div>
-                    </div>
+            <form class="form">
+                <div class="input-group">
+                    <input type="text" class="form-control form-input" placeholder="Search any ticket..." id="search-input">
                 </div>
-            }
+            </form>
+            <div id="tickets-list-partial">
+                <partial name="_TicketListPartial" model="@Model" />
+            </div>
         </div>
         <div class="col-md-8 p-3 text-light" id="details">
         </div>
     </div>
 </div>
 
-<script>
-    function showTicketDetails(ticketUid) {
-        $.ajax({
-            url: '@Url.Action("GetTicketByUid", "Ticket")',
-            type: 'GET',
-            data: { uid: ticketUid },
-            success: function (result) {
-                $('#details').html(result);
-            },
-            error: function () {
-                toastr['error']("An error occurred while loading ticket details.");
-            }
+@section Scripts {
+    <script>
+        // Search input
+        var uid = null;
+        $('#search-input').on('input', function () {
+            uid = $(this).val();
+            updateTicketList(uid);
         });
-    };
-</script>
+
+        // Function to update the movie list based on filters and sorting
+        function updateTicketList() {
+            $.ajax({
+                url: `/Ticket/SortTicketList/${uid}`,
+                data: {
+                    uid: uid
+                },
+                success: function (data) {
+                    $('#tickets-list-partial').html(data);
+                },
+                error: function (xhr, status, error) {
+                    toastr["error"]("An error has occurred while loading tickets");
+                }
+            });
+        }
+    </script>
+}
 
 <style>
-    .ml-2 {
-        margin-left: 0.5rem;
+    .input-group {
+        border-radius: 10px;
+        padding-bottom: 1rem;
     }
 
-    .pl-3 {
-        padding-left: 1rem;
+    .form-input {
+        height: 45px;
+        border: none;
+        border-radius: 10px;
     }
 
-    .font-weight-bold {
-        font-weight: bold;
-    }
-
-    .card {
-        padding: 1rem 2rem;
-        cursor: pointer;
-    }
+        .form-input:focus {
+            box-shadow: none;
+            border: none;
+        }
 </style>

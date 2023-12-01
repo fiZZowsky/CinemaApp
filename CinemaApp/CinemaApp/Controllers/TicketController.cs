@@ -13,6 +13,7 @@ using CinemaApp.Application.CinemaApp.Queries.GetPdfFromTicket;
 using CinemaApp.Application.CinemaApp.Queries.GetSeat;
 using CinemaApp.Application.CinemaApp.Queries.GetTicketByUid;
 using CinemaApp.Application.CinemaApp.Queries.GetTicketByUser;
+using CinemaApp.Application.CinemaApp.Queries.GetTicketsBySearchString;
 using CinemaApp.Application.CinemaApp.Queries.GetUnavailableSeats;
 using CinemaApp.Domain.Entities;
 using CinemaApp.MVC.Extensions;
@@ -22,7 +23,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Text;
-using System.Text.Json;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -200,11 +200,22 @@ namespace CinemaApp.MVC.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetTicketByUid(string uid)
         {
             var ticket = await _mediator.Send(new GetTicketByUidQuery(uid));
             return PartialView("_TicketDetailsPartial", ticket);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("Ticket/SortTicketList/{uid?}")]
+        public async Task<IActionResult> SortTicketList([FromRoute] string? uid)
+        {
+            IEnumerable<TicketDto> tickets = new List<TicketDto>();
+
+            tickets = await _mediator.Send(new GetTicketsBySearchStringQuery(uid));
+
+            return PartialView("_TicketListPartial", tickets);
         }
 
         [HttpPost]
@@ -222,7 +233,7 @@ namespace CinemaApp.MVC.Controllers
                 this.SetNotification("success", "Ticket scanned successfully.");
             }
 
-            return RedirectToAction(nameof(TicketCheck), new { uid });
+            return RedirectToAction(nameof(Index), new { uid });
         }
 
         // RFID card have UID: 0x530xdd0xb20x05

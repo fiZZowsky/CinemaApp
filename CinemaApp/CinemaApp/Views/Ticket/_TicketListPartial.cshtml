@@ -1,0 +1,73 @@
+﻿@using CinemaApp.Application.CinemaApp;
+@model IEnumerable<CinemaApp.Application.CinemaApp.TicketDto>
+
+@foreach (var ticket in Model)
+{
+    <div class="card mb-2" onclick="showTicketDetails('@ticket.Uid')">
+        <div class="row mt-1">
+            <div class="col-md-6">
+                <h4 class="pt-3 font-weight-bold">
+                    @ticket.Uid.ToString()
+                </h4>
+                <div class="d-flex flex-row">
+                    <div><i class="bi bi-calendar"></i><span class="ml-2">@ticket.StartTime.ToString("dd.MM.yyyy HH:mm")</span></div>
+                    <div class="px-2"><i class="bi bi-clock"></i><span class="ml-2">@ticket.Duration min</span></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div><i class="bi bi-film"></i><span class="ml-2">@ticket.MovieTitle </span><span>(@ticket.Language.ToUpper())</span></div>
+                <div>Hall @ticket.HallNumber</div>
+                <div>
+                    Seats: @foreach (var seat in ticket.SeatNumber)
+                    {
+                        <span>@seat </span>
+                    }
+                </div>
+                <div>
+                    Rows: @foreach (var row in ticket.RowNumber)
+                    {
+                        <span>@row </span>
+                    }
+                </div>
+            </div>
+            <div class="col-md-2 d-flex align-items-center">
+                <a class="btn btn-primary" asp-controller="Ticket" asp-action="GetPdfTicketFile" asp-route-uid="@ticket.Uid">Get ticket</a>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    function showTicketDetails(ticketUid) {
+        $.ajax({
+            url: '@Url.Action("GetTicketByUid", "Ticket")',
+            type: 'GET',
+            data: { uid: ticketUid },
+            success: function (result) {
+                $('#details').html(result);
+            },
+            error: function () {
+                toastr['error']("An error occurred while loading ticket details.");
+            }
+        });
+    };
+</script>
+
+<style>
+    .ml-2 {
+        margin-left: 0.5rem;
+    }
+
+    .pl-3 {
+        padding-left: 1rem;
+    }
+
+    .font-weight-bold {
+        font-weight: bold;
+    }
+
+    .card {
+        padding: 1rem 2rem;
+        cursor: pointer;
+    }
+</style>
