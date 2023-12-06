@@ -1,0 +1,84 @@
+﻿<div class="modal fade" id="changeRoleModal" tabindex="-1" aria-labelledby="changeRoleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changeRoleModalLabel">Change Role - User ID: <span id="modalUserId"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="changeRoleForm" action="/ChangeRole">
+                    <input type="hidden" id="selectedUserId" name="selectedUserId" />
+                    <div class="form-group mb-3">
+                        <label for="roleDropdown">Select Role:</label>
+                        <select class="form-control" id="roleDropdown" name="selectedRole">
+                            <option value="">-Roles-</option>
+                            @foreach (var role in ViewBag.Roles)
+                            {
+                                <option value="@role">@role</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        @foreach (var user in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@user.UserName</h5>
+                        <p class="card-text" id="userId">ID: @user.Id</p>
+                        <p class="card-text">Role: @user.Role</p>
+                        <div class="d-flex justify-content-between">
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changeRoleModal" data-user-id="@user.Id" onclick="setSelectedUserId('@user.Id')">Change role</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function setSelectedUserId(userId) {
+            document.getElementById('selectedUserId').value = userId;
+        }
+
+        function saveChanges() {
+            var selectedUserId = document.getElementById('selectedUserId').value;
+            var selectedRole = $('#roleDropdown').val();
+
+            if (selectedRole === "") {
+                toastr["error"]("Please select a role.");
+                return;
+            }
+
+            $.ajax({
+                url: `/CinemaApp/Account/ChangeRole/${selectedUserId}/${selectedRole}`,
+                type: 'POST',
+                data: {
+                    selectedUserId: selectedUserId,
+                    selectedRole: selectedRole
+                },
+                success: function (data) {
+                    $('#changeRoleModal').modal('hide');
+                    location.reload();
+                    toastr["success"]("Successfully changed user role.");
+                },
+                error: function (xhr, status, error) {
+                    toastr["error"]("An error has occurred while changing user role");
+                }
+            });
+        }
+    </script>
+}

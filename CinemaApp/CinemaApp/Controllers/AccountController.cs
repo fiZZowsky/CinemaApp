@@ -1,9 +1,14 @@
 ﻿using CinemaApp.Application.CinemaApp;
+using CinemaApp.Application.CinemaApp.Commands.EditUserRole;
 using CinemaApp.Application.CinemaApp.Commands.SendRecoveryPasswordEmail;
+using CinemaApp.Application.CinemaApp.Queries.GetAllUsers;
 using CinemaApp.Domain.Entities;
+using CinemaApp.MVC.Extensions;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaApp.MVC.Controllers
 {
@@ -11,11 +16,13 @@ namespace CinemaApp.MVC.Controllers
     {
         private readonly IMediator _mediator;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(IMediator mediator, UserManager<IdentityUser> userManager)
+        public AccountController(IMediator mediator, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _mediator = mediator;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -85,6 +92,29 @@ namespace CinemaApp.MVC.Controllers
         public IActionResult ResetPasswordConfirmation()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Index()
+        {
+            var users = await _mediator.Send(new GetAllUsersQuery());
+            var roles = await _roleManager.Roles.ToListAsync();
+
+            ViewBag.Roles = roles;
+
+            return View(users);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [Route("CinemaApp/Account/ChangeRole/{userId}/{roleName}")]
+        public async Task<IActionResult> ChangeUserRole(string userId, string roleName)
+        {
+            EditUserRoleCommand command = new EditUserRoleCommand(userId, roleName);
+            await _mediator.Send(command);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

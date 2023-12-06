@@ -85,6 +85,8 @@ namespace CinemaApp.Application.Mappings
             CreateMap<RatingDto, Domain.Entities.Rating>();
 
             CreateMap<Domain.Entities.Rating, RatingDto>();
+
+            CreateMap<Domain.Entities.User, UserDto>();
         }
     }
 }

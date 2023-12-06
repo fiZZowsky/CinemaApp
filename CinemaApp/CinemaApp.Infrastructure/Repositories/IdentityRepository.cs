@@ -4,19 +4,23 @@ using CinemaApp.Infrastructure.Persistance;
 using Microsoft.Extensions.Options;
 using MailKit.Net.Smtp;
 using MimeKit;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace CinemaApp.Infrastructure.Repositories
 {
     public class IdentityRepository : IIdentityRepository
     {
         private readonly CinemaAppDbContext _dbContext;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly EmailSettings _emailSettings;
 
-        public IdentityRepository(CinemaAppDbContext dbContext, IOptions<EmailSettings> emailSettings)
+        public IdentityRepository(CinemaAppDbContext dbContext, IOptions<EmailSettings> emailSettings, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _dbContext = dbContext;
+            _userManager = userManager;
+            _roleManager = roleManager;
             _emailSettings = emailSettings.Value;
         }
 
@@ -76,6 +80,41 @@ namespace CinemaApp.Infrastructure.Repositories
 
                 await client.DisconnectAsync(true);
             }
+        }
+
+        public async Task<IEnumerable<CinemaApp.Domain.Entities.User>> GetAllUsers()
+        {
+            var users = await _userManager.Users.ToListAsync();
+            var userList = new List<CinemaApp.Domain.Entities.User>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+
+                userList.Add(new CinemaApp.Domain.Entities.User
+                {
+                    Id = user.Id,
+                    UserName = user.UserName,
+                    Role = roles.FirstOrDefault()
+                });
+            }
+
+            return userList;
+        }
+
+        public async Task ChangeUserRole(string userId, string roleName)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if(user == null)
+            {
+                return;
+            }
+
+            var userRoles = await _userManager.GetRolesAsync(user);
+            await _userManager.RemoveFromRolesAsync(user, userRoles);
+
+            await _userManager.AddToRoleAsync(user, roleName);
         }
     }
 }
