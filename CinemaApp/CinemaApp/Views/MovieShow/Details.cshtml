@@ -178,6 +178,8 @@
         tabContent.innerHTML = `
                                 <p>Start Time: @Model.StartTime.ToString("dd.MM.yyyy HH:mm")</p>
                                 <p>Hall Number: @Model.HallNumber</p>
+                                <p>Normal ticket price: @String.Format("{0:C}", Model.NormalTicketPrice / 100.0)</p>
+                                <p>Reduced ticket price: @String.Format("{0:C}", Model.ReducedTicketPrice / 100.0)</p>
                                 `;
     }
 

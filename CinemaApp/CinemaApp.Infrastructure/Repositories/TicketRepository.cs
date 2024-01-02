@@ -39,7 +39,7 @@ namespace CinemaApp.Infrastructure.Repositories
 
         private async Task<byte[]> CreateQRCode(Domain.Entities.Ticket ticket)
         {
-            string data = $"http://192.168.8.143:8082/Ticket/TicketCheck/{ticket.Uid}";
+            string data = $"http://192.168.137.1:8082/Ticket/TicketCheck/{ticket.Uid}";
 
             using (MemoryStream ms = new MemoryStream())
             {

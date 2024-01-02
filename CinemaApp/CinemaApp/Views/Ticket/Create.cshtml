@@ -71,7 +71,7 @@
                             <span asp-validation-for="NormalPriceSeats" class="text-danger"></span>
                         </div>
                     </div>
-                    <div class="form-group pb-2">
+                    <div class="form-group pb-3">
                         <label asp-for="ReducedPriceSeats" class="control-label text-light">Number of discount tickets:</label>
                         <div class="input-group">
                             <button type="button" class="btn btn-danger btn-square" id="decreaseReduced">-</button>
@@ -80,6 +80,7 @@
                             <span asp-validation-for="ReducedPriceSeats" class="text-danger"></span>
                         </div>
                     </div>
+                    <div class="form-group pb-2 text-light" id="price-sum"></div>
                     <div class="form-group mt-2">
                         <input type="submit" id="submitButton" value="Purchase Ticket" class="btn btn-primary" />
                     </div>
@@ -101,6 +102,9 @@
         document.addEventListener("DOMContentLoaded", function () {
             const decreaseButtons = document.querySelectorAll(".btn-danger");
             const increaseButtons = document.querySelectorAll(".btn-success");
+            const normalSeatsInput = document.getElementById("normalPriceSeats");
+            const reducedSeatsInput = document.getElementById("reducedPriceSeats");
+            const priceSumElement = document.getElementById("price-sum");
 
             decreaseButtons.forEach(button => {
                 button.addEventListener("click", function () {
@@ -109,6 +113,7 @@
                     if (value > 0) {
                         value--;
                         inputField.value = value;
+                        updatePriceSum();
                     }
                 });
             });
@@ -119,8 +124,23 @@
                     let value = parseInt(inputField.value);
                     value++;
                     inputField.value = value;
+                    updatePriceSum();
                 });
-            });
+            }); 
+
+            function updatePriceSum() {
+                const normalSeats = parseInt(normalSeatsInput.value) || 0;
+                const reducedSeats = parseInt(reducedSeatsInput.value) || 0;
+                const normalPrice = parseFloat("@Model.NormalTicketPrice") / 100;
+                const reducedPrice = parseFloat("@Model.ReducedTicketPrice") / 100;
+
+                const totalPrice = normalSeats * normalPrice + reducedSeats * reducedPrice;
+                priceSumElement.innerHTML = `Total Price - <strong>${totalPrice.toFixed(2)} zł</strong>`;
+            }
+
+            updatePriceSum();
+            normalSeatsInput.addEventListener("input", updatePriceSum);
+            reducedSeatsInput.addEventListener("input", updatePriceSum);
         });
     </script>
 }

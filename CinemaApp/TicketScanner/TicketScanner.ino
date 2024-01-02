@@ -90,9 +90,9 @@ void loop() {
 void httpRequest() {
   client.stop();
 
+  Serial.println("connecting...");
+  
   if (client.connect(serverIPAddress, PORT)) {
-    Serial.println("connecting...");
-
     // Tworzenie pełnego żądania HTTP
     String request = "POST /Ticket/ScannedTicketCheck HTTP/1.1\r\n";
     request += "Host: " + host + "\r\n";
