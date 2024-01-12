@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using MimeKit;
-using QRCoder;
 
 namespace CinemaApp.Infrastructure.Repositories
 {
@@ -31,25 +30,8 @@ namespace CinemaApp.Infrastructure.Repositories
             ticket.MovieShowId = movieShowId;
             ticket.Seats = seats;
 
-            ticket.QRCode = await CreateQRCode(ticket);
-
             _dbContext.Add(ticket);
             await _dbContext.SaveChangesAsync();
-        }
-
-        private async Task<byte[]> CreateQRCode(Domain.Entities.Ticket ticket)
-        {
-            string data = $"http://192.168.137.1:8082/Ticket/TicketCheck/{ticket.Uid}";
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                QRCodeGenerator qrGenerator = new QRCodeGenerator();
-                QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
-                PngByteQRCode qrCode = new PngByteQRCode(qrCodeData);
-                byte[] qrCodeImageBytes = qrCode.GetGraphic(2);
-
-                return await Task.FromResult(qrCodeImageBytes);
-            }
         }
 
         private string GenerateNewUid()
@@ -103,9 +85,6 @@ namespace CinemaApp.Infrastructure.Repositories
                 DocumentTitle = "Ticket " + uid
             };
 
-            string base64Image = Convert.ToBase64String(ticket.QRCode);
-            string QRCode = $"data:image/png;base64,{base64Image}";
-
             var seatNumbers = string.Join(", ", ticket.Seats.Select(seat => seat.Number.ToString()));
             var rowNumbers = string.Join(", ", ticket.Seats.Select(seat => seat.RowNumber.ToString()).Distinct());
 
@@ -117,8 +96,7 @@ namespace CinemaApp.Infrastructure.Repositories
                 .Replace("@Model.StartTime", ticket.MovieShow.StartTime.ToString("dd-MM-yyyy HH:mm"))
                 .Replace("@Model.HallNumber", ticket.MovieShow.Hall.Number.ToString())
                 .Replace("@Model.RowNumber", rowNumbers)
-                .Replace("@Model.SeatNumber", seatNumbers)
-                .Replace("@Model.QRCode", QRCode);
+                .Replace("@Model.SeatNumber", seatNumbers);
 
             var objectSettings = new ObjectSettings
             {

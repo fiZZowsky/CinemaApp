@@ -15,7 +15,6 @@ namespace CinemaApp.Domain.Entities
         public int MovieShowId { get; set; } = default!;
         public List<Seat> Seats { get; set; } = new();
         public DateTime PurchaseDate { get; set; }
-        public byte[] QRCode { get; set; } = default!;
         public bool IsScanned { get; set; }
         public string PurchasedById { get; set; } = default!;
         public int NormalPriceSeats { get; set; }

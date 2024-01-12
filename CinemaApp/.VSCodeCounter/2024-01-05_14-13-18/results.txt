@@ -1,0 +1,43 @@
+Date : 2024-01-05 14:13:18
+Directory : c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure
+Total : 13 files,  948 codes, 0 comments, 174 blanks, all 1122 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C#       |         12 |        925 |          0 |        169 |      1,094 |
+| XML      |          1 |         23 |          0 |          5 |         28 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                          | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                             |         13 |        948 |          0 |        174 |      1,122 |
+| . (Files)                                                                                                     |          1 |         23 |          0 |          5 |         28 |
+| Extensions                                                                                                    |          1 |         38 |          0 |          7 |         45 |
+| Persistance                                                                                                   |          1 |         60 |          0 |         14 |         74 |
+| Repositories                                                                                                  |          9 |        628 |          0 |        132 |        760 |
+| Seeders                                                                                                       |          1 |        199 |          0 |         16 |        215 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                                      | language | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\CinemaApp.Infrastructure.csproj          | XML      |         23 |          0 |          5 |         28 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Extensions\ServiceCollectionExtension.cs | C#       |         38 |          0 |          7 |         45 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Persistance\CinemaAppDbContext.cs        | C#       |         60 |          0 |         14 |         74 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Repositories\AgeRatingRepository.cs      | C#       |         21 |          0 |          5 |         26 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Repositories\HallRepository.cs           | C#       |         20 |          0 |          5 |         25 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Repositories\IdentityRepository.cs       | C#       |         98 |          0 |         23 |        121 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Repositories\MovieRepository.cs          | C#       |         62 |          0 |         14 |         76 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Repositories\MovieShowRepository.cs      | C#       |        104 |          0 |         20 |        124 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Repositories\RatingRepository.cs         | C#       |         35 |          0 |          7 |         42 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Repositories\SeatRepository.cs           | C#       |         26 |          0 |          5 |         31 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Repositories\StripeRepository.cs         | C#       |         65 |          0 |         12 |         77 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Repositories\TicketRepository.cs         | C#       |        197 |          0 |         41 |        238 |
+| c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\Seeders\CinemaAppSeeder.cs               | C#       |        199 |          0 |         16 |        215 |
+| Total                                                                                                         |          |        948 |          0 |        174 |      1,122 |
++---------------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

@@ -400,7 +400,6 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.MVC.Tests\bin\Debug\net7.0
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.MVC.Tests\bin\Debug\net7.0\NuGet.ProjectModel.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.MVC.Tests\bin\Debug\net7.0\NuGet.Protocol.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.MVC.Tests\bin\Debug\net7.0\NuGet.Versioning.dll
-C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.MVC.Tests\bin\Debug\net7.0\QRCoder.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.MVC.Tests\bin\Debug\net7.0\Stripe.net.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.MVC.Tests\bin\Debug\net7.0\System.Composition.AttributedModel.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.MVC.Tests\bin\Debug\net7.0\System.Composition.Convention.dll

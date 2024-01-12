@@ -10,3 +10,4 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Debug\net7.0\Ci
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Debug\net7.0\refint\CinemaApp.Domain.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Debug\net7.0\CinemaApp.Domain.pdb
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Debug\net7.0\ref\CinemaApp.Domain.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Domain\obj\Debug\net7.0\CinemaApp.Domain.sourcelink.json

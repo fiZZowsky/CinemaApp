@@ -17,3 +17,4 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\obj\Debug\n
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\obj\Debug\net7.0\CinemaApp.Infrastructure.pdb
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\obj\Debug\net7.0\CinemaApp.Infrastructure.genruntimeconfig.cache
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\obj\Debug\net7.0\ref\CinemaApp.Infrastructure.dll
+C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Infrastructure\obj\Debug\net7.0\CinemaApp.Infrastructure.sourcelink.json

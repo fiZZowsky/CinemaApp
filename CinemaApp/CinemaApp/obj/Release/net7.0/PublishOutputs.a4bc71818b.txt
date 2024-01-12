@@ -77,7 +77,6 @@ C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Release\net7.0\PubTmp\
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Release\net7.0\PubTmp\Out\NuGet.ProjectModel.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Release\net7.0\PubTmp\Out\NuGet.Protocol.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Release\net7.0\PubTmp\Out\NuGet.Versioning.dll
-C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Release\net7.0\PubTmp\Out\QRCoder.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Release\net7.0\PubTmp\Out\Stripe.net.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Release\net7.0\PubTmp\Out\System.Composition.AttributedModel.dll
 C:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp\obj\Release\net7.0\PubTmp\Out\System.Composition.Convention.dll

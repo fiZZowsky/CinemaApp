@@ -15,6 +15,5 @@
         public int NormalTicketPrice { get; set; }
         public int ReducedTicketPrice { get; set; }
         public DateTime PurchaseDate { get; set; }
-        public byte[] QRCode { get; set; } = default!;
     }
 }

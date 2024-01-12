@@ -60,7 +60,6 @@ namespace CinemaApp.Application.Mappings.Tests
                 NormalPriceSeats = 1,
                 ReducedPriceSeats = 0,
                 PurchaseDate = DateTime.Now,
-                QRCode = Encoding.UTF8.GetBytes("QRCodeData"),
                 IsScanned = false
             };
 
@@ -81,7 +80,6 @@ namespace CinemaApp.Application.Mappings.Tests
             dto.NormalTicketPrice.Should().Be(2500);
             dto.ReducedTicketPrice.Should().Be(1500);
             dto.PurchaseDate.Should().Be(ticket.PurchaseDate);
-            dto.QRCode.Should().BeEquivalentTo(Encoding.UTF8.GetBytes("QRCodeData"));
         }
 
         [TestMethod()]
@@ -107,8 +105,7 @@ namespace CinemaApp.Application.Mappings.Tests
                 ReducedPriceSeats = 0,
                 NormalTicketPrice = 2500,
                 ReducedTicketPrice = 1500,
-                PurchaseDate = DateTime.Now,
-                QRCode = Encoding.UTF8.GetBytes("QRCodeData")
+                PurchaseDate = DateTime.Now
             };
 
             // act
@@ -118,7 +115,6 @@ namespace CinemaApp.Application.Mappings.Tests
             ticket.Should().NotBeNull();
             ticket.Uid.Should().Be(ticketDto.Uid);
             ticket.MovieShowId.Should().Be(0);
-            ticket.QRCode.Should().BeNull();
             ticket.IsScanned.Should().Be(false);
             ticket.PurchaseDate.Should().Be(ticketDto.PurchaseDate);
         }

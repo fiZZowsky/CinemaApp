@@ -246,10 +246,22 @@ namespace CinemaApp.MVC.Controllers
                 {
                     string receivedData = await reader.ReadToEndAsync();
 
-                    DateTime actualDateTime = DateTime.Now;
-                    int hallNumber = 1; // Example hall (possible values: 1 or 2)
+                    string[] dataParts = receivedData.Split('|');
+                    if (dataParts.Length != 2)
+                    {
+                        return BadRequest("Invalid data format. Expected format: hallNumber|cardUID");
+                    }
 
-                    var ticket = await _mediator.Send(new GetTicketByUidQuery(receivedData));
+                    if (!int.TryParse(dataParts[0], out int hallNumber))
+                    {
+                        return BadRequest("Invalid hallNumber format. Must be a valid integer.");
+                    }
+
+                    string cardUID = dataParts[1];
+
+                    DateTime actualDateTime = DateTime.Now;
+
+                    var ticket = await _mediator.Send(new GetTicketByUidQuery(cardUID));
 
                     if (ticket != null)
                     {

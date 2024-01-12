@@ -1,0 +1,17 @@
+"filename", "language", "XML", "JSON", "C#", "comment", "blank", "total"
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\ApplicationUser\CurrentUserTests.cs", "C#", 0, 0, 35, 9, 9, 53
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\ApplicationUser\UserContextTests.cs", "C#", 0, 0, 40, 3, 6, 49
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp.Application.Tests.csproj", "XML", 22, 0, 0, 0, 6, 28
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\CreateMovieShow\CreateMovieShowCommandHandlerTests.cs", "C#", 0, 0, 76, 9, 18, 103
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\CreateMovieShow\CreateMovieShowCommandValidatorTests.cs", "C#", 0, 0, 76, 9, 17, 102
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\CreateMovie\CreateMovieCommandHandlerTests.cs", "C#", 0, 0, 98, 9, 20, 127
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\CreateMovie\CreateMovieCommandValidatorTests.cs", "C#", 0, 0, 84, 9, 11, 104
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\CreateRating\CreateRatingCommandHandlerTests.cs", "C#", 0, 0, 65, 6, 14, 85
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\CreateRating\CreateRatingCommandValidatorTests.cs", "C#", 0, 0, 56, 9, 13, 78
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\EditMovieShow\EditMovieShowCommandHandlerTests.cs", "C#", 0, 0, 216, 9, 30, 255
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\EditMovieShow\EditMovieShowCommandValidatorTests.cs", "C#", 0, 0, 96, 9, 12, 117
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\EditMovie\EditMovieCommandHandlerTests.cs", "C#", 0, 0, 119, 9, 21, 149
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\CinemaApp\Commands\EditMovie\EditMovieCommandValidatorTests.cs", "C#", 0, 0, 71, 6, 6, 83
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\Mappings\CinemaAppMappingProfileTests.cs", "C#", 0, 0, 253, 21, 37, 311
+"c:\Users\Pioter\Desktop\CinemaApp\CinemaApp\CinemaApp.Application.Tests\libman.json", "JSON", 0, 5, 0, 0, 0, 5
+"Total", "-", 22, 5, 1285, 117, 220, 1649

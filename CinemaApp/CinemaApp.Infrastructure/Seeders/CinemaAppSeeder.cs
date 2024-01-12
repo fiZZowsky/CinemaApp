@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
-using static QRCoder.PayloadGenerator;
 
 namespace CinemaApp.Infrastructure.Seeders
 {

@@ -23,7 +23,6 @@ namespace CinemaApp.Application.Mappings
 
             CreateMap<TicketDto, Domain.Entities.Ticket>()
                 .ForMember(dest => dest.MovieShowId, opt => opt.MapFrom(src => 0))
-                .ForMember(dest => dest.QRCode, opt => opt.Ignore())
                 .ForMember(dest => dest.IsScanned, opt => opt.MapFrom(src => false));
 
             CreateMap<Domain.Entities.MovieShow, MovieDto>()

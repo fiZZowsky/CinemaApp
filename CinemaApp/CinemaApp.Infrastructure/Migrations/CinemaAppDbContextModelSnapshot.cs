@@ -257,10 +257,6 @@ namespace CinemaApp.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<byte[]>("QRCode")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
                     b.Property<int>("ReducedPriceSeats")
                         .HasColumnType("int");
 

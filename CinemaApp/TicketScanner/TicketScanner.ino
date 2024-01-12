@@ -6,6 +6,7 @@
 #include "env.h"
 
 #define duration 5000
+#define gate_number 1
 
 MFRC522 rfid(10, 9);
 MFRC522::MIFARE_Key key;
@@ -99,7 +100,7 @@ void httpRequest() {
     request += "Content-Type: application/x-www-form-urlencoded\r\n";
     request += "Content-Length: " + String(cardUID.length()) + "\r\n";
     request += "Connection: close\r\n\r\n";
-    request += cardUID;
+    request += String(gate_number) + "|" + cardUID;
 
     Serial.println("HTTP Request:");
     Serial.print(request);
