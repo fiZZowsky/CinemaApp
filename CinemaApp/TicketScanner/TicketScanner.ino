@@ -95,15 +95,17 @@ void httpRequest() {
   
   if (client.connect(serverIPAddress, PORT)) {
     // Tworzenie pełnego żądania HTTP
+    String requestData = String(gate_number) + "|" + cardUID;
+    
     String request = "POST /Ticket/ScannedTicketCheck HTTP/1.1\r\n";
     request += "Host: " + host + "\r\n";
     request += "Content-Type: application/x-www-form-urlencoded\r\n";
-    request += "Content-Length: " + String(cardUID.length()) + "\r\n";
+    request += "Content-Length: " + String(requestData.length()) + "\r\n";
     request += "Connection: close\r\n\r\n";
-    request += String(gate_number) + "|" + cardUID;
+    request += requestData;
 
     Serial.println("HTTP Request:");
-    Serial.print(request);
+    Serial.println(request);
 
     client.print(request);
 

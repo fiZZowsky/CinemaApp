@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Fzh5gpSCRSgicZnxJeVuZr4nExeX+TR8OZuRf8mG2ZkE6bi0z6h/zA6MOPzTXryIEx2E/Dxf6Y+v8cHOo8B6fg==",
+  "dgSpecHash": "3FmS8rGJ0sOWlcvMVBgRQuidhcxT2xFNh8SxG5At3hH1qz8X2HOhFgWMmYSeSoHJMc2UO3G4lEPb9INiGrh5nA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp.Infrastructure\\CinemaApp.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -145,10 +145,7 @@
     "C:\\Users\\Pioter\\.nuget\\packages\\system.threading.timer\\4.0.1\\system.threading.timer.4.0.1.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\system.xml.readerwriter\\4.0.11\\system.xml.readerwriter.4.0.11.nupkg.sha512",
-    "C:\\Users\\Pioter\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512",
-    "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512"
+    "C:\\Users\\Pioter\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512"
   ],
   "logs": []
 }

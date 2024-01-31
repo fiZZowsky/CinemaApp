@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HjuDys1tiSo8QSKBN0jPOXGe5l/ipZFY7HYf0utnhl/xPn7XZ5n80zFcMbV/F7oQ1Pvvc/UYvQtUPWvJJ7kotg==",
+  "dgSpecHash": "M91kSOGsVGvLsIXERXF+y7Jz1IX5qIWw/a2aYgId5PVg94gZ8hMV0J2mq9d48dTJ0j56c1C9MX2LwzQCtwZsRQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pioter\\Desktop\\CinemaApp\\CinemaApp\\CinemaApp.Application.Tests\\CinemaApp.Application.Tests.csproj",
   "expectedPackageFiles": [
@@ -131,10 +131,7 @@
     "C:\\Users\\Pioter\\.nuget\\packages\\xunit.core\\2.4.2\\xunit.core.2.4.2.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\xunit.extensibility.core\\2.4.2\\xunit.extensibility.core.2.4.2.nupkg.sha512",
     "C:\\Users\\Pioter\\.nuget\\packages\\xunit.extensibility.execution\\2.4.2\\xunit.extensibility.execution.2.4.2.nupkg.sha512",
-    "C:\\Users\\Pioter\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512",
-    "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
-    "C:\\Users\\Pioter\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512"
+    "C:\\Users\\Pioter\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512"
   ],
   "logs": []
 }
