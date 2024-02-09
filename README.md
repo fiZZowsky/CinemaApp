@@ -15,7 +15,9 @@ CinemaApp is an IT system for the cinemas that uses hardware tickets in the form
 Full-stack application built using .NET Core 7.0, Entity Framework Core, Identity and Microsoft SQL Server for the backend part. HTML/CSS, Bootstrap 5 and JavaScript were used to create the frontend part.
 The application was created in accordance with Clean Architecture. Division of application layers:
 
-![Division of architecture layers.](./GithubResources/CleanArchitecture.jpg) :left_right_arrow: ![Division of application layers.](./GithubResources/AppStructure.png)
+![Division of architecture layers.](./GithubResources/CleanArchitecture.jpg)
+<br>
+![Division of application layers.](./GithubResources/AppStructure.png)
 <br>
 
 The following patterns were also used to build the application:
