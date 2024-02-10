@@ -48,5 +48,5 @@ Diagram of the construction of a physical device:
 > For the system to function properly, it is required to create a publication of the MVC layer of the web application on the IIS server and to set the appropriate server data in the Arduino code configuration files. The server and the physical device should be connected to one network.
 
 Presentation of the operation of the web application
-![Web App Presentation.](./GithubResources/Presentation.mp4)
 <br>
+https://github.com/fiZZowsky/CinemaApp/blob/main/GithubResources/Presentation.mp4
